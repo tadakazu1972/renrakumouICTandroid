@@ -44,42 +44,49 @@
             android:layout_weight="1"
             android:id="@+id/btnProtect"/>
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
         <TextView
             android:id="@+id/lblEarthquake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="非常警備基準（風水害）"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_above="@+id/btnTyphoon1"
+            android:layout_marginBottom="20dp"/>
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="非常警備の基準（全て）"
-            android:id="@+id/btnTyphoon1"/>
+            android:id="@+id/btnTyphoon1"
+            android:layout_above="@+id/btnTyphoon2"
+            android:layout_marginBottom="20dp"
+            android:layout_centerInParent="true"/>
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="気象警報による非常警備"
-            android:id="@+id/btnTyphoon2"/>
+            android:id="@+id/btnTyphoon2"
+            android:layout_above="@+id/btnTyphoon3"
+            android:layout_marginBottom="20dp"
+            android:layout_centerInParent="true"/>
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="河川水位による非常警備"
-            android:id="@+id/btnTyphoon3"/>
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:id="@+id/btnTyphoon3"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="情報(河川)"
             android:id="@+id/btnTyphoonRiver"
             android:layout_above="@+id/btnTyphoonTel"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentLeft="true"/>
         <Button
             android:layout_width="wrap_content"
@@ -87,6 +94,7 @@
             android:text="情報(気象)"
             android:id="@+id/btnTyphoonWeather"
             android:layout_above="@+id/btnTyphoonCaution"
+            android:layout_marginBottom="10dp"
             android:layout_centerInParent="true"/>
         <Button
             android:layout_width="wrap_content"
@@ -94,6 +102,7 @@
             android:text="情報(潮位)"
             android:id="@+id/btnTyphoonSea"
             android:layout_above="@+id/btnTyphoonGathering"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentRight="true"/>
         <Button
             android:layout_width="wrap_content"
