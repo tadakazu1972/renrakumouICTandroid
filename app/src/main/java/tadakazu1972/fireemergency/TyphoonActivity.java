@@ -34,6 +34,18 @@ public class TyphoonActivity extends AppCompatActivity {
                 showTyphoon1();
             }
         });
+        mView.findViewById(R.id.btnTyphoon2).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTyphoon2();
+            }
+        });
+        mView.findViewById(R.id.btnTyphoon3).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTyphoon3();
+            }
+        });
         mView.findViewById(R.id.btnTyphoonRiver).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
@@ -93,6 +105,336 @@ public class TyphoonActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //気象警報による非常警備
+    private void showTyphoon2(){
+        final CharSequence[] actions = {"■特別警報","■暴風（雪）警報","■大雨警報","■大雪警報","■洪水警報","■波浪警報","■高潮警報","■高潮注意報"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("発令されている警報は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showTyphoon21();
+                        break;
+                    case 1:
+                        showTyphoon22();
+                        break;
+                    case 2:
+                        showTyphoon23();
+                        break;
+                    case 3:
+                        showTyphoon24();
+                        break;
+                    case 4:
+                        showTyphoon25();
+                        break;
+                    case 5:
+                        showTyphoon26();
+                        break;
+                    case 6:
+                        showTyphoon27();
+                        break;
+                    case 7:
+                        showTyphoon28();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon21(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■特別警報");
+        builder.setMessage("１号招集\n\n全署");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon22(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■暴風（雪）警報");
+        builder.setMessage("４号招集\n\n全署");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon23(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大雨警報");
+        builder.setMessage("第５非常警備\n\n全署");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon24(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大雪警報");
+        builder.setMessage("第５非常警備\n\n全署");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon25(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■洪水警報");
+        builder.setMessage("第５非常警備\n\n北、都島、福島、此花、中央、西淀川、淀川、東淀川、東成、生野、旭、城東、鶴見、住之江、住吉、東住吉、平野");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon26(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■波浪警報");
+        builder.setMessage("第５非常警備\n\n此花、港、大正、西淀川、住之江、水上");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon27(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■高潮警報");
+        builder.setMessage("第５非常警備\n\n北、都島、福島、此花、中央、西、港、大正、浪速、西淀川、淀川、住之江、西成、水上");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+    private void showTyphoon28(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■高潮注意報");
+        builder.setMessage("第５非常警備\n\n北、都島、福島、此花、中央、西、港、大正、浪速、西淀川、淀川、住之江、西成、水上");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //河川水位による非常警備
+    private void showTyphoon3(){
+        final CharSequence[] actions = {"■淀川（枚方）","■大和川（柏原）","■神崎川（三国）","■安威川（千歳橋）","■寝屋川（京橋）","■第二寝屋川（昭明橋）","■平野川（剣橋）","■平野川分水路（今里大橋）","■古川（桑才）","■東除川（大堀上小橋）"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("河川を選択してください");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showTyphoon31();
+                        break;
+                    case 1:
+                        showTyphoon22();
+                        break;
+                    case 2:
+                        showTyphoon23();
+                        break;
+                    case 3:
+                        showTyphoon24();
+                        break;
+                    case 4:
+                        showTyphoon25();
+                        break;
+                    case 5:
+                        showTyphoon26();
+                        break;
+                    case 6:
+                        showTyphoon27();
+                        break;
+                    case 7:
+                        showTyphoon28();
+                        break;
+                    case 8:
+                        showTyphoon28();
+                        break;
+                    case 9:
+                        showTyphoon28();
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon31(){
+        final CharSequence[] actions = {"■氾濫注意水位　2.7→第5非常警備","■準備情報発令の見込み（1時間以内に5.4に到達）→4号招集","■避難準備情報　5.4→3号招集、4号招集","■避難勧告　5.5→2号招集、3号招集、4号招集","■避難指示8.3→2号招集"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("水位の状況は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showTyphoon311();
+                        break;
+                    case 1:
+                        showTyphoon312();
+                        break;
+                    case 2:
+                        showTyphoon313();
+                        break;
+                    case 3:
+                        showTyphoon314();
+                        break;
+                    case 4:
+                        showTyphoon315();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon311(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■淀川（枚方） 氾濫注意水位　2.7");
+        builder.setMessage("第５非常警備\n\n北、都島、福島、此花、西淀川、淀川、東淀川、旭");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon312(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■淀川（枚方） 準備情報発令の見込み（1時間以内に5.4に到達）");
+        builder.setMessage("４号招集\n\n北、都島、福島、此花、西淀川、淀川、東淀川、旭");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon313(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■淀川（枚方） 避難準備情報　5.4");
+        builder.setMessage("３号招集、４号招集\n\n流域署3号：北、都島、福島、此花、西淀川、淀川、東淀川、旭\n\n流域周辺署4号：中央、西、浪速、東成、生野、城東、鶴見、西成");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon314(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■淀川（枚方） 避難韓国　5.5");
+        builder.setMessage("２号招集、３号招集、４号招集\n\n流域署2号：北、都島、福島、此花、西淀川、淀川、東淀川、旭\n\n流域周辺署3号：中央、西、浪速、東成、生野、城東、鶴見、西成\n\nその他の署4号：港、大正、天王寺、阿倍野、住之江、住吉、東住吉、平野、水上");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon315(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■淀川（枚方） 避難指示　8.3");
+        builder.setMessage("２号招集\n\n全署");
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -181,25 +523,25 @@ public class TyphoonActivity extends AppCompatActivity {
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
                     }
-                    break;
+                        break;
                     case 1: {
                         Uri uri = Uri.parse(actions[1].toString());
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
                     }
-                    break;
+                        break;
                     case 2:{
                         Uri uri = Uri.parse(actions[3].toString());
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
                     }
-                    break;
+                        break;
                     case 3:{
                         Uri uri = Uri.parse(actions[3].toString());
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
                     }
-                    break;
+                        break;
                 }
             }
         });
@@ -230,13 +572,13 @@ public class TyphoonActivity extends AppCompatActivity {
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
                     }
-                    break;
+                        break;
                     case 1: {
                         Uri uri = Uri.parse(actions[1].toString());
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
                     }
-                    break;
+                        break;
                 }
             }
         });
