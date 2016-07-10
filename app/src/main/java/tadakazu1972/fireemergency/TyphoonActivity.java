@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -15,12 +17,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class TyphoonActivity extends AppCompatActivity {
+    protected TyphoonActivity mActivity = null;
     protected View mView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mActivity = this;
         mView = this.getWindow().getDecorView();
         setContentView(R.layout.activity_typhoon);
         initButtons();
@@ -62,6 +66,12 @@ public class TyphoonActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 showSea();
+            }
+        });
+        mView.findViewById(R.id.btnTyphoonTel).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel();
             }
         });
         mView.findViewById(R.id.btnTyphoonCaution).setOnClickListener(new OnClickListener(){
@@ -582,6 +592,38 @@ public class TyphoonActivity extends AppCompatActivity {
                 }
             }
         });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //連絡網
+    public void showTel(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("連絡網");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.tel1, (ViewGroup)findViewById(R.id.tel1));
+        //ボタン クリックリスナー設定
+        layout.findViewById(R.id.btnHonsyo).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(mActivity, "本署タップされました（作業中）", Toast.LENGTH_LONG).show();
+            }
+        });
+        layout.findViewById(R.id.btnOyodo).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(mActivity, "大淀タップされました（作業中）", Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
