@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#2299ff">
+              android:background="#991111">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,62 +57,82 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="非常警備基準（風水害）"
+            android:text="緊急消防援助隊出場基準表"
+            android:textColor="#cccc11"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_above="@+id/btnTyphoon1"
-            android:layout_marginBottom="20dp"/>
+            android:layout_above="@+id/btnKinentai1"
+            android:layout_marginBottom="8dp"/>
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="非常警備の基準（全て）"
+            android:text="地震(震央「陸」)"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnTyphoon1"
-            android:layout_above="@+id/btnTyphoon2"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/btnKinentai1"
+            android:layout_above="@+id/btnKinentai2"
+            android:layout_marginBottom="8dp"
             android:layout_centerInParent="true"/>
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="気象警報による非常警備"
+            android:text="地震(震央「海域」)"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnTyphoon2"
-            android:layout_above="@+id/btnTyphoon3"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/btnKinentai2"
+            android:layout_above="@+id/btnKinentai3"
+            android:layout_marginBottom="10dp"
             android:layout_centerInParent="true"/>
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="河川水位による非常警備"
+            android:text="アクションプラン"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnTyphoon3"
+            android:id="@+id/btnKinentai3"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/btnKinentai4"
+            android:layout_centerInParent="true"/>
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="噴火・大津波"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/btnKinentai4"
+            android:layout_marginBottom="10dp"
             android:layout_centerVertical="true"
+            android:layout_centerInParent="true"/>
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="特殊災害(NBC含む)"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/btnKinentai5"
+            android:layout_below="@+id/btnKinentai4"
+            android:layout_marginBottom="10dp"
             android:layout_centerInParent="true"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="情報(河川)"
+            android:text="情報(地震)"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/btnTyphoonRiver"
+            android:id="@+id/btnKinentaiEathquake"
             android:layout_above="@+id/btnTyphoonTel"
             android:layout_marginBottom="10dp"
             android:layout_alignParentLeft="true"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="情報(気象)"
+            android:text="情報(停電)"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/btnTyphoonWeather"
-            android:layout_above="@+id/btnTyphoonCaution"
+            android:id="@+id/btnKinentaiBlackout"
+            android:layout_above="@+id/btnKinentaiRiver"
             android:layout_marginBottom="10dp"
             android:layout_centerInParent="true"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="情報(潮位)"
+            android:text="情報(道路)"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/btnTyphoonSea"
-            android:layout_above="@+id/btnTyphoonGathering"
+            android:id="@+id/btnKinentaiRoad"
+            android:layout_above="@+id/btnKinentaiWeather"
             android:layout_marginBottom="10dp"
             android:layout_alignParentRight="true"/>
 
@@ -127,17 +147,17 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="留意事項"
+            android:text="情報(河川)"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/btnTyphoonCaution"
+            android:id="@+id/btnKinentaiRiver"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="参集手段"
+            android:text="情報(気象)"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/btnTyphoonGathering"
+            android:id="@+id/btnKinentaiWeather"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
