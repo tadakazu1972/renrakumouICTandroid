@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#2299ff">
+              android:background="#dd9911">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:id="@+id/lblEarthquake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="非常警備基準（風水害）"
+            android:text="非常警備基準（震災）"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textAlignment="center"
             android:layout_marginBottom="20dp"
@@ -67,25 +67,33 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="非常警備の基準（全て）"
+            android:text="震度５強以上"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnTyphoon1"
+            android:id="@+id/btnEarthquake11"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal"/>
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="気象警報による非常警備"
+            android:text="震度５弱"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnTyphoon2"
+            android:id="@+id/btnEarthquake2"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal"/>
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="河川水位による非常警備"
+            android:text="震度４"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnTyphoon3"
+            android:id="@+id/btnEarthquake3"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="震度３以下"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/btnEarthquake4"
             android:layout_gravity="center_horizontal"/>
     </LinearLayout>
     <LinearLayout
@@ -95,23 +103,23 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(河川)"
+            android:text="情報(地震)"
             android:textSize="18sp"
-            android:id="@+id/btnTyphoonRiver"
+            android:id="@+id/btnEarthquakeEarthquake"
             android:layout_weight="1"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(気象)"
+            android:text="情報(停電)"
             android:textSize="18sp"
-            android:id="@+id/btnTyphoonWeather"
+            android:id="@+id/btnEarthquakeBlackout"
             android:layout_weight="1"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(潮位)"
-            android:textSize="18sp"
-            android:id="@+id/btnTyphoonSea"
+            android:text="おおさか防災ﾈｯﾄ"
+            android:textSize="12sp"
+            android:id="@+id/btnEarthquakeOsaka"
             android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
@@ -123,21 +131,21 @@
             android:layout_height="wrap_content"
             android:text="連絡網"
             android:textSize="18sp"
-            android:id="@+id/btnTyphoonTel"
+            android:id="@+id/btnEarthquakeTel"
             android:layout_weight="1"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="留意事項"
             android:textSize="18sp"
-            android:id="@+id/btnTyphoonCaution"
+            android:id="@+id/btnEarthquakeCaution"
             android:layout_weight="1"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="参集手段"
             android:textSize="18sp"
-            android:id="@+id/btnTyphoonGathering"
+            android:id="@+id/btnEarthquakeGathering"
             android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>
