@@ -29,6 +29,13 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //ボタン設定
     private void initButtons(){
+        mView.findViewById(R.id.btnData).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, DataActivity.class);
+                startActivity(intent);
+            }
+        });
         mView.findViewById(R.id.btnEarthquake).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){

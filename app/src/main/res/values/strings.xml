@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FireEmergency</string>
+    <string name="spn1Prompt">勤務消防署を選択してください</string>
+    <string name="spn3Prompt">招集区分を選択してください</string>
 </resources>
