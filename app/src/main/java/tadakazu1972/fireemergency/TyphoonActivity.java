@@ -3,7 +3,6 @@ package tadakazu1972.fireemergency;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -64,22 +63,22 @@ public class TyphoonActivity extends AppCompatActivity {
                 showTyphoon3();
             }
         });
-        mView.findViewById(R.id.btnTyphoonRiver).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showRiver();
-            }
-        });
         mView.findViewById(R.id.btnTyphoonWeather).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
                 showWeather();
             }
         });
-        mView.findViewById(R.id.btnTyphoonSea).setOnClickListener(new OnClickListener(){
+        mView.findViewById(R.id.btnTyphoonRiver).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showSea();
+                showRiver();
+            }
+        });
+        mView.findViewById(R.id.btnTyphoonOsaka).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showOsaka();
             }
         });
         mView.findViewById(R.id.btnTyphoonTel).setOnClickListener(new OnClickListener(){
@@ -470,56 +469,33 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.show();
     }
 
+    //情報（気象）
+    private void showWeather(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_weather, (ViewGroup)findViewById(R.id.infoWeather));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
     //情報（河川）
     private void showRiver(){
-        final CharSequence[] actions = {"■国交省　川の防災情報","http://www.river.go.jp/kawabou/ipRadar.do?areaCd=86&prefCd=&townCd=&gamenId=01-0706&fldCtlParty=no","■大阪府　河川情報","http://www.osaka-kasen-portal.net/suibou/index.html","■気象庁　洪水予報","http://www.jma.go.jp/jp/flood/"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("タップすると各サイトを表示します");
-        builder.setItems(actions, new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                switch(which){
-                    //{}スコープを切るのはuri,iが同じ変数を使うため
-                    //国交省などタイトルの文字をクリックしてもリンク先に飛ぶようにしている
-                    case 0: {
-                        Uri uri = Uri.parse(actions[1].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 1: {
-                        Uri uri = Uri.parse(actions[1].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 2:{
-                        Uri uri = Uri.parse(actions[3].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 3:{
-                        Uri uri = Uri.parse(actions[3].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 4:{
-                        Uri uri = Uri.parse(actions[5].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 5:{
-                        Uri uri = Uri.parse(actions[5].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                }
-            }
-        });
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_river, (ViewGroup)findViewById(R.id.infoRiver));
+        builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -531,81 +507,14 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //情報（気象）
-    public void showWeather(){
-        final CharSequence[] actions = {"■気象庁","http://www.jma.go.jp/jma/index.html","■建設局　降雨情報","http://www.ame.city.osaka.lg.jp/pweb/"};
+    //おおさか防災ネット
+    private void showOsaka(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("タップすると各サイトを表示します");
-        builder.setItems(actions, new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                switch(which){
-                    //{}スコープを切るのはuri,iが同じ変数を使うため
-                    //国交省などタイトルの文字をクリックしてもリンク先に飛ぶようにしている
-                    case 0: {
-                        Uri uri = Uri.parse(actions[1].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 1: {
-                        Uri uri = Uri.parse(actions[1].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 2:{
-                        Uri uri = Uri.parse(actions[3].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 3:{
-                        Uri uri = Uri.parse(actions[3].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                }
-            }
-        });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    //情報（潮位）
-    public void showSea(){
-        final CharSequence[] actions = {"■気象庁　潮位情報","http://www.data.jma.go.jp/gmd/kaiyou/db/tide/suisan/suisan.php?stn=OS"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("タップすると各サイトを表示します");
-        builder.setItems(actions, new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                switch(which){
-                    //{}スコープを切るのはuri,iが同じ変数を使うため
-                    //国交省などタイトルの文字をクリックしてもリンク先に飛ぶようにしている
-                    case 0: {
-                        Uri uri = Uri.parse(actions[1].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                    case 1: {
-                        Uri uri = Uri.parse(actions[1].toString());
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                        break;
-                }
-            }
-        });
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_osaka, (ViewGroup)findViewById(R.id.infoOsaka));
+        builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
