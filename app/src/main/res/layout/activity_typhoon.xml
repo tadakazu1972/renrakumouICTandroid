@@ -95,13 +95,6 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(河川)"
-            android:textSize="18sp"
-            android:id="@+id/btnTyphoonRiver"
-            android:layout_weight="1"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:text="情報(気象)"
             android:textSize="18sp"
             android:id="@+id/btnTyphoonWeather"
@@ -109,9 +102,16 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(潮位)"
+            android:text="情報(河川)"
             android:textSize="18sp"
-            android:id="@+id/btnTyphoonSea"
+            android:id="@+id/btnTyphoonRiver"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="おおさか防災ﾈｯﾄ"
+            android:textSize="12sp"
+            android:id="@+id/btnTyphoonOsaka"
             android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout

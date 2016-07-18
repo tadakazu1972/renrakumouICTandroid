@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:text="情報(地震)"
             android:textSize="18sp"
-            android:id="@+id/btnKinentaiEathquake"
+            android:id="@+id/btnKinentaiEarthquake"
             android:layout_weight="1"/>
         <Button
             android:layout_width="0dp"

@@ -9,6 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by tadakazu on 2016/07/17.
@@ -61,6 +66,18 @@ public class EarthquakeActivity extends AppCompatActivity {
                 showOsaka();
             }
         });
+        mView.findViewById(R.id.btnEarthquakeCaution).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showCaution();
+            }
+        });
+        mView.findViewById(R.id.btnEarthquakeGathering).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEarthquakeGathering();
+            }
+        });
     }
 
     //情報（地震）
@@ -109,6 +126,82 @@ public class EarthquakeActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_osaka, (ViewGroup)findViewById(R.id.infoOsaka));
         builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //留意事項
+    public void showCaution(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("留意事項");
+        //テキストファイル読み込み
+        InputStream is = null;
+        BufferedReader br = null;
+        String text = "";
+        try {
+            try {
+                //assetsフォルダ内のテキスト読み込み
+                is = getAssets().open("caution.txt");
+                br = new BufferedReader(new InputStreamReader(is));
+                //１行づつ読み込み、改行追加
+                String str;
+                while((str = br.readLine()) !=null){
+                    text += str + "\n";
+                }
+            } finally {
+                if (is != null) is.close();
+                if (br != null) br.close();
+            }
+        } catch (Exception e) {
+            //エラーメッセージ
+            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
+        }
+        builder.setMessage(text);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //参集手段
+    public void showEarthquakeGathering(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("参集手段");
+        //テキストファイル読み込み
+        InputStream is = null;
+        BufferedReader br = null;
+        String text = "";
+        try {
+            try {
+                //assetsフォルダ内のテキスト読み込み
+                is = getAssets().open("earthquake_gathering.txt");
+                br = new BufferedReader(new InputStreamReader(is));
+                //１行づつ読み込み、改行追加
+                String str;
+                while((str = br.readLine()) !=null){
+                    text += str + "\n";
+                }
+            } finally {
+                if (is != null) is.close();
+                if (br != null) br.close();
+            }
+        } catch (Exception e) {
+            //エラーメッセージ
+            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
+        }
+        builder.setMessage(text);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
