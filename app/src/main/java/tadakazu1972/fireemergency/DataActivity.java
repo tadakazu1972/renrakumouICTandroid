@@ -1,14 +1,15 @@
 package tadakazu1972.fireemergency;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
  * Created by tadakazu on 2016/07/18.
@@ -98,6 +99,29 @@ public class DataActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent){
                 //何もしない
+            }
+        });
+
+        //復帰用ボタン
+        mView.findViewById(R.id.btnEarthquake).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, EarthquakeActivity.class);
+                startActivity(intent);
+            }
+        });
+        mView.findViewById(R.id.btnTyphoon).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, TyphoonActivity.class);
+                startActivity(intent);
+            }
+        });
+        mView.findViewById(R.id.btnKinentai).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, KinentaiActivity.class);
+                startActivity(intent);
             }
         });
     }

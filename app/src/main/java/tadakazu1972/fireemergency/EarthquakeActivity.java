@@ -3,7 +3,9 @@ package tadakazu1972.fireemergency;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,10 @@ import java.io.InputStreamReader;
 public class EarthquakeActivity extends AppCompatActivity {
     protected EarthquakeActivity mActivity = null;
     protected View mView = null;
+    //基礎データ保存用変数
+    protected String mMainStation;
+    protected String mTsunamiStation;
+    protected String mKubun;
 
     @Override
     protected void onCreate(Bundle savedInstaceState){
@@ -30,6 +36,15 @@ public class EarthquakeActivity extends AppCompatActivity {
         mView = this.getWindow().getDecorView();
         setContentView(R.layout.activity_earthquake);
         initButtons();
+        //基礎データ読み込み
+        loadData();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        //基礎データを変更してActivity復帰した際に反映させないと前のままなので
+        loadData();
     }
 
     //ボタン設定
@@ -53,6 +68,30 @@ public class EarthquakeActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, KinentaiActivity.class);
                 startActivity(intent);
+            }
+        });
+        mView.findViewById(R.id.btnEarthquake1).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEarthquake1();
+            }
+        });
+        mView.findViewById(R.id.btnEarthquake2).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEarthquake2();
+            }
+        });
+        mView.findViewById(R.id.btnEarthquake3).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEarthquake3();
+            }
+        });
+        mView.findViewById(R.id.btnEarthquake4).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEarthquake4();
             }
         });
         mView.findViewById(R.id.btnEarthquakeEarthquake).setOnClickListener(new OnClickListener(){
@@ -85,6 +124,417 @@ public class EarthquakeActivity extends AppCompatActivity {
                 showEarthquakeGathering();
             }
         });
+    }
+
+    //基礎データ読み込み
+    private void loadData(){
+        //勤務消防署
+        SharedPreferences sp1 = PreferenceManager.getDefaultSharedPreferences(this);
+        mMainStation = sp1.getString("mainStation","消防局"); // 第２引数はkeyが存在しない時に返す初期値
+        //大津波・津波警報時指定署
+        SharedPreferences sp2 = PreferenceManager.getDefaultSharedPreferences(this);
+        mTsunamiStation = sp2.getString("tsunamiStation", "消防局"); // 第２引数はkeyが存在しない時に返す初期値
+        //招集区分
+        SharedPreferences sp3 = PreferenceManager.getDefaultSharedPreferences(this);
+        mKubun = sp3.getString("kubun", "１"); // 第２引数はkeyが存在しない時に返す初期値
+    }
+
+    //震度５強以上
+    private void showEarthquake1(){
+        final CharSequence[] actions = {"■大津波警報","■津波警報","■警報なし"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("発令されている警報は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showEarthquake11();
+                        break;
+                    case 1:
+                        showEarthquake12();
+                        break;
+                    case 2:
+                        showEarthquake13();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake11(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("１号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake12(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("１号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake13(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■警報なし");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("１号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //震度５弱
+    private void showEarthquake2(){
+        final CharSequence[] actions = {"■大津波警報","■津波警報","■警報なし"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("発令されている警報は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showEarthquake21();
+                        break;
+                    case 1:
+                        showEarthquake22();
+                        break;
+                    case 2:
+                        showEarthquake23();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake21(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("２号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake22(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("２号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake23(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■警報なし");
+        String s;
+        if (mMainStation.equals("消防局")){ //勤務消防署であることに注意!
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("２号招集\n\n"+mMainStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //震度４
+    private void showEarthquake3(){
+        final CharSequence[] actions = {"■大津波警報","■津波警報","■警報なし"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("発令されている警報は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showEarthquake31();
+                        break;
+                    case 1:
+                        showEarthquake32();
+                        break;
+                    case 2:
+                        showEarthquake33();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake31(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("１号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake32(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("３号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake33(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■警報なし");
+        String s;
+        if (mMainStation.equals("消防局")){ //勤務消防署であることに注意!
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("３号招集\n\n"+mMainStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //震度３以下
+    private void showEarthquake4(){
+        final CharSequence[] actions = {"■大津波警報","■津波警報","■津波注意報","■警報なし"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("発令されている警報は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showEarthquake41();
+                        break;
+                    case 1:
+                        showEarthquake42();
+                        break;
+                    case 2:
+                        showEarthquake43();
+                        break;
+                    case 3:
+                        showEarthquake44();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake41(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("１号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake42(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■津波警報");
+        String s;
+        if (mTsunamiStation.equals("消防局")){
+            s = "へ参集";
+        } else {
+            s = "消防署へ参集";
+        }
+        builder.setMessage("３号招集\n\n"+mTsunamiStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake43(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■警報なし");
+        String s;
+        if (mMainStation.equals("消防局")){ //勤務消防署であることに注意!
+            s = "";
+        } else {
+            s = "消防署";
+        }
+        builder.setMessage("第５非常警備\n\n"+mMainStation+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake44(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■警報なし");
+        builder.setMessage("招集なし\n\n");
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
     }
 
     //情報（地震）
