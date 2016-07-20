@@ -217,12 +217,12 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■警報なし");
         String s;
-        if (mTsunamiStation.equals("消防局")){
+        if (mMainStation.equals("消防局")){
             s = "へ参集";
         } else {
             s = "消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n"+mTsunamiStation+s);
+        builder.setMessage("１号招集\n\n"+mMainStation+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -270,12 +270,12 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■大津波警報");
         String s;
-        if (mTsunamiStation.equals("消防局")){
-            s = "へ参集";
+        if (mTsunamiStation.equals("消防局")) {
+            s = mTsunamiStation+"へ参集";
         } else {
-            s = "消防署へ参集";
+            s = mTsunamiStation+"消防署へ参集";
         }
-        builder.setMessage("２号招集\n\n"+mTsunamiStation+s);
+        builder.setMessage("１号招集\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -291,12 +291,17 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■津波警報");
         String s;
-        if (mTsunamiStation.equals("消防局")){
-            s = "へ参集";
+        //２号招集なので、１号は参集なしの判定する
+        if (mKubun.equals("１")){
+            s = "招集なし";
         } else {
-            s = "消防署へ参集";
+            if (mTsunamiStation.equals("消防局")) {
+                s = mTsunamiStation+"へ参集";
+            } else {
+                s = mTsunamiStation+"消防署へ参集";
+            }
         }
-        builder.setMessage("２号招集\n\n"+mTsunamiStation+s);
+        builder.setMessage("２号招集\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -312,12 +317,17 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■警報なし");
         String s;
-        if (mMainStation.equals("消防局")){ //勤務消防署であることに注意!
-            s = "へ参集";
+        //２号招集なので、１号は参集なしの判定する
+        if (mKubun.equals("１")){
+            s = "招集なし";
         } else {
-            s = "消防署へ参集";
+            if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
+                s = mMainStation+"へ参集";
+            } else {
+                s = mMainStation+"消防署へ参集";
+            }
         }
-        builder.setMessage("２号招集\n\n"+mMainStation+s);
+        builder.setMessage("２号招集\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -386,12 +396,17 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■津波警報");
         String s;
-        if (mTsunamiStation.equals("消防局")){
-            s = "へ参集";
+        //３号招集なので、１号、２号は参集なしの判定する
+        if (mKubun.equals("１")||mKubun.equals("２")){
+            s = "招集なし";
         } else {
-            s = "消防署へ参集";
+            if (mTsunamiStation.equals("消防局")) {
+                s = mTsunamiStation+"へ参集";
+            } else {
+                s = mTsunamiStation+"消防署へ参集";
+            }
         }
-        builder.setMessage("３号招集\n\n"+mTsunamiStation+s);
+        builder.setMessage("３号招集\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -407,12 +422,17 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■警報なし");
         String s;
-        if (mMainStation.equals("消防局")){ //勤務消防署であることに注意!
-            s = "へ参集";
+        //３号招集なので、１号、２号は参集なしの判定する
+        if (mKubun.equals("１")||mKubun.equals("２")){
+            s = "招集なし";
         } else {
-            s = "消防署へ参集";
+            if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
+                s = mMainStation+"へ参集";
+            } else {
+                s = mMainStation+"消防署へ参集";
+            }
         }
-        builder.setMessage("３号招集\n\n"+mMainStation+s);
+        builder.setMessage("３号招集\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -484,12 +504,17 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■津波警報");
         String s;
-        if (mTsunamiStation.equals("消防局")){
-            s = "へ参集";
+        //３号招集なので、１号、２号は参集なしの判定する
+        if (mKubun.equals("１")||mKubun.equals("２")){
+            s = "招集なし";
         } else {
-            s = "消防署へ参集";
+            if (mTsunamiStation.equals("消防局")) {
+                s = mTsunamiStation+"へ参集";
+            } else {
+                s = mTsunamiStation+"消防署へ参集";
+            }
         }
-        builder.setMessage("３号招集\n\n"+mTsunamiStation+s);
+        builder.setMessage("３号招集\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -503,14 +528,14 @@ public class EarthquakeActivity extends AppCompatActivity {
 
     private void showEarthquake43(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■警報なし");
+        builder.setTitle("■津波");
         String s;
         if (mMainStation.equals("消防局")){ //勤務消防署であることに注意!
-            s = "";
+            s = mMainStation;
         } else {
-            s = "消防署";
+            s = mMainStation+"消防署";
         }
-        builder.setMessage("第５非常警備\n\n"+mMainStation+s);
+        builder.setMessage("第５非常警備\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
