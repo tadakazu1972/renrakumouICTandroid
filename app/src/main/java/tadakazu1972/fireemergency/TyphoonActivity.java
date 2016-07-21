@@ -249,14 +249,14 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■暴風（雪）警報");
         //４号招集なので、１号、２号、３号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")||mKubun.equals("２")||mKubun.equals("３")){
-            s = "招集なし";
-        } else {
+        if (mKubun.equals("４")){
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
                 s = mMainStation+"へ参集";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("４号招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -318,14 +318,14 @@ public class TyphoonActivity extends AppCompatActivity {
         //勤務消防署がリストに該当するか判定
         String s;
         String[] a = {"北","都島","福島","此花","中央","西淀川","淀川","東淀川","東成","生野","旭","城東","鶴見","住之江","住吉","東住吉","平野"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            s = "招集なし";
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
                 s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("第５非常警備\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -345,14 +345,14 @@ public class TyphoonActivity extends AppCompatActivity {
         //勤務消防署がリストに該当するか判定
         String s;
         String[] a = {"此花","港","大正","西淀川","住之江","水上"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            s = "招集なし";
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
                 s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("第５非常警備\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -372,14 +372,14 @@ public class TyphoonActivity extends AppCompatActivity {
         //勤務消防署がリストに該当するか判定
         String s;
         String[] a = {"北","都島","福島","此花","中央","西","港","大正","浪速","西淀川","淀川","住之江","西成","水上"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            s = "招集なし";
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
                 s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("第５非常警備\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -398,14 +398,14 @@ public class TyphoonActivity extends AppCompatActivity {
         //勤務消防署がリストに該当するか判定
         String s;
         String[] a = {"北","都島","福島","此花","中央","西","港","大正","浪速","西淀川","淀川","住之江","西成","水上"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            s = "招集なし";
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
                 s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("第５非常警備\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -432,7 +432,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoon31();
                         break;
                     case 1:
-                        showTyphoon22();
+                        showTyphoon32();
                         break;
                     case 2:
                         showTyphoon23();
@@ -471,8 +471,9 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.show();
     }
 
+    //淀川（枚方）
     private void showTyphoon31(){
-        final CharSequence[] actions = {"■氾濫注意水位　2.7","■準備情報発令の見込み(1時間以内に5.4に到達)","■避難準備情報　5.4","■避難勧告　5.5","■避難指示8.3"};
+        final CharSequence[] actions = {"■氾濫注意水位　2.7","■準備情報発令の見込み(1時間以内に5.4に到達)","■避難準備情報　5.4","■避難勧告　5.5","■避難指示　8.3"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
@@ -514,14 +515,14 @@ public class TyphoonActivity extends AppCompatActivity {
         //勤務消防署がリストに該当するか判定
         String s;
         String[] a = {"北","都島","福島","此花","西淀川","淀川","東淀川","旭"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            s = "招集なし";
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
                 s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("第５非常警備\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -541,19 +542,19 @@ public class TyphoonActivity extends AppCompatActivity {
         //勤務消防署がリストに該当するか判定
         String s;
         String[] a = {"北","都島","福島","此花","西淀川","淀川","東淀川","旭"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            s = "招集なし";
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("１")||mKubun.equals("２")||mKubun.equals("３")){
-                s = "招集なし";
-            } else {
+            if (mKubun.equals("４")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
+            } else {
+                s = "招集なし";
             }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("４号招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -574,32 +575,30 @@ public class TyphoonActivity extends AppCompatActivity {
         String s;
         String[] a = {"北","都島","福島","此花","西淀川","淀川","東淀川","旭"};
         String[] b = {"中央","西","浪速","東成","生野","城東","鶴見","西成"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            if (!Arrays.asList(b).contains(mMainStation)) {
-                s = "招集なし";
-            } else {
-                //４号招集なので、１号、２号、３号は参集なしの判定する
-                if (mKubun.equals("１")||mKubun.equals("２")||mKubun.equals("３")){
-                    s = "招集なし";
-                } else {
-                    if (mMainStation.equals("消防局")) {
-                        s = mMainStation+"へ参集";
-                    } else {
-                        s = mMainStation+"消防署へ参集";
-                    }
-                }
-            }
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("１")||mKubun.equals("２")){
-                s = "招集なし";
-            } else {
+            if (mKubun.equals("３")||mKubun.equals("４")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
+            } else {
+                s = "招集なし";
             }
+        } else  if (Arrays.asList(b).contains(mMainStation)) {
+            //４号招集なので、１号、２号、３号は参集なしの判定する
+            if (mKubun.equals("４")){
+                if (mMainStation.equals("消防局")) {
+                    s = mMainStation+"へ参集";
+                } else {
+                    s = mMainStation+"消防署へ参集";
+                }
+            } else {
+                s = "招集なし";
+            }
+        } else {
+            s = "招集なし";
         }
         builder.setMessage("３号招集(非番・日勤)、４号招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -621,45 +620,41 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"北","都島","福島","此花","西淀川","淀川","東淀川","旭"};
         String[] b = {"中央","西","浪速","東成","生野","城東","鶴見","西成"};
         String[] c = {"港","大正","天王寺","阿倍野","住之江","住吉","東住吉","平野","水上"};
-        if (!Arrays.asList(a).contains(mMainStation)){ //!否定なのに注意
-            if (!Arrays.asList(b).contains(mMainStation)) {
-                if (!Arrays.asList(c).contains(mMainStation)){
-                    s = "４号招集\n\n招集なし";
-                } else {
-                    //４号招集なので、１号、２号、３号は参集なしの判定する
-                    if (mKubun.equals("１")||mKubun.equals("２")||mKubun.equals("３")){
-                        s = "４号招集(非番・日勤)\n\n招集なし";
-                    } else {
-                        if (mMainStation.equals("消防局")) {
-                            s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
-                        } else {
-                            s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
-                        }
-                    }
-                }
-            } else {
-                //３号招集なので、１号、２号は参集なしの判定する
-                if (mKubun.equals("１")||mKubun.equals("２")){
-                    s = "３号招集(非番・日勤)\n\n招集なし";
-                } else {
-                    if (mMainStation.equals("消防局")) {
-                        s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
-                    } else {
-                        s = "３号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
-                    }
-                }
-            }
-        } else {
+        if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")){
+            if (mKubun.equals("１")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
-                    s = "２号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
             }
+        } else if (Arrays.asList(b).contains(mMainStation)) {
+            //３号招集なので、１号、２号は参集なしの判定する
+            if (mKubun.equals("３") || mKubun.equals("４")) {
+                if (mMainStation.equals("消防局")) {
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                } else {
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
+                }
+            } else {
+                s = "３号招集(非番・日勤)\n\n招集なし";
+            }
+        } else if (Arrays.asList(c).contains(mMainStation)){
+            //４号招集なので、１号、２号、３号は参集なしの判定する
+            if (mKubun.equals("４")){
+                if (mMainStation.equals("消防局")) {
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                } else {
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
+                }
+            } else {
+                s = "４号招集(非番・日勤)\n\n招集なし";
+            }
+        } else {
+            s = "４号招集\n\n招集なし";
         }
         builder.setMessage(s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -676,6 +671,229 @@ public class TyphoonActivity extends AppCompatActivity {
     private void showTyphoon315(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■淀川（枚方） 避難指示　8.3");
+        //２号招集なので、１号は参集なしの判定する
+        String s;
+        if (mKubun.equals("１")){
+            s = "招集なし";
+        } else {
+            if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
+                s = mMainStation+"へ参集";
+            } else {
+                s = mMainStation+"消防署へ参集";
+            }
+        }
+        builder.setMessage("２号招集(非番・日勤)\n\n"+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //大和川（柏原）
+    private void showTyphoon32(){
+        final CharSequence[] actions = {"■氾濫注意水位　3.2","■準備情報発令の見込み(1時間以内に5.4に到達)","■避難準備情報　4.7","■避難勧告　5.3","■避難指示　6.8"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("水位の状況は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showTyphoon321();
+                        break;
+                    case 1:
+                        showTyphoon322();
+                        break;
+                    case 2:
+                        showTyphoon323();
+                        break;
+                    case 3:
+                        showTyphoon324();
+                        break;
+                    case 4:
+                        showTyphoon325();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon321(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大和川（柏原） 氾濫注意水位　3.2");
+        //勤務消防署がリストに該当するか判定
+        String s;
+        String[] a = {"住之江","住吉","東住吉","平野"};
+        if (Arrays.asList(a).contains(mMainStation)){
+            if (mMainStation.equals("消防局")) {
+                s = mMainStation;
+            } else {
+                s = mMainStation+"消防署";
+            }
+        } else {
+            s = "招集なし";
+        }
+        builder.setMessage("第５非常警備\n\n"+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon322(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大和川（柏原） 準備情報発令の見込み(1時間以内に5.4に到達)");
+        //勤務消防署がリストに該当するか判定
+        String s;
+        String[] a = {"住之江","住吉","東住吉","平野"};
+        if (Arrays.asList(a).contains(mMainStation)){
+            //４号招集なので、１号、２号、３号は参集なしの判定する
+            if (mKubun.equals("４")){
+                if (mMainStation.equals("消防局")) {
+                    s = mMainStation+"へ参集";
+                } else {
+                    s = mMainStation+"消防署へ参集";
+                }
+            } else {
+                s = "招集なし";
+            }
+        } else {
+            s = "招集なし";
+        }
+        builder.setMessage("４号招集(非番・日勤)\n\n"+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon323(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大和川（柏原） 避難準備情報　4.7");
+        //勤務消防署がリストに該当するか判定
+        String s;
+        String[] a = {"住之江","住吉","東住吉","平野"};
+        String[] b = {"中央","天王寺","浪速","東成","生野","城東","阿倍野","西成"};
+        if (Arrays.asList(a).contains(mMainStation)){
+            //３号招集なので、１号、２号は参集なしの判定する
+            if (mKubun.equals("３")||mKubun.equals("４")){
+                if (mMainStation.equals("消防局")) {
+                    s = mMainStation+"へ参集";
+                } else {
+                    s = mMainStation+"消防署へ参集";
+                }
+            } else {
+                s = "招集なし";
+            }
+        } else  if (Arrays.asList(b).contains(mMainStation)) {
+            //４号招集なので、１号、２号、３号は参集なしの判定する
+            if (mKubun.equals("４")){
+                if (mMainStation.equals("消防局")) {
+                    s = mMainStation+"へ参集";
+                } else {
+                    s = mMainStation+"消防署へ参集";
+                }
+            } else {
+                s = "招集なし";
+            }
+        } else {
+            s = "招集なし";
+        }
+        builder.setMessage("３号招集(非番・日勤)、４号招集(非番・日勤)\n\n"+s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon324(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大和川（柏原） 避難勧告　5.3");
+        //勤務消防署がリストに該当するか判定
+        String s;
+        String[] a = {"住之江","住吉","東住吉","平野"};
+        String[] b = {"中央","天王寺","浪速","東成","生野","城東","阿倍野","西成"};
+        String[] c = {"北","都島","福島","此花","西","港","大正","西淀川","淀川","東淀川","旭","鶴見","水上"};
+        if (Arrays.asList(a).contains(mMainStation)) {
+            //２号招集なので、１号は参集なしの判定する
+            if (mKubun.equals("１")) {
+                s = "２号招集(非番・日勤)\n\n招集なし";
+            } else {
+                if (mMainStation.equals("消防局")) {
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                } else {
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
+                }
+            }
+        } else if (Arrays.asList(b).contains(mMainStation)) {
+            //３号招集なので、１号、２号は参集なしの判定する
+            if (mKubun.equals("３") || mKubun.equals("４")) {
+                if (mMainStation.equals("消防局")) {
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                } else {
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
+                }
+            } else {
+                s = "３号招集(非番・日勤)\n\n招集なし";
+            }
+        } else if (Arrays.asList(c).contains(mMainStation)){
+            //４号招集なので、１号、２号、３号は参集なしの判定する
+            if (mKubun.equals("４")){
+                if (mMainStation.equals("消防局")) {
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                } else {
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
+                }
+            } else {
+                s = "４号招集(非番・日勤)\n\n招集なし";
+            }
+        } else {
+            s = "４号招集\n\n招集なし";
+        }
+        builder.setMessage(s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon325(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大和川（柏原） 避難指示　6.8");
         //２号招集なので、１号は参集なしの判定する
         String s;
         if (mKubun.equals("１")){
