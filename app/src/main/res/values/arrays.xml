@@ -29,9 +29,9 @@
         <item>水上</item>
     </string-array>
     <string-array name="kubun">
-        <item>１</item>
-        <item>２</item>
-        <item>３</item>
-        <item>４</item>
+        <item>１号招集</item>
+        <item>２号招集</item>
+        <item>３号招集</item>
+        <item>４号招集</item>
     </string-array>
 </resources>
