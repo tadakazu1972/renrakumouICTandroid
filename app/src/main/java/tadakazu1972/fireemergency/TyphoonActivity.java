@@ -249,7 +249,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■暴風（雪）警報");
         //４号招集なので、１号、２号、３号は参集なしの判定する
         String s;
-        if (mKubun.equals("４")){
+        if (mKubun.equals("４号招集")){
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
                 s = mMainStation+"へ参集";
             } else {
@@ -544,7 +544,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"北","都島","福島","此花","西淀川","淀川","東淀川","旭"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -577,7 +577,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"中央","西","浪速","東成","生野","城東","鶴見","西成"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -588,7 +588,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else  if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -622,7 +622,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] c = {"港","大正","天王寺","阿倍野","住之江","住吉","東住吉","平野","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -633,7 +633,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -644,7 +644,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(c).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
                 } else {
@@ -673,7 +673,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■淀川（枚方） 避難指示　8.3");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -767,7 +767,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"住之江","住吉","東住吉","平野"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -800,7 +800,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"中央","天王寺","浪速","東成","生野","城東","阿倍野","西成"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -811,7 +811,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else  if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -845,7 +845,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] c = {"北","都島","福島","此花","西","港","大正","西淀川","淀川","東淀川","旭","鶴見","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -856,7 +856,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -867,7 +867,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(c).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
                 } else {
@@ -896,7 +896,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■大和川（柏原） 避難指示　6.8");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -990,7 +990,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"西淀川","淀川","東淀川"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1022,7 +1022,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"西淀川","淀川","東淀川"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1055,7 +1055,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"北","都島","福島","此花","中央","西","港","大正","天王寺","浪速","東成","生野","旭","城東","鶴見","阿倍野","住之江","住吉","東住吉","平野","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -1066,7 +1066,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -1095,7 +1095,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■神崎川（三国） 避難指示　5.8");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -1189,7 +1189,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"西淀川","淀川","東淀川"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1222,7 +1222,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"西淀川","淀川"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1233,7 +1233,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else  if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1267,7 +1267,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] c = {"北","都島","福島","此花","中央","西","港","大正","天王寺","浪速","東成","生野","旭","城東","鶴見","阿倍野","住之江","住吉","東住吉","平野","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -1278,7 +1278,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -1289,7 +1289,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(c).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
                 } else {
@@ -1318,7 +1318,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■安威川（千歳橋） 避難指示　5.1");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -1412,7 +1412,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"都島","東成","生野","旭","城東","鶴見","東住吉","平野"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1445,7 +1445,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"中央","天王寺","阿倍野","住吉"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1456,7 +1456,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else  if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1490,7 +1490,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] c = {"北","福島","此花","西","港","大正","浪速","西淀川","淀川","東淀川","住之江","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -1501,7 +1501,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -1512,7 +1512,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(c).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
                 } else {
@@ -1541,7 +1541,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■寝屋川（京橋） 避難指示　3.5");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -1635,7 +1635,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"東成","城東","鶴見"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1668,7 +1668,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"都島","中央","天王寺","生野","旭","阿倍野","住吉","東住吉","平野"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1679,7 +1679,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else  if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1713,7 +1713,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] c = {"北","福島","此花","西","港","大正","浪速","西淀川","淀川","東淀川","住之江","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -1724,7 +1724,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -1735,7 +1735,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(c).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
                 } else {
@@ -1764,7 +1764,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■第二寝屋川（昭明橋） 避難指示　4.85");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -1858,7 +1858,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"東成","生野","城東","東住吉","平野"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1891,7 +1891,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"都島","中央","天王寺","旭","鶴見","阿倍野","住吉"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1902,7 +1902,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else  if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -1936,7 +1936,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] c = {"北","福島","此花","西","港","大正","浪速","西淀川","淀川","東淀川","住之江","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -1947,7 +1947,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -1958,7 +1958,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(c).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
                 } else {
@@ -1987,7 +1987,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■平野川（剣橋） 避難指示　4.4");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -2081,7 +2081,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"東成","生野","城東","東住吉","平野"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -2114,7 +2114,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"都島","中央","天王寺","旭","鶴見","阿倍野","住吉"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -2125,7 +2125,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else  if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -2159,7 +2159,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] c = {"北","福島","此花","西","港","大正","浪速","西淀川","淀川","東淀川","住之江","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -2170,7 +2170,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３") || mKubun.equals("４")) {
+            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -2181,7 +2181,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(c).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
                 } else {
@@ -2210,7 +2210,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■平野川分水路（今里大橋） 避難指示　4.63");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -2357,7 +2357,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"平野"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")){
+            if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -2389,7 +2389,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"平野"};
         if (Arrays.asList(a).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３")||mKubun.equals("４")){
+            if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
                     s = mMainStation+"へ参集";
                 } else {
@@ -2422,7 +2422,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] b = {"北","都島","福島","此花","中央","西","港","大正","天王寺","浪速","西淀川","淀川","東淀川","東成","生野","旭","城東","鶴見","住之江","住吉","東住吉","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             //２号招集なので、１号は参集なしの判定する
-            if (mKubun.equals("１")) {
+            if (mKubun.equals("１号招集")) {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
@@ -2433,7 +2433,7 @@ public class TyphoonActivity extends AppCompatActivity {
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
-            if (mKubun.equals("４")) {
+            if (mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
                     s = "４号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
                 } else {
@@ -2462,7 +2462,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■東除川（大堀上小橋） 避難指示　5.3");
         //２号招集なので、１号は参集なしの判定する
         String s;
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -2583,7 +2583,7 @@ public class TyphoonActivity extends AppCompatActivity {
         try {
             try {
                 //assetsフォルダ内のテキスト読み込み
-                is = getAssets().open("caution.txt");
+                is = getAssets().open("typhoon_caution.txt");
                 br = new BufferedReader(new InputStreamReader(is));
                 //１行づつ読み込み、改行追加
                 String str;
