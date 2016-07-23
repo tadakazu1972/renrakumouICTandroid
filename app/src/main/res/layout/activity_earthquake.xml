@@ -117,9 +117,9 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="おおさか防災ﾈｯﾄ"
-            android:textSize="12sp"
-            android:id="@+id/btnEarthquakeOsaka"
+            android:text="情報(道路)"
+            android:textSize="18sp"
+            android:id="@+id/btnEarthquakeRoad"
             android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
@@ -143,9 +143,9 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="参集手段"
-            android:textSize="18sp"
-            android:id="@+id/btnEarthquakeGathering"
+            android:text="おおさか防災ﾈｯﾄ"
+            android:textSize="12sp"
+            android:id="@+id/btnEarthquakeOsaka"
             android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

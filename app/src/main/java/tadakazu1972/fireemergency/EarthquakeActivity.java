@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /**
  * Created by tadakazu on 2016/07/17.
@@ -106,11 +107,11 @@ public class EarthquakeActivity extends AppCompatActivity {
                 showBlackout();
             }
         });
-        mView.findViewById(R.id.btnEarthquakeOsaka).setOnClickListener(new OnClickListener(){
-            @Override
+        mView.findViewById(R.id.btnEarthquakeRoad).setOnClickListener(new OnClickListener(){
+           @Override
             public void onClick(View v){
-                showOsaka();
-            }
+               showRoad();
+           }
         });
         mView.findViewById(R.id.btnEarthquakeCaution).setOnClickListener(new OnClickListener(){
             @Override
@@ -118,10 +119,10 @@ public class EarthquakeActivity extends AppCompatActivity {
                 showCaution();
             }
         });
-        mView.findViewById(R.id.btnEarthquakeGathering).setOnClickListener(new OnClickListener(){
+        mView.findViewById(R.id.btnEarthquakeOsaka).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showEarthquakeGathering();
+                showOsaka();
             }
         });
     }
@@ -529,11 +530,17 @@ public class EarthquakeActivity extends AppCompatActivity {
     private void showEarthquake43(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■津波注意報");
+        //勤務消防署がリストに該当するか判定
         String s;
-        if (mMainStation.equals("消防局")){ //勤務消防署であることに注意!
-            s = mMainStation;
+        String[] a = {"此花","港","大正","西淀川","住之江","西成","水上"};
+        if (Arrays.asList(a).contains(mMainStation)) {
+            if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
+                s = mMainStation;
+            } else {
+                s = mMainStation + "消防署";
+            }
         } else {
-            s = mMainStation+"消防署";
+            s = "招集なし";
         }
         builder.setMessage("第５非常警備\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -600,13 +607,13 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //おおさか防災ネット
-    private void showOsaka(){
+    //情報（道路）
+    private void showRoad(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("URLをタップしてください");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_osaka, (ViewGroup)findViewById(R.id.infoOsaka));
+        final View layout = inflater.inflate(R.layout.info_road, (ViewGroup)findViewById(R.id.infoRoad));
         builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -684,6 +691,25 @@ public class EarthquakeActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //おおさか防災ネット
+    private void showOsaka(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_osaka, (ViewGroup)findViewById(R.id.infoOsaka));
+        builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){

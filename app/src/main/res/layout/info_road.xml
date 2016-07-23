@@ -6,10 +6,17 @@
               android:layout_height="match_parent"
               android:padding="20dp">
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■道路情報"
+        android:textColor="#111111"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
         android:id="@+id/lblInfoRoad1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="■通行情報(トヨタ通れた道マップ)"
+        android:text="・トヨタ通れた道マップ"
         android:textColor="#111111"
         android:textSize="18sp"
         android:layout_marginBottom="20dp"/>
@@ -18,6 +25,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="https://www.toyota.co.jp/jpn/auto/passable_route/map/"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoRoad3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="・日本道路交通情報センター"
+        android:textColor="#111111"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoRoad4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.jartic.or.jp/index.html"
         android:textColorLink="#1111ff"
         android:textSize="20sp"
         android:autoLink="web"
