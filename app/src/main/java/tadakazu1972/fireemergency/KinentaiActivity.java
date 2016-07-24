@@ -103,11 +103,183 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //情報（停電）
     private void showBlackout(){
+        final CharSequence[] actions = {"■関西電力","■四国電力","■中国電力","■九州電力","■中部電力","■北陸電力","■東京電力","■東北電力"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("電力会社を選択してください");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showKanden();
+                        break;
+                    case 1:
+                        showYonden();
+                        break;
+                    case 2:
+                        showEnergia();
+                        break;
+                    case 3:
+                        showKyuden();
+                        break;
+                    case 4:
+                        showChuden();
+                        break;
+                    case 5:
+                        showRikuden();
+                        break;
+                    case 6:
+                        showTouden();
+                        break;
+                    case 7:
+                        showTouhokuden();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showKanden(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("URLをタップしてください");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_blackout, (ViewGroup)findViewById(R.id.infoBlackout));
+        final View layout = inflater.inflate(R.layout.info_kanden, (ViewGroup)findViewById(R.id.infoKanden));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showYonden(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_yonden, (ViewGroup)findViewById(R.id.infoYonden));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEnergia(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_energia, (ViewGroup)findViewById(R.id.infoEnergia));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showKyuden(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_kyuden, (ViewGroup)findViewById(R.id.infoKyuden));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showChuden(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_chuden, (ViewGroup)findViewById(R.id.infoChuden));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showRikuden(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_rikuden, (ViewGroup)findViewById(R.id.infoRikuden));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTouden(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_touden, (ViewGroup)findViewById(R.id.infoTouden));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTouhokuden(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_touhokuden, (ViewGroup)findViewById(R.id.infoTouhokuden));
         builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
