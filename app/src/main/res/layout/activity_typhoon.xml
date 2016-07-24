@@ -135,9 +135,9 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="参集手段"
-            android:textSize="18sp"
-            android:id="@+id/btnTyphoonGathering"
+            android:text="大阪市防災ｱﾌﾟﾘ"
+            android:textSize="14sp"
+            android:id="@+id/btnTyphoonOsakaBousaiApp"
             android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>
