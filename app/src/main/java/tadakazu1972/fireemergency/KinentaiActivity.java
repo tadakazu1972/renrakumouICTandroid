@@ -108,7 +108,7 @@ public class KinentaiActivity extends AppCompatActivity {
     private void showKinentai1(){
         final CharSequence[] actions = {"■震度７(特別区６強)","■震度６強(特別区６弱)","■震度６弱(特別区５強、政令市５強又は６弱)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("震度は？");
+        builder.setTitle("最大震度は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -138,9 +138,9 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震度７
     private void showRiku7(){
-        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","山梨県","新潟県","富山県","石川県","福井県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■震度７(特別区６強)の都道府県は？");
+        builder.setTitle("■最大震度７(特別区６強)\n   震央管轄都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
            @Override
             public void onClick(DialogInterface dialog, int which){
@@ -188,7 +188,7 @@ public class KinentaiActivity extends AppCompatActivity {
             //エラーメッセージ
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
-        builder.setTitle("■震度７(特別区６強)　"+pref);
+        builder.setTitle("■最大震度７(特別区６強)　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -203,9 +203,9 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震度６強
     private void showRiku6strong(){
-        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","山梨県","新潟県","富山県","石川県","福井県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■震度６強(特別区６弱)の都道府県は？");
+        builder.setTitle("■最大震度６強(特別区６弱)\n   震央管轄都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -253,7 +253,7 @@ public class KinentaiActivity extends AppCompatActivity {
             //エラーメッセージ
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
-        builder.setTitle("■震度６強(特別区６弱)　"+pref);
+        builder.setTitle("■最大震度６強(特別区６弱)　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -268,9 +268,9 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震度６弱
     private void showRiku6weak(){
-        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","山梨県","新潟県","富山県","石川県","福井県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■震度６弱(特別区５強、政令市５強又は６弱)の都道府県は？");
+        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)   震央管轄都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -318,7 +318,7 @@ public class KinentaiActivity extends AppCompatActivity {
             //エラーメッセージ
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
-        builder.setTitle("■震度６弱(特別区５強、政令市５強又は６弱)　"+pref);
+        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -335,7 +335,7 @@ public class KinentaiActivity extends AppCompatActivity {
     private void showKinentai2(){
         final CharSequence[] actions = {"■震度７(特別区６強)","■震度６強(特別区６弱)","■震度６弱(特別区５強、政令市５強又は６弱)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("震度は？");
+        builder.setTitle("最大震度は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -365,9 +365,9 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震度７
     private void showKaiiki7(){
-        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","山梨県","新潟県","富山県","石川県","福井県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■震度７(特別区６強)の都道府県は？");
+        builder.setTitle("■最大震度７(特別区６強)\n   最大震度都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -415,7 +415,7 @@ public class KinentaiActivity extends AppCompatActivity {
             //エラーメッセージ
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
-        builder.setTitle("■震度７(特別区６強)　"+pref);
+        builder.setTitle("■最大震度７(特別区６強)　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -430,9 +430,9 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震度６強
     private void showKaiiki6strong(){
-        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","山梨県","新潟県","富山県","石川県","福井県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■震度６強(特別区６弱)の都道府県は？");
+        builder.setTitle("■最大震度６強(特別区６弱)\n   最大震度都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -480,7 +480,7 @@ public class KinentaiActivity extends AppCompatActivity {
             //エラーメッセージ
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
-        builder.setTitle("■震度６強(特別区６弱)　"+pref);
+        builder.setTitle("■最大震度６強(特別区６弱)　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -495,9 +495,9 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震度６弱
     private void showKaiiki6weak(){
-        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","山梨県","新潟県","富山県","石川県","福井県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■震度６弱(特別区５強、政令市５強又は６弱)の都道府県は？");
+        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)   最大震度都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -545,7 +545,7 @@ public class KinentaiActivity extends AppCompatActivity {
             //エラーメッセージ
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
-        builder.setTitle("■震度６弱(特別区５強、政令市５強又は６弱)　"+pref);
+        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
