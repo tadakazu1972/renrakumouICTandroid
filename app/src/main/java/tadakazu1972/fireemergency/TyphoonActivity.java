@@ -229,7 +229,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■特別警報");
         String s;
         if (mMainStation.equals("消防局")){
-            s = mMainStation+"へ参集";
+            s = mMainStation+"へ参集　所属担当者に確認すること";
         } else {
             s = mMainStation+"消防署へ参集";
         }
@@ -252,7 +252,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String s;
         if (mKubun.equals("４号招集")){
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集　所属担当者に確認すること";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -518,7 +518,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"北","都島","福島","此花","西淀川","淀川","東淀川","旭","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
