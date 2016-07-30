@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVReader;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -56,8 +57,8 @@ public class KinentaiActivity extends AppCompatActivity {
         mView.findViewById(R.id.btnTyphoon).setOnClickListener(new OnClickListener(){
            @Override
             public void onClick(View v){
-               Intent intent = new Intent(mActivity, TyphoonActivity.class);
-               startActivity(intent);
+                Intent intent = new Intent(mActivity, TyphoonActivity.class);
+                startActivity(intent);
            }
         });
         mView.findViewById(R.id.btnKinentai1).setOnClickListener(new OnClickListener(){
@@ -70,6 +71,12 @@ public class KinentaiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 showKinentai2();
+            }
+        });
+        mView.findViewById(R.id.btnKinentai3).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showKinentai3();
             }
         });
         mView.findViewById(R.id.btnKinentaiEarthquake).setOnClickListener(new OnClickListener(){
@@ -309,7 +316,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
                 pref = data[0]; pref = pref.replace("[","");
                 data1 = data[1];
-                data2 = data[2];
+                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
                 data3 = data[3]; data3 = data3.replace("]","");
             } finally {
                 if (is != null) is.close();
@@ -536,7 +543,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
                 pref = data[0]; pref = pref.replace("[","");
                 data1 = data[1];
-                data2 = data[2];
+                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
                 data3 = data[3]; data3 = data3.replace("]","");
             } finally {
                 if (is != null) is.close();
@@ -547,6 +554,79 @@ public class KinentaiActivity extends AppCompatActivity {
         }
         builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //アクションプラン
+    private void showKinentai3(){
+        final CharSequence[] actions = {"東海地震","首都直下地震","東南海・南海地震","南海トラフ"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("アクションプラン");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showActionPlan((String)actions[which],"kinentai_toukai.txt");
+                        break;
+                    case 1:
+                        showActionPlan((String)actions[which],"kinentai_syutochokka.txt");
+                        break;
+                    case 2:
+                        showActionPlan((String)actions[which],"kinentai_tounankai.txt");
+                        break;
+                    case 3:
+                        showActionPlan((String)actions[which],"kinentai_nankaitraf.txt");
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //東海地震
+    public void showActionPlan(String title, String filename){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        //テキストファイル読み込み
+        InputStream is = null;
+        BufferedReader br = null;
+        String text = "";
+        try {
+            try {
+                //assetsフォルダ内のテキスト読み込み
+                is = getAssets().open(filename);
+                br = new BufferedReader(new InputStreamReader(is));
+                //１行づつ読み込み、改行追加
+                String str;
+                while((str = br.readLine()) !=null){
+                    text += str + "\n";
+                }
+            } finally {
+                if (is != null) is.close();
+                if (br != null) br.close();
+            }
+        } catch (Exception e) {
+            //エラーメッセージ
+            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
+        }
+        builder.setMessage(text);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
