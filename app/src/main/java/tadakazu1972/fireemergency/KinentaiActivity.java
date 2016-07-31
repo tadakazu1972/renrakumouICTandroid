@@ -79,6 +79,18 @@ public class KinentaiActivity extends AppCompatActivity {
                 showKinentai3();
             }
         });
+        mView.findViewById(R.id.btnKinentai4).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showKinentai4();
+            }
+        });
+        mView.findViewById(R.id.btnKinentai5).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showKinentai3();
+            }
+        });
         mView.findViewById(R.id.btnKinentaiEarthquake).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
@@ -600,7 +612,7 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //東海地震
+    //アクションプラン表示
     public void showActionPlan(String title, String filename){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
@@ -627,6 +639,167 @@ public class KinentaiActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //大津波・噴火
+    private void showKinentai4(){
+        final CharSequence[] actions = {"大津波","噴火"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("大津波・噴火");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showKinentai41();
+                        break;
+                    case 1:
+                        showKinentai42();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //大津波　都道府県選択
+    private void showKinentai41(){
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■大津波警報\n   都道府県は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                showKinentai411(which);
+                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //大津波　データ表示
+    public void showKinentai411(int which){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //csvファイル読み込み
+        InputStream is = null;
+        String pref = ""; //都道府県
+        String data1 = ""; //指揮支援隊
+        String data2 = ""; //大阪府大隊(陸上)
+        String data3 = ""; //大阪府隊(航空小隊)
+        try {
+            try {
+                //assetsフォルダ内のcsvファイル読み込み
+                is = getAssets().open("otsunami.csv");
+                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
+                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
+                List<String[]> csv = csvreader.readAll();
+                String line = Arrays.toString(csv.get(which));
+                String[] data = line.split(Pattern.quote(","),0);
+                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
+                pref = data[0]; pref = pref.replace("[","");
+                data1 = data[1];
+                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
+                data3 = data[3]; data3 = data3.replace("]","");
+            } finally {
+                if (is != null) is.close();
+            }
+        } catch (Exception e) {
+            //エラーメッセージ
+            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
+        }
+        builder.setTitle("■大津波警報　"+pref);
+        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //噴火　都道府県選択
+    private void showKinentai42(){
+        final CharSequence[] actions = {"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■噴火\n   都道府県は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                showKinentai421(which);
+                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //噴火　データ表示
+    public void showKinentai421(int which){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //csvファイル読み込み
+        InputStream is = null;
+        String pref = ""; //都道府県
+        String data1 = ""; //指揮支援隊
+        String data2 = ""; //大阪府大隊(陸上)
+        String data3 = ""; //大阪府隊(航空小隊)
+        try {
+            try {
+                //assetsフォルダ内のcsvファイル読み込み
+                is = getAssets().open("hunka.csv");
+                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
+                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
+                List<String[]> csv = csvreader.readAll();
+                String line = Arrays.toString(csv.get(which));
+                String[] data = line.split(Pattern.quote(","),0);
+                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
+                pref = data[0]; pref = pref.replace("[","");
+                data1 = data[1];
+                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
+                data3 = data[3]; data3 = data3.replace("]","");
+            } finally {
+                if (is != null) is.close();
+            }
+        } catch (Exception e) {
+            //エラーメッセージ
+            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
+        }
+        builder.setTitle("■噴火　"+pref);
+        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){

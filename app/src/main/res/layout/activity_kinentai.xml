@@ -93,7 +93,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="噴火・大津波"
+            android:text="大津波・噴火"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnKinentai4"
             android:layout_marginBottom="10dp"
