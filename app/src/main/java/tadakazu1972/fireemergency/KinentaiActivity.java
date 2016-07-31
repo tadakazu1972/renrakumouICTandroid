@@ -163,52 +163,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
            @Override
             public void onClick(DialogInterface dialog, int which){
-               showRiku71(which);
-               //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+               showCSV(which, "■最大震度７(特別区６強)", "riku7.csv");
            }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    public void showRiku71(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("riku7.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2];
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■最大震度７(特別区６強)　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -228,52 +185,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showRiku6strong1(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■最大震度６強(特別区６弱)","riku6strong.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    public void showRiku6strong1(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("riku6strong.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■最大震度６強(特別区６弱)　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -293,52 +207,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showRiku6weak1(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■最大震度６弱(特別区５強、政令市５強又は６弱)", "riku6weak.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    public void showRiku6weak1(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("riku6weak.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -390,52 +261,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showKaiiki71(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■最大震度７(特別区６強)","kaiiki7.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    public void showKaiiki71(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("kaiiki7.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2];
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■最大震度７(特別区６強)　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -455,52 +283,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showKaiiki6strong1(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■最大震度６強(特別区６弱)","kaiiki6strong.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    public void showKaiiki6strong1(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("kaiiki6strong.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■最大震度６強(特別区６弱)　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -520,52 +305,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showKaiiki6weak1(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■最大震度６弱(特別区５強、政令市５強又は６弱)","kaiiki6weak.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    public void showKaiiki6weak1(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("kaiiki6weak.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -687,53 +429,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showKinentai411(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■大津波警報","otsunami.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    //大津波　データ表示
-    public void showKinentai411(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("otsunami.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■大津波警報　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -753,53 +451,9 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showKinentai421(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■噴火","hunka.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    //噴火　データ表示
-    public void showKinentai421(int which){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //csvファイル読み込み
-        InputStream is = null;
-        String pref = ""; //都道府県
-        String data1 = ""; //指揮支援隊
-        String data2 = ""; //大阪府大隊(陸上)
-        String data3 = ""; //大阪府隊(航空小隊)
-        try {
-            try {
-                //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("hunka.csv");
-                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
-                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
-                List<String[]> csv = csvreader.readAll();
-                String line = Arrays.toString(csv.get(which));
-                String[] data = line.split(Pattern.quote(","),0);
-                //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
-                pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
-                data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
-                data3 = data[3]; data3 = data3.replace("]","");
-            } finally {
-                if (is != null) is.close();
-            }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setTitle("■噴火　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -819,8 +473,7 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showKinentai51(which);
-                //Toast.makeText(mActivity, String.valueOf(which)+"番目が選択されました", Toast.LENGTH_LONG).show();
+                showCSV(which, "■特殊災害(NBC含む)","nbc.csv");
             }
         });
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -834,7 +487,8 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void showKinentai51(int which){
+    //CSVファイル表示ダイアログ
+    public void showCSV(int which, String title, String filename){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //csvファイル読み込み
         InputStream is = null;
@@ -845,7 +499,7 @@ public class KinentaiActivity extends AppCompatActivity {
         try {
             try {
                 //assetsフォルダ内のcsvファイル読み込み
-                is = getAssets().open("nbc.csv");
+                is = getAssets().open(filename);
                 InputStreamReader ir = new InputStreamReader(is,"UTF-8");
                 CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
                 List<String[]> csv = csvreader.readAll();
@@ -863,7 +517,7 @@ public class KinentaiActivity extends AppCompatActivity {
             //エラーメッセージ
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
-        builder.setTitle("■特殊災害(NBC含む)　"+pref);
+        builder.setTitle(title+"　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -905,28 +559,28 @@ public class KinentaiActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which){
                 switch(which){
                     case 0:
-                        showKanden();
+                        showURL(R.layout.info_kanden, R.id.infoKanden);
                         break;
                     case 1:
-                        showYonden();
+                        showURL(R.layout.info_yonden, R.id.infoYonden);
                         break;
                     case 2:
-                        showEnergia();
+                        showURL(R.layout.info_energia, R.id.infoEnergia);
                         break;
                     case 3:
-                        showKyuden();
+                        showURL(R.layout.info_kyuden, R.id.infoKyuden);
                         break;
                     case 4:
-                        showChuden();
+                        showURL(R.layout.info_chuden, R.id.infoChuden);
                         break;
                     case 5:
-                        showRikuden();
+                        showURL(R.layout.info_rikuden, R.id.infoRikuden);
                         break;
                     case 6:
-                        showTouden();
+                        showURL(R.layout.info_touden, R.id.infoTouden);
                         break;
                     case 7:
-                        showTouhokuden();
+                        showURL(R.layout.info_touhokuden, R.id.infoTouhokuden);
                         break;
                 }
             }
@@ -942,12 +596,12 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showKanden(){
+    private void showURL(int xml, int id){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("URLをタップしてください");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_kanden, (ViewGroup)findViewById(R.id.infoKanden));
+        final View layout = inflater.inflate(xml, (ViewGroup)findViewById(id));
         builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -959,133 +613,7 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
-
-    private void showYonden(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_yonden, (ViewGroup)findViewById(R.id.infoYonden));
-        builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showEnergia(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_energia, (ViewGroup)findViewById(R.id.infoEnergia));
-        builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showKyuden(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_kyuden, (ViewGroup)findViewById(R.id.infoKyuden));
-        builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showChuden(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_chuden, (ViewGroup)findViewById(R.id.infoChuden));
-        builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showRikuden(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_rikuden, (ViewGroup)findViewById(R.id.infoRikuden));
-        builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showTouden(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_touden, (ViewGroup)findViewById(R.id.infoTouden));
-        builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showTouhokuden(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_touhokuden, (ViewGroup)findViewById(R.id.infoTouhokuden));
-        builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
+    
     //情報（道路）
     private void showRoad(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
