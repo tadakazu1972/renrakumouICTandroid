@@ -109,9 +109,9 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="おおさか防災ﾈｯﾄ"
-            android:textSize="12sp"
-            android:id="@+id/btnTyphoonOsaka"
+            android:text="情報(道路)"
+            android:textSize="18sp"
+            android:id="@+id/btnTyphoonRoad"
             android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
@@ -135,9 +135,9 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="大阪市防災ｱﾌﾟﾘ"
-            android:textSize="14sp"
-            android:id="@+id/btnTyphoonOsakaBousaiApp"
+            android:text="防災ネット"
+            android:textSize="18sp"
+            android:id="@+id/btnTyphoonBousaiNet"
             android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -119,10 +120,10 @@ public class EarthquakeActivity extends AppCompatActivity {
                 showCaution();
             }
         });
-        mView.findViewById(R.id.btnEarthquakeOsaka).setOnClickListener(new OnClickListener(){
+        mView.findViewById(R.id.btnEarthquakeBousaiNet).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showOsaka();
+                showBousaiNet();
             }
         });
     }
@@ -702,13 +703,20 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //おおさか防災ネット
-    private void showOsaka(){
+    //防災ネット
+    private void showBousaiNet(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("URLをタップしてください");
+        builder.setTitle("URLまたはボタンをタップしてください");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_osaka, (ViewGroup)findViewById(R.id.infoOsaka));
+        //ボタン クリックリスナー設定
+        layout.findViewById(R.id.btnOsakaBousaiApp).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startOsakaBousaiApp();
+            }
+        });
         builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -720,4 +728,30 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
+
+    //大阪市防災アプリ
+    public void startOsakaBousaiApp() {
+        PackageManager pm = getPackageManager();
+        Intent intent = pm.getLaunchIntentForPackage("jp.ne.goo.bousai.osakaapp");
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("大阪市防災アプリがありません");
+            //カスタムビュー設定
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View layout = inflater.inflate(R.layout.info_osakabousaiapp, (ViewGroup) findViewById(R.id.infoOsakaBousai));
+            builder.setView(layout);
+            builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //何もしない
+                }
+            });
+            builder.setCancelable(true);
+            builder.create();
+            builder.show();
+        }
+    }
+
 }

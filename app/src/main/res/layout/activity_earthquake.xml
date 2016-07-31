@@ -143,9 +143,9 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="おおさか防災ﾈｯﾄ"
-            android:textSize="12sp"
-            android:id="@+id/btnEarthquakeOsaka"
+            android:text="防災ネット"
+            android:textSize="18sp"
+            android:id="@+id/btnEarthquakeBousaiNet"
             android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

@@ -100,10 +100,10 @@ public class TyphoonActivity extends AppCompatActivity {
                 showRiver();
             }
         });
-        mView.findViewById(R.id.btnTyphoonOsaka).setOnClickListener(new OnClickListener(){
+        mView.findViewById(R.id.btnTyphoonRoad).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showOsaka();
+                showRoad();
             }
         });
         mView.findViewById(R.id.btnTyphoonTel).setOnClickListener(new OnClickListener(){
@@ -118,10 +118,10 @@ public class TyphoonActivity extends AppCompatActivity {
                 showCaution();
             }
         });
-        mView.findViewById(R.id.btnTyphoonOsakaBousaiApp).setOnClickListener(new OnClickListener(){
+        mView.findViewById(R.id.btnTyphoonBousaiNet).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                startOsakaBousaiApp();
+                showBousaiNet();
             }
         });
     }
@@ -2522,13 +2522,13 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //おおさか防災ネット
-    private void showOsaka(){
+    //情報（道路）
+    private void showRoad(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("URLをタップしてください");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_osaka, (ViewGroup)findViewById(R.id.infoOsaka));
+        final View layout = inflater.inflate(R.layout.info_road, (ViewGroup)findViewById(R.id.infoRoad));
         builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
@@ -2611,33 +2611,21 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //参集手段
-    public void showGathering(){
+    //防災ネット
+    private void showBousaiNet(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("参集手段");
-        //テキストファイル読み込み
-        InputStream is = null;
-        BufferedReader br = null;
-        String text = "";
-        try {
-            try {
-                //assetsフォルダ内のテキスト読み込み
-                is = getAssets().open("gathering.txt");
-                br = new BufferedReader(new InputStreamReader(is));
-                //１行づつ読み込み、改行追加
-                String str;
-                while((str = br.readLine()) !=null){
-                    text += str + "\n";
-                }
-            } finally {
-                if (is != null) is.close();
-                if (br != null) br.close();
+        builder.setTitle("URLまたはボタンをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_osaka, (ViewGroup)findViewById(R.id.infoOsaka));
+        //ボタン クリックリスナー設定
+        layout.findViewById(R.id.btnOsakaBousaiApp).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startOsakaBousaiApp();
             }
-        } catch (Exception e) {
-            //エラーメッセージ
-            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
-        }
-        builder.setMessage(text);
+        });
+        builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -2673,4 +2661,5 @@ public class TyphoonActivity extends AppCompatActivity {
             builder.show();
         }
     }
+
 }

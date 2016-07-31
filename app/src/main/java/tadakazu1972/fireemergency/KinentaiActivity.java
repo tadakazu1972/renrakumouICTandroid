@@ -613,7 +613,7 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
-    
+
     //情報（道路）
     private void showRoad(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
