@@ -40,7 +40,7 @@
             android:text="国民保"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1"
-            android:id="@+id/btnProtect"/>
+            android:id="@+id/btnKokuminhogo"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"

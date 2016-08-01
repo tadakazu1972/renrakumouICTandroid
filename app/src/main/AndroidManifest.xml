@@ -19,6 +19,9 @@
         <activity android:name=".TyphoonActivity"
                   android:launchMode="singleTask">
         </activity>
+        <activity android:name=".KokuminhogoActivity"
+                  android:launchMode="singleTask">
+        </activity>
         <activity android:name=".KinentaiActivity"
                   android:launchMode="singleTask">
         </activity>

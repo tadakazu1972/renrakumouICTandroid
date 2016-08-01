@@ -117,6 +117,13 @@ public class DataActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mView.findViewById(R.id.btnKokuminhogo).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, KokuminhogoActivity.class);
+                startActivity(intent);
+            }
+        });
         mView.findViewById(R.id.btnKinentai).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

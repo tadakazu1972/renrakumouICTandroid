@@ -63,6 +63,13 @@ public class TyphoonActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mView.findViewById(R.id.btnKokuminhogo).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, KokuminhogoActivity.class);
+                startActivity(intent);
+            }
+        });
         mView.findViewById(R.id.btnKinentai).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
@@ -1170,7 +1177,7 @@ public class TyphoonActivity extends AppCompatActivity {
         } else {
             s = "ー";
         }
-        builder.setMessage("第５非常警備\n\n"+s+"\n\n招集なし");
+        builder.setMessage("第５非常警備(東淀川、消防局)\n\n"+s+"\n\n招集なし");
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
@@ -1187,7 +1194,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.setTitle("■安威川（千歳橋） 避難準備情報発令の見込み(1時間以内に水位3.5mに到達)");
         //勤務消防署がリストに該当するか判定
         String s;
-        String[] a = {"西淀川","淀川","東淀川","消防局"};
+        String[] a = {"東淀川","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
