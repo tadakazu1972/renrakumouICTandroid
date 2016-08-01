@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -29,6 +33,12 @@ public class EarthquakeActivity extends AppCompatActivity {
     protected String mMainStation;
     protected String mTsunamiStation;
     protected String mKubun;
+    //連絡網データ操作用変数
+    protected ListView mListView = null;
+    protected DBHelper mDBHelper = null;
+    protected SQLiteDatabase db = null;
+    protected Cursor mCursor = null;
+    protected SimpleCursorAdapter mAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstaceState){
@@ -40,6 +50,10 @@ public class EarthquakeActivity extends AppCompatActivity {
         initButtons();
         //基礎データ読み込み
         loadData();
+        //連絡網データ作成
+        mListView = new ListView(this);
+        mDBHelper = new DBHelper(this);
+        db = mDBHelper.getWritableDatabase();
     }
 
     @Override

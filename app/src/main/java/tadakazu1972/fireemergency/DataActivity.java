@@ -1,14 +1,21 @@
 package tadakazu1972.fireemergency;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 
 /**
@@ -20,6 +27,12 @@ public class DataActivity extends AppCompatActivity {
     private Spinner mSpn1 = null;
     private Spinner mSpn2 = null;
     private Spinner mSpn3 = null;
+    //連絡網データ操作用変数
+    protected ListView mListView = null;
+    protected DBHelper mDBHelper = null;
+    protected SQLiteDatabase db = null;
+    protected Cursor mCursor = null;
+    protected SimpleCursorAdapter mAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -131,6 +144,53 @@ public class DataActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //連絡網データ作成
+        mListView = new ListView(this);
+        mDBHelper = new DBHelper(this);
+        db = mDBHelper.getWritableDatabase();
+        //連絡網データ入力ボタン
+        mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel();
+            }
+        });
+    }
+
+    //連絡網データ表示
+    private void showTel(){
+        //データ準備
+        String order;
+        order = "select * from records order by name desc";
+        Cursor c = mActivity.db.rawQuery(order, null);
+        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
+        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
+        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
+        mListView.setAdapter(mActivity.mAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                //なにもしない　setOnItemClickListenerをいれないと、データアイテムをタップした時にアプリが落ちるのを防ぐため。
+            }
+        });
+        //ダイアログ生成
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("連絡網データ");
+        ViewGroup parent = (ViewGroup)mListView.getParent();
+        if ( parent!=null) {
+            parent.removeView(mListView);
+        }
+        builder.setView(mListView);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
     }
 
 }

@@ -91,4 +91,17 @@
             android:layout_weight="1"
             android:id="@+id/btnKinentai"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="連絡網データ入力"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:id="@+id/btnTel"/>
+    </LinearLayout>
 </LinearLayout>
