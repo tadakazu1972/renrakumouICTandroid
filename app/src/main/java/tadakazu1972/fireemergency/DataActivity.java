@@ -9,11 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -31,7 +33,6 @@ public class DataActivity extends AppCompatActivity {
     protected ListView mListView = null;
     protected DBHelper mDBHelper = null;
     protected SQLiteDatabase db = null;
-    protected Cursor mCursor = null;
     protected SimpleCursorAdapter mAdapter = null;
 
     @Override
@@ -149,13 +150,21 @@ public class DataActivity extends AppCompatActivity {
         mListView = new ListView(this);
         mDBHelper = new DBHelper(this);
         db = mDBHelper.getWritableDatabase();
-        //連絡網データ入力ボタン
+        //連絡網データ確認ボタン
         mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 showTel();
             }
         });
+        //連絡網データ入力ボタン
+        mView.findViewById(R.id.btnTelEdit).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEditTel();
+            }
+        });
+
     }
 
     //連絡網データ表示
@@ -188,6 +197,39 @@ public class DataActivity extends AppCompatActivity {
                 //何もしない
             }
         });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //連絡網データ入力
+    private void showEditTel(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("新規データ入力");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.tel_edit, (ViewGroup)findViewById(R.id.telEdit));
+        //データ取得準備
+        final EditText editName = (EditText)layout.findViewById(R.id.editName);
+        final EditText editTel  = (EditText)layout.findViewById(R.id.editTel);
+        final EditText editMail = (EditText)layout.findViewById(R.id.editMail);
+        final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
+        final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
+        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
+        builder.setView(layout);
+        builder.setPositiveButton("登録", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                String name = editName.getText().toString();
+                String tel  = editTel.getText().toString();
+                String mail = editMail.getText().toString();
+                String kubun = (String)editKubun.getSelectedItem();
+                String syozoku = (String)editSyozoku.getSelectedItem();
+                String kinmu = (String)editKinmu.getSelectedItem();
+                mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku, kinmu);
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();

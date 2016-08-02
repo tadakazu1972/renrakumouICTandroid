@@ -34,4 +34,9 @@
         <item>３号招集</item>
         <item>４号招集</item>
     </string-array>
+    <string-array name="kinmu">
+        <item>日勤</item>
+        <item>１部</item>
+        <item>２部</item>
+    </string-array>
 </resources>

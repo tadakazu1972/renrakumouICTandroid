@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -28,6 +33,11 @@ public class KokuminhogoActivity extends AppCompatActivity {
     protected String mMainStation;
     protected String mTsunamiStation;
     protected String mKubun;
+    //連絡網データ操作用変数
+    protected ListView mListView = null;
+    protected DBHelper mDBHelper = null;
+    protected SQLiteDatabase db = null;
+    protected SimpleCursorAdapter mAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstaceState){
@@ -39,6 +49,10 @@ public class KokuminhogoActivity extends AppCompatActivity {
         initButtons();
         //基礎データ読み込み
         loadData();
+        //連絡網データ作成
+        mListView = new ListView(this);
+        mDBHelper = new DBHelper(this);
+        db = mDBHelper.getWritableDatabase();
     }
 
     @Override
@@ -125,6 +139,12 @@ public class KokuminhogoActivity extends AppCompatActivity {
             public void onClick(View v){
                showRoad();
            }
+        });
+        mView.findViewById(R.id.btnKokuminhogoTel).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel();
+            }
         });
         mView.findViewById(R.id.btnKokuminhogoCaution).setOnClickListener(new OnClickListener(){
             @Override
@@ -283,6 +303,41 @@ public class KokuminhogoActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_road, (ViewGroup)findViewById(R.id.infoRoad));
         builder.setView(layout);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //連絡網データ表示
+    private void showTel(){
+        //データ準備
+        String order;
+        order = "select * from records order by name desc";
+        Cursor c = mActivity.db.rawQuery(order, null);
+        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
+        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
+        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
+        mListView.setAdapter(mActivity.mAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                //なにもしない　setOnItemClickListenerをいれないと、データアイテムをタップした時にアプリが落ちるのを防ぐため。
+            }
+        });
+        //ダイアログ生成
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("連絡網データ");
+        ViewGroup parent = (ViewGroup)mListView.getParent();
+        if ( parent!=null) {
+            parent.removeView(mListView);
+        }
+        builder.setView(mListView);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){

@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:text="連絡網"
             android:textSize="18sp"
-            android:id="@+id/btnTyphoonTel"
+            android:id="@+id/btnKinentaiTel"
             android:layout_weight="1"/>
         <Button
             android:layout_width="0dp"
