@@ -39,4 +39,74 @@
         <item>１部</item>
         <item>２部</item>
     </string-array>
+    <string-array name="nankaitraf1">
+        <item>山梨県中・西部</item>
+        <item>長野県南部</item>
+        <item>静岡県東部</item>
+        <item>静岡県中部</item>
+        <item>静岡県西部</item>
+        <item>駿河湾</item>
+        <item>駿河湾南方沖</item>
+        <item>新島・神津島近海</item>
+        <item>愛知県東部</item>
+        <item>愛知県西部</item>
+        <item>遠州灘</item>
+        <item>三河湾</item>
+        <item>岐阜県美濃東部</item>
+        <item>三重県北部</item>
+        <item>三重県中部</item>
+        <item>三重県南部</item>
+        <item>伊勢湾</item>
+        <item>三重県南東沖</item>
+        <item>和歌山県北部</item>
+        <item>和歌山県南部</item>
+        <item>和歌山県南方沖</item>
+        <item>紀伊水道</item>
+        <item>奈良県</item>
+        <item>淡路島付近</item>
+        <item>播磨灘</item>
+        <item>徳島県北部</item>
+        <item>徳島県南部</item>
+        <item>香川県東部</item>
+        <item>香川県西部</item>
+        <item>瀬戸内海中部</item>
+        <item>愛媛県東予</item>
+        <item>愛媛県中予</item>
+        <item>愛媛県南予</item>
+        <item>伊予灘豊後水道</item>
+        <item>高知県東部</item>
+        <item>高知県中部</item>
+        <item>高知県西部</item>
+        <item>土佐湾</item>
+        <item>四国沖</item>
+        <item>大分県南部</item>
+        <item>宮崎県北部平野部</item>
+        <item>日向灘</item>
+        <item>九州地方南東沖</item>
+        <item>その他</item>
+    </string-array>
+    <string-array name="nankaitraf21">
+        <item>山梨県</item>
+        <item>長野県</item>
+        <item>岐阜県</item>
+        <item>静岡県</item>
+        <item>愛知県</item>
+        <item>三重県</item>
+        <item>その他</item>
+    </string-array>
+    <string-array name="nankaitraf22">
+        <item>兵庫県</item>
+        <item>奈良県</item>
+        <item>和歌山県</item>
+        <item>その他</item>
+    </string-array>
+    <string-array name="nankaitraf23">
+        <item>徳島県</item>
+        <item>香川県</item>
+        <item>愛媛県</item>
+        <item>高知県</item>
+        <item>大分県</item>
+        <item>宮崎県</item>
+        <item>その他</item>
+    </string-array>
 </resources>

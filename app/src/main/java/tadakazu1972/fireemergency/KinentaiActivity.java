@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.opencsv.CSVParser;
@@ -366,7 +367,7 @@ public class KinentaiActivity extends AppCompatActivity {
                         showActionPlan((String)actions[which],"kinentai_tounankai.txt");
                         break;
                     case 3:
-                        showActionPlan((String)actions[which],"kinentai_nankaitraf.txt");
+                        showNankaitraf();
                         break;
                 }
             }
@@ -415,6 +416,40 @@ public class KinentaiActivity extends AppCompatActivity {
                 //何もしない
             }
         });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //南海トラフ
+    private void showNankaitraf(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("南海トラフ");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.nankaitraf, (ViewGroup)findViewById(R.id.nankaitraf));
+        //判定準備
+        final Spinner nankaitraf1 = (Spinner)layout.findViewById(R.id.spnNankaitraf1);
+        final Spinner nankaitraf21 = (Spinner)layout.findViewById(R.id.spnNankaitraf21);
+        final Spinner nankaitraf22 = (Spinner)layout.findViewById(R.id.spnNankaitraf22);
+        final Spinner nankaitraf23 = (Spinner)layout.findViewById(R.id.spnNankaitraf23);
+        builder.setView(layout);
+        builder.setPositiveButton("判定", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                String check1 = (String)nankaitraf1.getSelectedItem();
+                String check21 = (String)nankaitraf21.getSelectedItem();
+                String check22 = (String)nankaitraf22.getSelectedItem();
+                String check23 = (String)nankaitraf23.getSelectedItem();
+                //いざ、判定
+                if (!check1.equals("その他")&&!check21.equals("その他")&&!check22.equals("その他")&&!check23.equals("その他")){
+                    showActionPlan("南海トラフ","kinentai_nankaitraf.txt");
+                } else {
+                    showActionPlan("南海トラフ","kinentai_nankaitraf2.txt");
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
