@@ -532,7 +532,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     private void showTyphoon311(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■淀川（枚方） 氾濫注意水位(水位2.7m)、水防警報(出動)");
+        builder.setTitle("■淀川（枚方） 氾濫注意水位(水位4.5m)、水防警報(出動)");
         //勤務消防署がリストに該当するか判定
         String s;
         String[] a = {"北","都島","福島","此花","西淀川","淀川","東淀川","旭","消防局"};
@@ -567,7 +567,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -600,7 +600,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -611,7 +611,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "４号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -647,7 +647,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -656,7 +656,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -667,7 +667,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -698,7 +698,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -761,7 +761,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"住之江","住吉","東住吉","平野","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -790,7 +790,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -823,7 +823,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -834,7 +834,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -870,7 +870,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -879,7 +879,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -890,7 +890,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -921,7 +921,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -984,7 +984,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"淀川","東淀川","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -1013,7 +1013,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -1045,7 +1045,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -1080,24 +1080,24 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
             }
         } else if (Arrays.asList(b).contains(mMainStation)) {
-            //３号招集なので、１号、２号は参集なしの判定する
-            if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
+            //４号招集なので、１号、２号、３号は参集なしの判定する
+            if (mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "４号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
+                    s = "４号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
             } else {
-                s = "３号招集(非番・日勤)\n\n招集なし";
+                s = "４号招集(非番・日勤)\n\n招集なし";
             }
         } else {
-            s = "３号招集\n\n招集なし";
+            s = "４号招集\n\n招集なし";
         }
         builder.setMessage(s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -1120,7 +1120,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -1183,7 +1183,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"東淀川","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -1212,7 +1212,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -1245,7 +1245,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1256,7 +1256,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1292,7 +1292,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1301,7 +1301,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1312,7 +1312,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1343,7 +1343,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -1435,7 +1435,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -1468,7 +1468,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1479,7 +1479,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1515,7 +1515,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1524,7 +1524,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1535,7 +1535,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1566,7 +1566,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -1629,7 +1629,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"中央","城東","鶴見","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -1658,7 +1658,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -1691,7 +1691,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1702,7 +1702,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1738,7 +1738,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1747,7 +1747,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1758,7 +1758,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1789,7 +1789,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -1852,7 +1852,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"東成","生野","城東","東住吉","平野","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -1881,7 +1881,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -1914,7 +1914,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1925,7 +1925,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -1961,7 +1961,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1970,7 +1970,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -1981,7 +1981,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -2012,7 +2012,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -2075,7 +2075,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"東成","生野","城東","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -2104,7 +2104,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -2137,7 +2137,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "３号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -2148,7 +2148,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -2184,7 +2184,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -2193,7 +2193,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "３号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "３号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -2204,7 +2204,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集";
+                    s = "４号招集(非番・日勤)\n\n"+mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n"+mMainStation+"消防署へ参集";
                 }
@@ -2235,7 +2235,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
@@ -2286,7 +2286,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"鶴見","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -2351,7 +2351,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String[] a = {"平野","消防局"};
         if (Arrays.asList(a).contains(mMainStation)){
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"(所属担当者に確認すること)";
+                s = mMainStation;
             } else {
                 s = mMainStation+"消防署";
             }
@@ -2380,7 +2380,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -2412,7 +2412,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集")||mKubun.equals("４号招集")){
                 if (mMainStation.equals("消防局")) {
-                    s = mMainStation+"へ参集";
+                    s = mMainStation+"へ参集(所属担当者に確認すること)";
                 } else {
                     s = mMainStation+"消防署へ参集";
                 }
@@ -2447,7 +2447,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s = "２号招集(非番・日勤)\n\n招集なし";
             } else {
                 if (mMainStation.equals("消防局")) {
-                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "２号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "２号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -2456,7 +2456,7 @@ public class TyphoonActivity extends AppCompatActivity {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")) {
                 if (mMainStation.equals("消防局")) {
-                    s = "４号招集(非番・日勤)\n\n" + mMainStation + "へ参集";
+                    s = "４号招集(非番・日勤)\n\n" + mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
                     s = "４号招集(非番・日勤)\n\n" + mMainStation + "消防署へ参集";
                 }
@@ -2487,7 +2487,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集(所属担当者に確認すること)";
             } else {
                 s = mMainStation+"消防署へ参集";
             }
