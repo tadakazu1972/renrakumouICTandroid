@@ -424,7 +424,7 @@ public class KinentaiActivity extends AppCompatActivity {
     //南海トラフ
     private void showNankaitraf(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("南海トラフ");
+        builder.setTitle("南海トラフ　次の①②が合致した場合にアクションプランを適用する");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.nankaitraf, (ViewGroup)findViewById(R.id.nankaitraf));

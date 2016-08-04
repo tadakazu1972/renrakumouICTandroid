@@ -23,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import android.widget.Button;
 
 public class TyphoonActivity extends AppCompatActivity {
     protected TyphoonActivity mActivity = null;
@@ -36,6 +37,8 @@ public class TyphoonActivity extends AppCompatActivity {
     protected DBHelper mDBHelper = null;
     protected SQLiteDatabase db = null;
     protected SimpleCursorAdapter mAdapter = null;
+    //ダイアログ制御用
+    private AlertDialog mDlg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -494,7 +497,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //淀川（枚方）
     private void showTyphoon31(){
-        final CharSequence[] actions = {"■氾濫注意水位(水位2.7m)、水防警報(出動)","■避難準備情報発令の見込み(1時間以内に水位5.4mに到達)","■避難準備情報(水位5.4m)","■避難勧告(水位5.5m)","■避難指示(水位8.3m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位4.5m)、水防警報(出動)","■避難準備情報発令の見込み(1時間以内に水位5.4mに到達)","■避難準備情報(水位5.4m)","■避難勧告(水位5.5m)","■避難指示(水位8.3m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
@@ -546,12 +549,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "ー";
         }
         builder.setMessage("第５非常警備(北、都島、福島、此花、西淀川、淀川、東淀川、旭、消防局)\n\n"+s+"\n\n招集なし");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -578,15 +576,20 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         }
         builder.setMessage("４号招集(非番・日勤)\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("該当署", null);
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(false);
+        builder.create();
+        mDlg = builder.show();
+        // Builder#setPositiveButton() でリスナーを指定した場合、ダイアログは閉じてしまう。
+        // Button#setOnClickListener() でリスナーを指定する。
+        Button button = mDlg.getButton(DialogInterface.BUTTON_POSITIVE);
+        button.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
+            public void onClick(View v){
+                Toast.makeText(mActivity, "北,都島,福島,此花,西淀川,淀川,東淀川,旭,消防局", Toast.LENGTH_LONG).show();
             }
         });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
     }
 
     private void showTyphoon313(){
