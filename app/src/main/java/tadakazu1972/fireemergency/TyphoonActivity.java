@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -23,7 +24,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import android.widget.Button;
 
 public class TyphoonActivity extends AppCompatActivity {
     protected TyphoonActivity mActivity = null;
@@ -625,6 +625,32 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "招集なし";
         }
         builder.setMessage(s);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //防災ネット
+    private void showTyphoon313A(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLまたはボタンをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.dialog_river, (ViewGroup)findViewById(R.id.dlgRiver));
+        //ボタン クリックリスナー設定
+        layout.findViewById(R.id.btnGaitousyo).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startOsakaBousaiApp();
+            }
+        });
+        builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){

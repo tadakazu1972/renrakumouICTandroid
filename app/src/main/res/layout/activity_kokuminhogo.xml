@@ -114,8 +114,8 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(地震)"
-            android:textSize="18sp"
+            android:text="情報(関係機関)"
+            android:textSize="16sp"
             android:id="@+id/btnKokuminhogoEarthquake"
             android:layout_weight="1"/>
         <Button

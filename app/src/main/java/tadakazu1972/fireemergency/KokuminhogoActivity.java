@@ -125,7 +125,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
         mView.findViewById(R.id.btnKokuminhogoEarthquake).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showEarthquake();
+                showKankeikikan();
             }
         });
         mView.findViewById(R.id.btnKokuminhogoBlackout).setOnClickListener(new OnClickListener(){
@@ -211,13 +211,13 @@ public class KokuminhogoActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //情報（地震）
-    private void showEarthquake(){
+    //情報（関係機関）
+    private void showKankeikikan(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("URLをタップしてください");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.info_earthquake, (ViewGroup)findViewById(R.id.infoEarthquake));
+        final View layout = inflater.inflate(R.layout.info_kankeikikan, (ViewGroup)findViewById(R.id.infoKankeikikan));
         builder.setView(layout);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
