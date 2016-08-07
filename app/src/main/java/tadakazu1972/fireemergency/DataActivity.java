@@ -34,6 +34,9 @@ public class DataActivity extends AppCompatActivity {
     protected DBHelper mDBHelper = null;
     protected SQLiteDatabase db = null;
     protected SimpleCursorAdapter mAdapter = null;
+    //連絡網データ入力用　親所属スピナー文字列保存用
+    private static String mSelected;
+    private static String[] mArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -215,6 +218,35 @@ public class DataActivity extends AppCompatActivity {
         final EditText editMail = (EditText)layout.findViewById(R.id.editMail);
         final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
         final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
+        final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
+        //親所属スピナー選択時の処理
+        editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                //親所属スピナーの選択した位置をint取得
+                int i = parent.getSelectedItemPosition();
+                //Toast.makeText(mActivity, String.valueOf(i)+"番目を選択", Toast.LENGTH_SHORT).show();
+                //取得したintを配列リソース名に変換し、配列リソースIDを取得（なぜか日本語ではエラーが出るのでアルファベットと数字で対応））
+                mSelected = "firestation"+ String.valueOf(i);
+                int resourceId = getResources().getIdentifier(mSelected, "array", getPackageName());
+                //Toast.makeText(mActivity, "resourceID="+String.valueOf(resourceId), Toast.LENGTH_SHORT).show();
+                //取得した配列リソースIDを文字列配列に格納
+                mArray = getResources().getStringArray(resourceId);
+                //配列リソースIDから取得した文字列配列をアダプタに入れる
+                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item);
+                for (String aMArray : mArray) {
+                    mAdapter.add(aMArray);
+                }
+                mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //アダプタを子スピナーにセット
+                editSyozoku2.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+                //nothing to do
+            }
+        });
         final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
         builder.setView(layout);
         builder.setPositiveButton("登録", new DialogInterface.OnClickListener(){
@@ -224,7 +256,7 @@ public class DataActivity extends AppCompatActivity {
                 String tel  = editTel.getText().toString();
                 String mail = editMail.getText().toString();
                 String kubun = (String)editKubun.getSelectedItem();
-                String syozoku = (String)editSyozoku.getSelectedItem();
+                String syozoku = (String)editSyozoku2.getSelectedItem();
                 String kinmu = (String)editKinmu.getSelectedItem();
                 mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku, kinmu);
             }
