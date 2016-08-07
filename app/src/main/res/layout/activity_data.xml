@@ -77,6 +77,13 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1"
             android:id="@+id/btnTelEdit"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="連絡網データ修正/削除"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:id="@+id/btnTelUpdate"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
