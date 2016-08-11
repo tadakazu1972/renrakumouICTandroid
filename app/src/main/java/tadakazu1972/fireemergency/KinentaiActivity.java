@@ -570,9 +570,9 @@ public class KinentaiActivity extends AppCompatActivity {
                 String[] data = line.split(Pattern.quote(","),0);
                 //データ代入　先頭と最後に[]がついてくるのでreplaceで削除している
                 pref = data[0]; pref = pref.replace("[","");
-                data1 = data[1];
+                data1 = data[1]; data1 = data1.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
                 data2 = data[2]; data2 = data2.replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入
-                data3 = data[3]; data3 = data3.replace("]","");
+                data3 = data[3]; data3 = data3.replace("]","").replaceAll("、","\n     "); //２行になる答えなので改行とスペースを挿入;
             } finally {
                 if (is != null) is.close();
             }
@@ -581,7 +581,7 @@ public class KinentaiActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setTitle(title+"　"+pref);
-        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府隊(航空小隊)\n\n　"+data3);
+        builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府大隊(航空)\n\n　"+data3);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
