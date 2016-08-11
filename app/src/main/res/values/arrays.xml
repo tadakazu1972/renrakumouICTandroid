@@ -32,7 +32,7 @@
         <item>消防局</item>
     </string-array>
     <string-array name="firestation1">
-        <item>北</item>
+        <item>北本署</item>
         <item>梅田</item>
         <item>浮田</item>
         <item>南森町</item>
@@ -41,65 +41,65 @@
         <item>本庄</item>
     </string-array>
     <string-array name="firestation2">
-        <item>都島</item>
+        <item>都島本署</item>
         <item>高倉</item>
         <item>東野田</item>
     </string-array>
     <string-array name="firestation3">
-        <item>福島</item>
+        <item>福島本署</item>
         <item>上福島</item>
         <item>海老江</item>
     </string-array>
     <string-array name="firestation4">
-        <item>此花</item>
+        <item>此花本署</item>
         <item>桜島</item>
         <item>西九条</item>
     </string-array>
     <string-array name="firestation5">
-        <item>中央</item>
+        <item>中央本署</item>
         <item>東雲</item>
         <item>道頓堀</item>
         <item>南坂町</item>
         <item>上町</item>
     </string-array>
     <string-array name="firestation6">
-        <item>西</item>
+        <item>西本署</item>
         <item>江戸堀</item>
         <item>新町</item>
     </string-array>
     <string-array name="firestation7">
-        <item>港</item>
+        <item>港本署</item>
         <item>田中</item>
     </string-array>
     <string-array name="firestation8">
-        <item>大正</item>
+        <item>大正本署</item>
         <item>泉尾</item>
         <item>鶴町</item>
     </string-array>
     <string-array name="firestation9">
-        <item>天王寺</item>
+        <item>天王寺本署</item>
         <item>元町</item>
     </string-array>
     <string-array name="firestation10">
-        <item>浪速</item>
+        <item>浪速本署</item>
         <item>恵美須</item>
         <item>立葉</item>
         <item>浪速出張所</item>
     </string-array>
     <string-array name="firestation11">
-        <item>西淀川</item>
+        <item>西淀川本署</item>
         <item>佃</item>
         <item>大和田</item>
         <item>竹島</item>
     </string-array>
     <string-array name="firestation12">
-        <item>淀川</item>
+        <item>淀川本署</item>
         <item>十三橋</item>
         <item>加島</item>
         <item>東三国</item>
     </string-array>
     <string-array name="firestation13">
-        <item>東淀川</item>
+        <item>東淀川本署</item>
         <item>豊里</item>
         <item>小松</item>
         <item>井高野</item>
@@ -107,63 +107,63 @@
         <item>西淡路</item>
     </string-array>
     <string-array name="firestation14">
-        <item>東成</item>
+        <item>東成本署</item>
         <item>中本</item>
         <item>深江</item>
     </string-array>
     <string-array name="firestation15">
-        <item>生野</item>
+        <item>生野本署</item>
         <item>勝山</item>
         <item>中川</item>
         <item>巽</item>
     </string-array>
     <string-array name="firestation16">
-        <item>旭</item>
+        <item>旭本署</item>
         <item>新森</item>
         <item>赤川</item>
     </string-array>
     <string-array name="firestation17">
-        <item>城東</item>
+        <item>城東本署</item>
         <item>放出</item>
         <item>中浜</item>
         <item>関目</item>
     </string-array>
     <string-array name="firestation18">
-        <item>鶴見</item>
+        <item>鶴見本署</item>
         <item>今津</item>
         <item>茨田</item>
     </string-array>
     <string-array name="firestation19">
-        <item>住之江</item>
+        <item>住之江本署</item>
         <item>平林</item>
         <item>加賀屋</item>
         <item>南港</item>
     </string-array>
     <string-array name="firestation20">
-        <item>阿倍野</item>
+        <item>阿倍野本署</item>
         <item>清明通</item>
         <item>阪南</item>
     </string-array>
     <string-array name="firestation21">
-        <item>住吉</item>
+        <item>住吉本署</item>
         <item>苅田</item>
         <item>万代</item>
     </string-array>
     <string-array name="firestation22">
-        <item>東住吉</item>
+        <item>東住吉本署</item>
         <item>北田辺</item>
         <item>杭全</item>
         <item>矢田</item>
     </string-array>
     <string-array name="firestation23">
-        <item>平野</item>
+        <item>平野本署</item>
         <item>加美</item>
         <item>長吉</item>
         <item>喜連</item>
         <item>加美正覚寺</item>
     </string-array>
     <string-array name="firestation24">
-        <item>西成</item>
+        <item>西成本署</item>
         <item>海道</item>
         <item>津守</item>
     </string-array>

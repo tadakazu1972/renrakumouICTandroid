@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -38,6 +39,9 @@ public class KinentaiActivity extends AppCompatActivity {
     protected DBHelper mDBHelper = null;
     protected SQLiteDatabase db = null;
     protected SimpleCursorAdapter mAdapter = null;
+    //連絡網データ入力用　親所属スピナー文字列保存用
+    private static String mSelected;
+    private static String[] mArray;
 
 
     @Override
@@ -698,9 +702,62 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //連絡網データ表示
     private void showTel(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("連絡網　検索条件を設定してください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.tel_show, (ViewGroup)findViewById(R.id.telShow));
+        //データ取得準備
+        final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
+        final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
+        //親所属スピナー選択時の処理
+        editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                //親所属スピナーの選択した位置をint取得
+                int i = parent.getSelectedItemPosition();
+                //Toast.makeText(mActivity, String.valueOf(i)+"番目を選択", Toast.LENGTH_SHORT).show();
+                //取得したintを配列リソース名に変換し、配列リソースIDを取得（なぜか日本語ではエラーが出るのでアルファベットと数字で対応））
+                mSelected = "firestation"+ String.valueOf(i);
+                int resourceId = getResources().getIdentifier(mSelected, "array", getPackageName());
+                //Toast.makeText(mActivity, "resourceID="+String.valueOf(resourceId), Toast.LENGTH_SHORT).show();
+                //取得した配列リソースIDを文字列配列に格納
+                mArray = getResources().getStringArray(resourceId);
+                //配列リソースIDから取得した文字列配列をアダプタに入れる
+                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item);
+                for (String aMArray : mArray) {
+                    mAdapter.add(aMArray);
+                }
+                mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //アダプタを子スピナーにセット
+                editSyozoku2.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+                //nothing to do
+            }
+        });
+        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
+        builder.setView(layout);
+        builder.setPositiveButton("検索", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                String syozoku = (String)editSyozoku2.getSelectedItem();
+                String kinmu = (String)editKinmu.getSelectedItem();
+                showTelResult(syozoku, kinmu);
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTelResult(String _syozoku, String _kinmu){
         //データ準備
         String order;
-        order = "select * from records order by name desc";
+        order = "select * from records where syozoku='"+ _syozoku + "' and kinmu='"+ _kinmu + "' order by name desc";
         Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
         int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
@@ -712,6 +769,14 @@ public class KinentaiActivity extends AppCompatActivity {
                 //なにもしない　setOnItemClickListenerをいれないと、データアイテムをタップした時にアプリが落ちるのを防ぐため。
             }
         });
+        //抽出結果のメールアドレスを確保
+        c.moveToFirst(); //カーソル開始位置を先頭にする
+        final String[] mailArray = new String[100]; //100人以上になるなら変更
+        for (int i=0; i<c.getCount(); i++){
+            String _mail = c.getString(3);
+            mailArray[i] = _mail;
+            c.moveToNext();
+        }
         //ダイアログ生成
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("連絡網データ");
@@ -720,12 +785,24 @@ public class KinentaiActivity extends AppCompatActivity {
             parent.removeView(mListView);
         }
         builder.setView(mListView);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("メール一斉送信", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                //何もしない
+                //メール立ち上げ
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, mailArray);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
+                intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
+                try {
+                    startActivity(Intent.createChooser(intent, "メールアプリを選択"));
+                } catch (android.content.ActivityNotFoundException ex){
+                    Toast.makeText(mActivity, "メールアプリが見つかりません", Toast.LENGTH_LONG).show();
+                }
             }
         });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
