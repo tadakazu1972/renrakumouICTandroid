@@ -104,13 +104,13 @@
             android:layout_weight="1"
             android:id="@+id/btnTelUpdate"/>
     </LinearLayout>
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="戻る"
-        android:textColor="#111111"
-        android:textAlignment="center"
-        android:textSize="20sp"/>
+        android:text="CSVファイル読込"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/btnImport"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

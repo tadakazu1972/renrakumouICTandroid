@@ -21,6 +21,9 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 /**
  * Created by tadakazu on 2016/07/18.
  */
@@ -120,6 +123,38 @@ public class DataActivity extends AppCompatActivity {
             }
         });
 
+        //連絡網データ作成
+        mListView = new ListView(this);
+        mDBHelper = new DBHelper(this);
+        db = mDBHelper.getWritableDatabase();
+        //連絡網データ確認ボタン
+        mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel();
+            }
+        });
+        //連絡網データ入力ボタン
+        mView.findViewById(R.id.btnTelEdit).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEditTel();
+            }
+        });
+        //連絡網データ修正/削除ボタン
+        mView.findViewById(R.id.btnTelUpdate).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel2();
+            }
+        });
+        mView.findViewById(R.id.btnImport).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showImport();
+            }
+        });
+
         //復帰用ボタン
         mView.findViewById(R.id.btnEarthquake).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -147,32 +182,6 @@ public class DataActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, KinentaiActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        //連絡網データ作成
-        mListView = new ListView(this);
-        mDBHelper = new DBHelper(this);
-        db = mDBHelper.getWritableDatabase();
-        //連絡網データ確認ボタン
-        mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showTel();
-            }
-        });
-        //連絡網データ入力ボタン
-        mView.findViewById(R.id.btnTelEdit).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showEditTel();
-            }
-        });
-        //連絡網データ修正/削除ボタン
-        mView.findViewById(R.id.btnTelUpdate).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showTel2();
             }
         });
     }
@@ -401,5 +410,26 @@ public class DataActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.create();
         builder.show();
+    }
+
+    //連絡網データ CSVファイルインポート
+    private final static int CHOSE_FILE_CODE = 1;
+    private void showImport(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("text/*");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        try {
+            if (requestCode == CHOSE_FILE_CODE && resultCode == RESULT_OK) {
+                String filePath = data.getDataString().replace("file://", "");
+                String decodedfilePath = URLDecoder.decode(filePath, "utf-8");
+                Toast.makeText(mActivity, "filePath=" + decodedfilePath, Toast.LENGTH_LONG).show();
+            }
+        } catch (UnsupportedEncodingException e) {
+                //nothing to do
+        }
     }
 }
