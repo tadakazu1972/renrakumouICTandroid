@@ -4,15 +4,26 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="20dp">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="アプリ説明書"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/btnTorisetsu"/>
     <TextView
-        android:id="@+id/lblData1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="あなたの基礎データを入力してください"
         android:textSize="20sp"
+        android:textColor="#111111"
         android:textAlignment="center"
-        android:layout_marginBottom="16dp"
         android:layout_gravity="center_horizontal"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
     <TextView
         android:id="@+id/lblData2"
         android:layout_width="wrap_content"
@@ -58,36 +69,53 @@
         android:prompt="@string/spn1Prompt"
         android:entries="@array/kubun"
         android:layout_marginBottom="16dp"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="連絡網データ操作"
+        android:textColor="#111111"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:background="#118811">
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="連絡網データ確認"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="一覧"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:id="@+id/btnTel"/>
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="連絡網データ入力"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="新規登録"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:id="@+id/btnTelEdit"/>
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="連絡網データ修正/削除"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="修正/削除"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:id="@+id/btnTelUpdate"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="戻る"
+        android:textColor="#111111"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#991111">
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"

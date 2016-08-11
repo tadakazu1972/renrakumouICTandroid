@@ -4,18 +4,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#2299ff">
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="基礎データ入力"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="1"
-            android:id="@+id/btnData"/>
-    </LinearLayout>
+        android:text="基礎データ入力"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@drawable/data_button"
+        android:id="@+id/btnData"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
