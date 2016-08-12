@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.OpenableColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,11 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
@@ -426,10 +433,49 @@ public class DataActivity extends AppCompatActivity {
             if (requestCode == CHOSE_FILE_CODE && resultCode == RESULT_OK) {
                 String filePath = data.getDataString().replace("file://", "");
                 String decodedfilePath = URLDecoder.decode(filePath, "utf-8");
-                Toast.makeText(mActivity, "filePath=" + decodedfilePath, Toast.LENGTH_LONG).show();
+                String path = null;
+                String filename = null;
+                Uri uri = data.getData();
+                importCSV(uri);
+                Cursor c = getContentResolver().query(uri, null, null, null, null);
+                if (c != null) {
+                    c.moveToFirst();
+                    filename = c.getString(c.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                    path = c.getString(0);
+                    c.close();
+                }
+                Toast.makeText(mActivity, filename, Toast.LENGTH_LONG).show();
             }
         } catch (UnsupportedEncodingException e) {
                 //nothing to do
+        }
+    }
+
+    private void importCSV(Uri uri){
+        if (uri==null)
+            return;
+
+        InputStream is = null;
+        StringBuilder stringbuilder = new StringBuilder();
+
+        try {
+            try {
+                is = getContentResolver().openInputStream(uri);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringbuilder.append(line);
+                }
+            } finally {
+                if (is !=null) is.close();
+                Toast.makeText(mActivity, stringbuilder.toString(), Toast.LENGTH_LONG).show();
+            }
+        } catch (FileNotFoundException e){
+            throw new RuntimeException(e);
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        } finally {
+            //if (is!=null) is.close();
         }
     }
 }
