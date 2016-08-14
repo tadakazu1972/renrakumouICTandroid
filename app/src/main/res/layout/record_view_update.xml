@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="8dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <TextView android:id="@+id/record_name"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -12,11 +15,31 @@
                   android:textStyle="bold"
                   android:textSize="20sp"/>
         <TextView android:id="@+id/record_tel"
+                  android:layout_alignParentRight="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#000000"
+                  android:textStyle="bold"
+                  android:textSize="20sp"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView android:id="@+id/record_syozoku"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="start"
+                  android:textColor="#111111"
+                  android:textStyle="bold"
+                  android:textSize="16sp"/>
+        <TextView android:id="@+id/record_kinmu"
                   android:layout_marginLeft="20dp"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="end"
                   android:textColor="#000000"
                   android:textStyle="bold"
-                  android:textSize="20sp"/>
+                  android:textSize="16sp"/>
+    </LinearLayout>
 </LinearLayout>

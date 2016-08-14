@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="基礎データ入力"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
         android:background="@drawable/data_button"
         android:id="@+id/btnData"/>
     <LinearLayout
@@ -55,7 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="非常警備基準（風水害）"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
             android:textAlignment="center"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal"/>

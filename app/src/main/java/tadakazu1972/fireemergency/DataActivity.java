@@ -23,13 +23,11 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVReader;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 /**
  * Created by tadakazu on 2016/07/18.
@@ -243,8 +241,8 @@ public class DataActivity extends AppCompatActivity {
         String order;
         order = "select * from records order by name desc";
         Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel"};
-        int[] to = {R.id.record_name,R.id.record_tel};
+        String[] from = {"name","tel","syozoku","kinmu"};
+        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu};
         mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view_update,c,from,to,0);
         mListView.setAdapter(mActivity.mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -429,25 +427,17 @@ public class DataActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        try {
-            if (requestCode == CHOSE_FILE_CODE && resultCode == RESULT_OK) {
-                String filePath = data.getDataString().replace("file://", "");
-                String decodedfilePath = URLDecoder.decode(filePath, "utf-8");
-                String path = null;
-                String filename = null;
-                Uri uri = data.getData();
-                importCSV(uri);
-                Cursor c = getContentResolver().query(uri, null, null, null, null);
-                if (c != null) {
-                    c.moveToFirst();
-                    filename = c.getString(c.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                    path = c.getString(0);
-                    c.close();
-                }
-                Toast.makeText(mActivity, filename, Toast.LENGTH_LONG).show();
+        if (requestCode == CHOSE_FILE_CODE && resultCode == RESULT_OK) {
+            String filename = null;
+            Uri uri = data.getData();
+            importCSV(uri);
+            Cursor c = getContentResolver().query(uri, null, null, null, null);
+            if (c != null) {
+                c.moveToFirst();
+                filename = c.getString(c.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                c.close();
             }
-        } catch (UnsupportedEncodingException e) {
-                //nothing to do
+            Toast.makeText(mActivity, "取り込んだファイル："+filename, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -456,26 +446,34 @@ public class DataActivity extends AppCompatActivity {
             return;
 
         InputStream is = null;
-        StringBuilder stringbuilder = new StringBuilder();
+        String name = "";
+        String tel = "";
+        String mail = "";
+        String kubun = "";
+        String syozoku = "";
+        String kinmu = "";
 
         try {
             try {
                 is = getContentResolver().openInputStream(uri);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    stringbuilder.append(line);
+                InputStreamReader ir = new InputStreamReader(is,"UTF-8");
+                CSVReader csvreader = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER,0);
+                String[] csv;
+                while ((csv = csvreader.readNext()) != null) {
+                    name = csv[0];
+                    tel = csv[1];
+                    mail = csv[2];
+                    kubun = csv[3];
+                    syozoku = csv[4];
+                    kinmu = csv[5];
+                    mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku, kinmu);
                 }
             } finally {
-                if (is !=null) is.close();
-                Toast.makeText(mActivity, stringbuilder.toString(), Toast.LENGTH_LONG).show();
+                if (is != null) is.close();
+                Toast.makeText(this, "連絡網にデータを読み込みました。", Toast.LENGTH_LONG).show();
             }
-        } catch (FileNotFoundException e){
-            throw new RuntimeException(e);
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        } finally {
-            //if (is!=null) is.close();
+        } catch (Exception e) {
+            Toast.makeText(this, "CSV読込エラー", Toast.LENGTH_LONG).show();
         }
     }
 }

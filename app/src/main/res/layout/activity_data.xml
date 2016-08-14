@@ -31,14 +31,14 @@
         android:text="■勤務消防署"
         android:textColor="#111111"
         android:textSize="20sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
     <Spinner
         android:id="@+id/spnData1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spn1Prompt"
         android:entries="@array/firestation"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
     <TextView
         android:id="@+id/lblData3"
         android:layout_width="match_parent"
@@ -46,14 +46,14 @@
         android:text="■大津波・津波警報時指定署"
         android:textColor="#111111"
         android:textSize="20sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
     <Spinner
         android:id="@+id/spnData2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spn1Prompt"
         android:entries="@array/firestation"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
     <TextView
         android:id="@+id/lblData4"
         android:layout_width="match_parent"
@@ -61,14 +61,14 @@
         android:text="■非常招集区分"
         android:textColor="#111111"
         android:textSize="20sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
     <Spinner
         android:id="@+id/spnData3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spn1Prompt"
         android:entries="@array/kubun"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
@@ -80,8 +80,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#118811">
+        android:orientation="horizontal">
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -114,8 +113,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#991111">
+        android:orientation="horizontal">
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
