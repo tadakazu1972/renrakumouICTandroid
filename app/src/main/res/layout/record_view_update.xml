@@ -11,7 +11,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="start"
-                  android:textColor="#ff0000"
+                  android:textColor="#000000"
                   android:textStyle="bold"
                   android:textSize="20sp"/>
         <TextView android:id="@+id/record_tel"
@@ -22,8 +22,7 @@
                   android:textStyle="bold"
                   android:textSize="20sp"/>
     </RelativeLayout>
-    <LinearLayout
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView android:id="@+id/record_syozoku"
@@ -34,12 +33,20 @@
                   android:textStyle="bold"
                   android:textSize="16sp"/>
         <TextView android:id="@+id/record_kinmu"
-                  android:layout_marginLeft="20dp"
+                  android:layout_toRightOf="@id/record_syozoku"
+                  android:layout_marginLeft="12dp"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="end"
                   android:textColor="#000000"
                   android:textStyle="bold"
                   android:textSize="16sp"/>
-    </LinearLayout>
+        <TextView android:id="@+id/record_mail"
+                  android:layout_alignParentRight="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#000000"
+                  android:textStyle="bold"
+                  android:textSize="14sp"/>
+    </RelativeLayout>
 </LinearLayout>

@@ -241,8 +241,8 @@ public class DataActivity extends AppCompatActivity {
         String order;
         order = "select * from records order by name desc";
         Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","syozoku","kinmu"};
-        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu};
+        String[] from = {"name","tel","syozoku","kinmu","mail"};
+        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
         mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view_update,c,from,to,0);
         mListView.setAdapter(mActivity.mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -263,18 +263,13 @@ public class DataActivity extends AppCompatActivity {
         });
         //ダイアログ生成
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("連絡網データ");
+        builder.setTitle("修正/削除するデータを選択");
         ViewGroup parent = (ViewGroup)mListView.getParent();
         if ( parent!=null) {
             parent.removeView(mListView);
         }
         builder.setView(mListView);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -429,15 +424,34 @@ public class DataActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == CHOSE_FILE_CODE && resultCode == RESULT_OK) {
             String filename = null;
-            Uri uri = data.getData();
-            importCSV(uri);
+            final Uri uri = data.getData();
             Cursor c = getContentResolver().query(uri, null, null, null, null);
             if (c != null) {
                 c.moveToFirst();
                 filename = c.getString(c.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 c.close();
             }
-            Toast.makeText(mActivity, "取り込んだファイル："+filename, Toast.LENGTH_LONG).show();
+            final String filename2 = filename; //以下のダイアログで使うためわざわざfinalで別名で保存
+            //本当にファイルを取り込むのか今一度確認する
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("■CSVファイル読込");
+            builder.setMessage(filename + "を連絡網に取り込みますか？");
+            builder.setPositiveButton("はい", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which){
+                    importCSV(uri);
+                    Toast.makeText(mActivity, "取り込んだファイル："+filename2, Toast.LENGTH_LONG).show();
+                }
+            });
+            builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which){
+                    //何もしない
+                }
+            });
+            builder.setCancelable(true);
+            builder.create();
+            builder.show();
         }
     }
 
