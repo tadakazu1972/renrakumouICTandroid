@@ -136,7 +136,7 @@ public class DataActivity extends AppCompatActivity {
         mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                showTel();
+                showCheck(0);
             }
         });
         //連絡網データ入力ボタン
@@ -150,7 +150,7 @@ public class DataActivity extends AppCompatActivity {
         mView.findViewById(R.id.btnTelUpdate).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                showTel2();
+                showCheck(1);
             }
         });
         mView.findViewById(R.id.btnImport).setOnClickListener(new View.OnClickListener(){
@@ -192,6 +192,45 @@ public class DataActivity extends AppCompatActivity {
     }
 
     //連絡網データ表示
+    private void showCheck(int i){
+        //分岐用変数
+        final int fork = i;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.checkTitle);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.check, (ViewGroup)findViewById(R.id.telCheck));
+        //データ取得準備
+        final EditText edit1 = (EditText)layout.findViewById(R.id.editCheck);
+        builder.setView(layout);
+        builder.setPositiveButton("入力", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                String checked = edit1.getText().toString();
+                String base = getResources().getString(R.string.app_name2);
+                if (checked.equals(base)){
+                    switch(fork) {
+                        case 0:
+                            showTel();
+                            break;
+                        case 1:
+                            showTel2();
+                            break;
+                    }
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
     private void showTel(){
         //データ準備
         String order;

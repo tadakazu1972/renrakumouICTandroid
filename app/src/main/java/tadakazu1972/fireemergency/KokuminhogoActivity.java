@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -148,7 +149,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
         mView.findViewById(R.id.btnKokuminhogoTel).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showTel();
+                showCheck();
             }
         });
         mView.findViewById(R.id.btnKokuminhogoCaution).setOnClickListener(new OnClickListener(){
@@ -320,6 +321,36 @@ public class KokuminhogoActivity extends AppCompatActivity {
     }
 
     //連絡網データ表示
+    private void showCheck(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.checkTitle);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.check, (ViewGroup)findViewById(R.id.telCheck));
+        //データ取得準備
+        final EditText edit1 = (EditText)layout.findViewById(R.id.editCheck);
+        builder.setView(layout);
+        builder.setPositiveButton("入力", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                String checked = edit1.getText().toString();
+                String base = getResources().getString(R.string.app_name2);
+                if (checked.equals(base)){
+                    showTel();
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //何もしない
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
     private void showTel(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("連絡網　検索条件を設定してください");
