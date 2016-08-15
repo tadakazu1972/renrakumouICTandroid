@@ -725,6 +725,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 if (checked.equals(base)){
                     showTel();
                 }
+                dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
             }
         });
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){

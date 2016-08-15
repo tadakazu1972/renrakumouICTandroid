@@ -212,9 +212,11 @@ public class DataActivity extends AppCompatActivity {
                     switch(fork) {
                         case 0:
                             showTel();
+                            dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                             break;
                         case 1:
                             showTel2();
+                            dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                             break;
                     }
                 }
@@ -293,7 +295,6 @@ public class DataActivity extends AppCompatActivity {
                 String _syozoku = i.getString(i.getColumnIndex("syozoku"));
                 String _kinmu = i.getString(i.getColumnIndex("kinmu"));
                 showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
-
             }
         });
         //ダイアログ生成
@@ -432,6 +433,8 @@ public class DataActivity extends AppCompatActivity {
                 String kinmu = (String)editKinmu.getSelectedItem();
                 mActivity.mDBHelper.update(db, id, name, tel, mail, kubun, syozoku, kinmu);
                 Toast.makeText(mActivity, "データを修正しました。", Toast.LENGTH_SHORT).show();
+                //修正結果を見せるため再度呼び出し
+                showTel2();
             }
         });
         builder.setNeutralButton("削除", new DialogInterface.OnClickListener(){
@@ -439,6 +442,8 @@ public class DataActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which){
                 mActivity.mDBHelper.delete(db, id);
                 Toast.makeText(mActivity, "データを削除しました。", Toast.LENGTH_SHORT).show();
+                //削除結果を見せるため再度呼び出し
+                showTel2();
             }
         });
         builder.setNegativeButton("キャンセル", null);
