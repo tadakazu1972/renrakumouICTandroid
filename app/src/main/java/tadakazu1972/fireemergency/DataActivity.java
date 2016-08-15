@@ -46,6 +46,8 @@ public class DataActivity extends AppCompatActivity {
     //連絡網データ入力用　親所属スピナー文字列保存用
     private static String mSelected;
     private static String[] mArray;
+    //showTel2()ダイアログ閉じるための制御用
+    private AlertDialog mDialogShowTel2 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -294,7 +296,10 @@ public class DataActivity extends AppCompatActivity {
                 String _kubun = i.getString(i.getColumnIndex("kubun"));
                 String _syozoku = i.getString(i.getColumnIndex("syozoku"));
                 String _kinmu = i.getString(i.getColumnIndex("kinmu"));
+                //選択された行のデータを送る
                 showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
+                //明示的に消さないとあとで空のダイアログが残る
+                mDialogShowTel2.dismiss();
             }
         });
         //ダイアログ生成
@@ -308,7 +313,7 @@ public class DataActivity extends AppCompatActivity {
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
-        builder.show();
+        mDialogShowTel2 = builder.show(); //このやり方は知らなかった
     }
 
     //連絡網データ入力
