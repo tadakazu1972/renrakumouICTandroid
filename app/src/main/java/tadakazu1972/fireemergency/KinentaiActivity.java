@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -734,13 +735,22 @@ public class KinentaiActivity extends AppCompatActivity {
 
     private void showTel(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("連絡網　検索条件を設定してください");
+        builder.setTitle("連絡網");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.tel_show, (ViewGroup)findViewById(R.id.telShow));
-        //データ取得準備
+        //全件表示ボタン設定
+        final Button btnAll = (Button)layout.findViewById(R.id.btnTel);
+        btnAll.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTelAll();
+            }
+        });
+        //検索条件取得準備
         final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
         final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
+        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
         //親所属スピナー選択時の処理
         editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -769,7 +779,6 @@ public class KinentaiActivity extends AppCompatActivity {
                 //nothing to do
             }
         });
-        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
         builder.setView(layout);
         builder.setPositiveButton("検索", new DialogInterface.OnClickListener(){
             @Override
@@ -779,6 +788,45 @@ public class KinentaiActivity extends AppCompatActivity {
                 showTelResult(syozoku, kinmu);
             }
         });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTelAll(){
+        //データ準備
+        String order;
+        order = "select * from records order by name desc";
+        Cursor c = mActivity.db.rawQuery(order, null);
+        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
+        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
+        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
+        mListView.setAdapter(mActivity.mAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                //残念だが以下は機能しない。電話させるautoLink="phone"を優先させる。そのため以下コメントアウトする。
+                // ListView listView = (ListView)parent;
+                //Cursor i = (Cursor)listView.getItemAtPosition(position);
+                //String _id = i.getString(i.getColumnIndex("_id"));
+                //String _name = i.getString(i.getColumnIndex("name"));
+                //String _tel = i.getString(i.getColumnIndex("tel"));
+                //String _mail = i.getString(i.getColumnIndex("mail"));
+                //String _kubun = i.getString(i.getColumnIndex("kubun"));
+                //String _syozoku = i.getString(i.getColumnIndex("syozoku"));
+                //String _kinmu = i.getString(i.getColumnIndex("kinmu"));
+                //showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
+            }
+        });
+        //ダイアログ生成
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("連絡網データ");
+        ViewGroup parent = (ViewGroup)mListView.getParent();
+        if ( parent!=null) {
+            parent.removeView(mListView);
+        }
+        builder.setView(mListView);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();

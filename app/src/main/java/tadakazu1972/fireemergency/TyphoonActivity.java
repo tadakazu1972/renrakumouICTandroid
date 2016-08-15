@@ -17,17 +17,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -51,11 +47,6 @@ public class TyphoonActivity extends AppCompatActivity {
     //ダイアログ制御用
     private AlertDialog mDlg;
     private Boolean gaitousyo_visible = false; //該当署の表示フラグ
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +62,6 @@ public class TyphoonActivity extends AppCompatActivity {
         mListView = new ListView(this);
         mDBHelper = new DBHelper(this);
         db = mDBHelper.getWritableDatabase();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -1463,13 +1451,22 @@ public class TyphoonActivity extends AppCompatActivity {
 
     private void showTel(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("連絡網　検索条件を設定してください");
+        builder.setTitle("連絡網");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.tel_show, (ViewGroup)findViewById(R.id.telShow));
-        //データ取得準備
-        final Spinner editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
+        //全件表示ボタン設定
+        final Button btnAll = (Button)layout.findViewById(R.id.btnTel);
+        btnAll.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTelAll();
+            }
+        });
+        //検索条件取得準備
+        final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
         final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
+        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
         //親所属スピナー選択時の処理
         editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -1498,7 +1495,6 @@ public class TyphoonActivity extends AppCompatActivity {
                 //nothing to do
             }
         });
-        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
         builder.setView(layout);
         builder.setPositiveButton("検索", new DialogInterface.OnClickListener(){
             @Override
@@ -1508,6 +1504,45 @@ public class TyphoonActivity extends AppCompatActivity {
                 showTelResult(syozoku, kinmu);
             }
         });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTelAll(){
+        //データ準備
+        String order;
+        order = "select * from records order by name desc";
+        Cursor c = mActivity.db.rawQuery(order, null);
+        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
+        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
+        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
+        mListView.setAdapter(mActivity.mAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                //残念だが以下は機能しない。電話させるautoLink="phone"を優先させる。そのため以下コメントアウトする。
+                // ListView listView = (ListView)parent;
+                //Cursor i = (Cursor)listView.getItemAtPosition(position);
+                //String _id = i.getString(i.getColumnIndex("_id"));
+                //String _name = i.getString(i.getColumnIndex("name"));
+                //String _tel = i.getString(i.getColumnIndex("tel"));
+                //String _mail = i.getString(i.getColumnIndex("mail"));
+                //String _kubun = i.getString(i.getColumnIndex("kubun"));
+                //String _syozoku = i.getString(i.getColumnIndex("syozoku"));
+                //String _kinmu = i.getString(i.getColumnIndex("kinmu"));
+                //showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
+            }
+        });
+        //ダイアログ生成
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("連絡網データ");
+        ViewGroup parent = (ViewGroup)mListView.getParent();
+        if ( parent!=null) {
+            parent.removeView(mListView);
+        }
+        builder.setView(mListView);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -1655,45 +1690,5 @@ public class TyphoonActivity extends AppCompatActivity {
             builder.create();
             builder.show();
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Typhoon Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://tadakazu1972.fireemergency/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Typhoon Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://tadakazu1972.fireemergency/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 }

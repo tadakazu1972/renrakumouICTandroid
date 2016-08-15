@@ -243,16 +243,17 @@ public class DataActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                ListView listView = (ListView)parent;
-                Cursor i = (Cursor)listView.getItemAtPosition(position);
-                String _id = i.getString(i.getColumnIndex("_id"));
-                String _name = i.getString(i.getColumnIndex("name"));
-                String _tel = i.getString(i.getColumnIndex("tel"));
-                String _mail = i.getString(i.getColumnIndex("mail"));
-                String _kubun = i.getString(i.getColumnIndex("kubun"));
-                String _syozoku = i.getString(i.getColumnIndex("syozoku"));
-                String _kinmu = i.getString(i.getColumnIndex("kinmu"));
-                showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
+                //残念だが以下は機能しない。電話させるautoLink="phone"を優先させる。そのため以下コメントアウトする。
+                // ListView listView = (ListView)parent;
+                //Cursor i = (Cursor)listView.getItemAtPosition(position);
+                //String _id = i.getString(i.getColumnIndex("_id"));
+                //String _name = i.getString(i.getColumnIndex("name"));
+                //String _tel = i.getString(i.getColumnIndex("tel"));
+                //String _mail = i.getString(i.getColumnIndex("mail"));
+                //String _kubun = i.getString(i.getColumnIndex("kubun"));
+                //String _syozoku = i.getString(i.getColumnIndex("syozoku"));
+                //String _kinmu = i.getString(i.getColumnIndex("kinmu"));
+                //showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
             }
         });
         //ダイアログ生成
@@ -263,12 +264,7 @@ public class DataActivity extends AppCompatActivity {
             parent.removeView(mListView);
         }
         builder.setView(mListView);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
