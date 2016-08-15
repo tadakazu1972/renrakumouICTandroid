@@ -577,7 +577,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = "招集なし";
         }
-        builder.setMessage("第５非常警備\n\n"+s);
+        builder.setMessage("第５非常警備(此花,港,大正,西淀川,住之江,西成,水上)\n\n"+s);
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
