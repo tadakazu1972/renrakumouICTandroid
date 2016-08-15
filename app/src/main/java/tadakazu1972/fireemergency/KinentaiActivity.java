@@ -718,8 +718,9 @@ public class KinentaiActivity extends AppCompatActivity {
                 String checked = edit1.getText().toString();
                 String base = getResources().getString(R.string.app_name2);
                 if (checked.equals(base)){
-                    showTel();
+                    checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                    showTel();
                 }
             }
         });
