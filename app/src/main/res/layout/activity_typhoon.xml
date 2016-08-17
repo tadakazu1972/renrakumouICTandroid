@@ -55,7 +55,7 @@
             android:id="@+id/lblEarthquake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="非常警備基準（風水害）"
+            android:text="非常招集基準（風水害）"
             android:textSize="20sp"
             android:textColor="#ffffff"
             android:textAlignment="center"
@@ -72,7 +72,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="気象警報による非常警備"
+            android:text="気象警報による非常招集"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnTyphoon2"
             android:layout_marginBottom="20dp"
@@ -80,7 +80,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="河川水位による非常警備"
+            android:text="河川水位による非常招集"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnTyphoon3"
             android:layout_gravity="center_horizontal"/>

@@ -55,7 +55,7 @@
             android:id="@+id/lblEarthquake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="非常警備基準（震災）"
+            android:text="非常招集基準（震災）"
             android:textSize="20sp"
             android:textColor="#ffffff"
             android:textAlignment="center"
