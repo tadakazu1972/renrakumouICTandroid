@@ -554,16 +554,14 @@ public class TyphoonActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.dialog_river, (ViewGroup) findViewById(R.id.dlgRiver));
+        final View layout = inflater.inflate(R.layout.dialog_river2, (ViewGroup) findViewById(R.id.dlgRiver2));
         //テキスト放りこみ先準備
         final TextView text1 = (TextView)layout.findViewById(R.id.txtRiver1);
         final TextView text2 = (TextView)layout.findViewById(R.id.txtRiver2);
-        final TextView text3 = (TextView)layout.findViewById(R.id.txtRiver3);
         //放り込むテキストの設定
         //勤務消防署がリストに該当するか判定
         String s1;
         String s2;
-        final String s3 = gaitousyo;
         s1 = "第５非常警備(" + gaitousyo + ")";
         if (Arrays.asList(a).contains(mMainStation)) {
             if (mMainStation.equals("消防局")) {
@@ -578,19 +576,6 @@ public class TyphoonActivity extends AppCompatActivity {
         //テキストセット
         text1.setText(s1);
         text2.setText(s2);
-        //ボタン クリックリスナー設定
-        layout.findViewById(R.id.btnGaitousyo).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!gaitousyo_visible) {
-                    text3.setText(s3);
-                    gaitousyo_visible = true;
-                } else {
-                    text3.setText("");
-                    gaitousyo_visible = false;
-                }
-            }
-        });
         builder.setTitle(title);
         builder.setView(layout);
         builder.setNegativeButton("キャンセル", null);
