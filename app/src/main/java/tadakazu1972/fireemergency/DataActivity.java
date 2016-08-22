@@ -48,6 +48,9 @@ public class DataActivity extends AppCompatActivity {
     private static String[] mArray;
     //showTel2()ダイアログ閉じるための制御用
     private AlertDialog mDialogShowTel2 = null;
+    //showUpdateTel()データ呼び出して対応スピナー当てはめ用
+    private boolean mInitSpinner = false;
+    private int _syozokuPos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -393,10 +396,120 @@ public class DataActivity extends AppCompatActivity {
         final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
         final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
         final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
+        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
         //送られてきたデータをはめこむ
         editName.setText(_name);
         editTel.setText(_tel);
         editMail.setText(_mail);
+        //非常招集区分のスピナー初期値設定
+        int _kubunPos=0;
+        if (_kubun.equals("１号招集")){ _kubunPos =0; }
+        if (_kubun.equals("２号招集")){ _kubunPos =1; }
+        if (_kubun.equals("３号招集")){ _kubunPos =2; }
+        if (_kubun.equals("４号招集")){ _kubunPos =3; }
+        editKubun.setSelection(_kubunPos);
+        //所属のスピナー初期設定
+        int _syozokuParentPos=0;
+        _syozokuPos=0;
+        mInitSpinner = true;
+        if (_syozoku.equals("消防局")){ _syozokuParentPos=0; _syozokuPos=0;}
+        if (_syozoku.equals("北本署")){ _syozokuParentPos=1; _syozokuPos=0;}
+        if (_syozoku.equals("梅田"))  { _syozokuParentPos=1; _syozokuPos=1;}
+        if (_syozoku.equals("浮田"))  { _syozokuParentPos=1; _syozokuPos=2;}
+        if (_syozoku.equals("南森町")){ _syozokuParentPos=1; _syozokuPos=3;}
+        if (_syozoku.equals("与力"))  { _syozokuParentPos=1; _syozokuPos=4;}
+        if (_syozoku.equals("大淀町")){ _syozokuParentPos=1; _syozokuPos=5;}
+        if (_syozoku.equals("本庄"))  { _syozokuParentPos=1; _syozokuPos=6;}
+        if (_syozoku.equals("都島本署")){ _syozokuParentPos=2; _syozokuPos=0;}
+        if (_syozoku.equals("高倉"))  { _syozokuParentPos=2; _syozokuPos=1;}
+        if (_syozoku.equals("東野田")){ _syozokuParentPos=2; _syozokuPos=2;}
+        if (_syozoku.equals("福島本署")){ _syozokuParentPos=3; _syozokuPos=0;}
+        if (_syozoku.equals("上福島")){ _syozokuParentPos=3; _syozokuPos=1;}
+        if (_syozoku.equals("海老江")){ _syozokuParentPos=3; _syozokuPos=2;}
+        if (_syozoku.equals("此花本署")){ _syozokuParentPos=4; _syozokuPos=0;}
+        if (_syozoku.equals("桜島")){ _syozokuParentPos=4; _syozokuPos=1;}
+        if (_syozoku.equals("西九条")){ _syozokuParentPos=4; _syozokuPos=2;}
+        if (_syozoku.equals("中央本署")){ _syozokuParentPos=5; _syozokuPos=0;}
+        if (_syozoku.equals("東雲")){ _syozokuParentPos=5; _syozokuPos=1;}
+        if (_syozoku.equals("道頓堀")){ _syozokuParentPos=5; _syozokuPos=2;}
+        if (_syozoku.equals("南坂町")){ _syozokuParentPos=5; _syozokuPos=3;}
+        if (_syozoku.equals("上町")){ _syozokuParentPos=5; _syozokuPos=4;}
+        if (_syozoku.equals("西本署")){ _syozokuParentPos=6; _syozokuPos=0;}
+        if (_syozoku.equals("江戸堀")){ _syozokuParentPos=6; _syozokuPos=1;}
+        if (_syozoku.equals("新町")){ _syozokuParentPos=6; _syozokuPos=2;}
+        if (_syozoku.equals("港本署")){ _syozokuParentPos=7; _syozokuPos=0;}
+        if (_syozoku.equals("田中")){ _syozokuParentPos=7; _syozokuPos=1;}
+        if (_syozoku.equals("大正本署")){ _syozokuParentPos=8; _syozokuPos=0;}
+        if (_syozoku.equals("泉尾")){ _syozokuParentPos=8; _syozokuPos=1;}
+        if (_syozoku.equals("鶴町")){ _syozokuParentPos=8; _syozokuPos=2;}
+        if (_syozoku.equals("天王寺本署")){ _syozokuParentPos=9; _syozokuPos=0;}
+        if (_syozoku.equals("元町")){ _syozokuParentPos=9; _syozokuPos=1;}
+        if (_syozoku.equals("浪速本署")){ _syozokuParentPos=10; _syozokuPos=0;}
+        if (_syozoku.equals("恵美須")){ _syozokuParentPos=10; _syozokuPos=1;}
+        if (_syozoku.equals("立葉")){ _syozokuParentPos=10; _syozokuPos=2;}
+        if (_syozoku.equals("浪速出張所")){ _syozokuParentPos=10; _syozokuPos=3;}
+        if (_syozoku.equals("西淀川本署")){ _syozokuParentPos=11; _syozokuPos=0;}
+        if (_syozoku.equals("佃")){ _syozokuParentPos=11; _syozokuPos=1;}
+        if (_syozoku.equals("大和田")){ _syozokuParentPos=11; _syozokuPos=2;}
+        if (_syozoku.equals("竹島")){ _syozokuParentPos=11; _syozokuPos=3;}
+        if (_syozoku.equals("淀川本署")){ _syozokuParentPos=12; _syozokuPos=0;}
+        if (_syozoku.equals("十三橋")){ _syozokuParentPos=12; _syozokuPos=1;}
+        if (_syozoku.equals("加島")){ _syozokuParentPos=12; _syozokuPos=2;}
+        if (_syozoku.equals("東三国")){ _syozokuParentPos=12; _syozokuPos=3;}
+        if (_syozoku.equals("東淀川本署")){ _syozokuParentPos=13; _syozokuPos=0;}
+        if (_syozoku.equals("豊里")){ _syozokuParentPos=13; _syozokuPos=1;}
+        if (_syozoku.equals("小松")){ _syozokuParentPos=13; _syozokuPos=2;}
+        if (_syozoku.equals("井高野")){ _syozokuParentPos=13; _syozokuPos=3;}
+        if (_syozoku.equals("柴島")){ _syozokuParentPos=13; _syozokuPos=4;}
+        if (_syozoku.equals("西淡路")){ _syozokuParentPos=13; _syozokuPos=5;}
+        if (_syozoku.equals("東成本署")){ _syozokuParentPos=14; _syozokuPos=0;}
+        if (_syozoku.equals("中本")){ _syozokuParentPos=14; _syozokuPos=1;}
+        if (_syozoku.equals("深江")){ _syozokuParentPos=14; _syozokuPos=2;}
+        if (_syozoku.equals("生野本署")){ _syozokuParentPos=15; _syozokuPos=0;}
+        if (_syozoku.equals("勝山")){ _syozokuParentPos=15; _syozokuPos=1;}
+        if (_syozoku.equals("中川")){ _syozokuParentPos=15; _syozokuPos=2;}
+        if (_syozoku.equals("巽")){ _syozokuParentPos=15; _syozokuPos=3;}
+        if (_syozoku.equals("旭本署")){ _syozokuParentPos=16; _syozokuPos=0;}
+        if (_syozoku.equals("新森")){ _syozokuParentPos=16; _syozokuPos=1;}
+        if (_syozoku.equals("赤川")){ _syozokuParentPos=16; _syozokuPos=2;}
+        if (_syozoku.equals("城東本署")){ _syozokuParentPos=17; _syozokuPos=0;}
+        if (_syozoku.equals("放出")){ _syozokuParentPos=17; _syozokuPos=1;}
+        if (_syozoku.equals("中浜")){ _syozokuParentPos=17; _syozokuPos=2;}
+        if (_syozoku.equals("関目")){ _syozokuParentPos=17; _syozokuPos=3;}
+        if (_syozoku.equals("鶴見本署")){ _syozokuParentPos=18; _syozokuPos=0;}
+        if (_syozoku.equals("今津")){ _syozokuParentPos=18; _syozokuPos=1;}
+        if (_syozoku.equals("茨田")){ _syozokuParentPos=18; _syozokuPos=2;}
+        if (_syozoku.equals("住之江本署")){ _syozokuParentPos=19; _syozokuPos=0;}
+        if (_syozoku.equals("平林")){ _syozokuParentPos=19; _syozokuPos=1;}
+        if (_syozoku.equals("加賀屋")){ _syozokuParentPos=19; _syozokuPos=2;}
+        if (_syozoku.equals("南港")){ _syozokuParentPos=19; _syozokuPos=3;}
+        if (_syozoku.equals("阿倍野本署")){ _syozokuParentPos=20; _syozokuPos=0;}
+        if (_syozoku.equals("清明通")){ _syozokuParentPos=20; _syozokuPos=1;}
+        if (_syozoku.equals("阪南")){ _syozokuParentPos=20; _syozokuPos=2;}
+        if (_syozoku.equals("住吉本署")){ _syozokuParentPos=21; _syozokuPos=0;}
+        if (_syozoku.equals("苅田")){ _syozokuParentPos=21; _syozokuPos=1;}
+        if (_syozoku.equals("万代")){ _syozokuParentPos=21; _syozokuPos=2;}
+        if (_syozoku.equals("東住吉本署")){ _syozokuParentPos=22; _syozokuPos=0;}
+        if (_syozoku.equals("北田辺")){ _syozokuParentPos=22; _syozokuPos=1;}
+        if (_syozoku.equals("杭全")){ _syozokuParentPos=22; _syozokuPos=2;}
+        if (_syozoku.equals("矢田")){ _syozokuParentPos=22; _syozokuPos=3;}
+        if (_syozoku.equals("平野本署")){ _syozokuParentPos=23; _syozokuPos=0;}
+        if (_syozoku.equals("加美")){ _syozokuParentPos=23; _syozokuPos=1;}
+        if (_syozoku.equals("長吉")){ _syozokuParentPos=23; _syozokuPos=2;}
+        if (_syozoku.equals("喜連")){ _syozokuParentPos=23; _syozokuPos=3;}
+        if (_syozoku.equals("加美正覚寺")){ _syozokuParentPos=23; _syozokuPos=4;}
+        if (_syozoku.equals("西成本署")){ _syozokuParentPos=24; _syozokuPos=0;}
+        if (_syozoku.equals("海道")){ _syozokuParentPos=24; _syozokuPos=1;}
+        if (_syozoku.equals("津守")){ _syozokuParentPos=24; _syozokuPos=2;}
+        if (_syozoku.equals("水上")){ _syozokuParentPos=25; _syozokuPos=0;}
+        editSyozoku.setSelection(_syozokuParentPos); //親スピナー設定 これでsetOnItemSelectedListenerが作動するので子スピナーのアイテムは設定される
+        editSyozoku2.setSelection(_syozokuPos); //子スピナーのポジション設定
+        //勤務区分のスピナー初期値設定
+        int _kinmuPos=0;
+        if (_kinmu.equals("日勤")){ _kinmuPos =0; }
+        if (_kinmu.equals("１部")){ _kinmuPos =1; }
+        if (_kinmu.equals("２部")){ _kinmuPos =2; }
+        editKinmu.setSelection(_kinmuPos);
         //親所属スピナー選択時の処理
         editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -418,6 +531,10 @@ public class DataActivity extends AppCompatActivity {
                 mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 //アダプタを子スピナーにセット
                 editSyozoku2.setAdapter(mAdapter);
+                if (mInitSpinner){
+                    editSyozoku2.setSelection(_syozokuPos);
+                    mInitSpinner = false;
+                }
             }
 
             @Override
@@ -425,7 +542,6 @@ public class DataActivity extends AppCompatActivity {
                 //nothing to do
             }
         });
-        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
         builder.setView(layout);
         builder.setPositiveButton("修正", new DialogInterface.OnClickListener(){
             @Override
