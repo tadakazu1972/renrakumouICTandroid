@@ -13,6 +13,7 @@ import android.provider.OpenableColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -59,6 +60,15 @@ public class DataActivity extends AppCompatActivity {
         mActivity = this;
         mView = this.getWindow().getDecorView();
         setContentView(R.layout.activity_data);
+
+        //ボタン設定
+        mView.findViewById(R.id.btnGuide).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, GuideActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mSpn1 = (Spinner)findViewById(R.id.spnData1);
         mSpn2 = (Spinner)findViewById(R.id.spnData2);

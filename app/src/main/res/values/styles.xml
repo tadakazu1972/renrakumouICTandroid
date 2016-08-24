@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -7,5 +6,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="PurposeStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@android:color/holo_red_light</item>
+        <item name="android:background">@android:color/holo_green_dark</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
 </resources>
