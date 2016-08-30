@@ -69,6 +69,15 @@ public class GuideActivity extends AppCompatActivity {
                     case 0:
                         showGuide1();
                         break;
+                    case 2:
+                        showGuide3();
+                        break;
+                    case 4:
+                        showGuide5();
+                        break;
+                    case 5:
+                        showGuide6();
+                        break;
                     default:
                         break;
                 }
@@ -177,6 +186,45 @@ public class GuideActivity extends AppCompatActivity {
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.guide1, (ViewGroup)findViewById(R.id.guide1));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //３　各事象操作画面切り替え
+    private void showGuide3(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide3, (ViewGroup)findViewById(R.id.guide3));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //５　情報確認
+    private void showGuide5(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide5, (ViewGroup)findViewById(R.id.guide5));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //６　連絡網
+    private void showGuide6(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide6, (ViewGroup)findViewById(R.id.guide6));
         builder.setView(layout);
         builder.setNegativeButton("閉じる",null);
         builder.setCancelable(true);

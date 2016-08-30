@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+              android:id="@+id/guide6"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="６　連絡網"
+            android:textColor="#111111"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:src="@drawable/guide61"
+            android:scaleType="fitCenter"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:src="@drawable/guide62"
+            android:scaleType="fitCenter"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:src="@drawable/guide63"
+            android:scaleType="fitCenter"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide63"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:src="@drawable/guide64"
+            android:scaleType="fitCenter"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide64"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</ScrollView>
