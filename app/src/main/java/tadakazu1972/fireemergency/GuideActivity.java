@@ -69,6 +69,9 @@ public class GuideActivity extends AppCompatActivity {
                     case 0:
                         showGuide1();
                         break;
+                    case 1:
+                        showGuide2();
+                        break;
                     case 2:
                         showGuide3();
                         break;
@@ -186,6 +189,19 @@ public class GuideActivity extends AppCompatActivity {
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.guide1, (ViewGroup)findViewById(R.id.guide1));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //２　連絡網データ操作
+    private void showGuide2(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide2, (ViewGroup)findViewById(R.id.guide2));
         builder.setView(layout);
         builder.setNegativeButton("閉じる",null);
         builder.setCancelable(true);
