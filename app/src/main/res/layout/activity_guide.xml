@@ -17,6 +17,40 @@
     <android.support.v7.widget.ListViewCompat
         android:id="@+id/listGuide"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     </android.support.v7.widget.ListViewCompat>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="震災"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:id="@+id/btnEarthquake"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="風水害"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:id="@+id/btnTyphoon"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="国民保"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:id="@+id/btnKokuminhogo"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="緊援隊"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:id="@+id/btnKinentai"/>
+    </LinearLayout>
 </LinearLayout>

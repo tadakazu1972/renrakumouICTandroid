@@ -3,6 +3,7 @@ package tadakazu1972.fireemergency;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -76,6 +77,9 @@ public class GuideActivity extends AppCompatActivity {
                     case 2:
                         showGuide3();
                         break;
+                    case 3:
+                        showGuide4();
+                        break;
                     case 4:
                         showGuide5();
                         break;
@@ -85,6 +89,36 @@ public class GuideActivity extends AppCompatActivity {
                     default:
                         break;
                 }
+            }
+        });
+
+        //復帰用ボタン
+        mView.findViewById(R.id.btnEarthquake).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, EarthquakeActivity.class);
+                startActivity(intent);
+            }
+        });
+        mView.findViewById(R.id.btnTyphoon).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, TyphoonActivity.class);
+                startActivity(intent);
+            }
+        });
+        mView.findViewById(R.id.btnKokuminhogo).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, KokuminhogoActivity.class);
+                startActivity(intent);
+            }
+        });
+        mView.findViewById(R.id.btnKinentai).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, KinentaiActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -250,6 +284,83 @@ public class GuideActivity extends AppCompatActivity {
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.guide3, (ViewGroup)findViewById(R.id.guide3));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //４　非常招集確認ボタン
+    private void showGuide4() {
+        final CharSequence[] actions = {"■震災", "■風水害","■国民保護","■緊援隊"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setItems(actions, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        showGuide41();
+                        break;
+                    case 1:
+                        showGuide42();
+                        break;
+                    case 2:
+                        showGuide43();
+                        break;
+                    case 3:
+                        showGuide44();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showGuide41(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide41, (ViewGroup)findViewById(R.id.guide41));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showGuide42(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide42, (ViewGroup)findViewById(R.id.guide42));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showGuide43(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide43, (ViewGroup)findViewById(R.id.guide43));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showGuide44(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide44, (ViewGroup)findViewById(R.id.guide44));
         builder.setView(layout);
         builder.setNegativeButton("閉じる",null);
         builder.setCancelable(true);
