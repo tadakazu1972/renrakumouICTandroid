@@ -2,6 +2,7 @@ package tadakazu1972.fireemergency;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -197,11 +198,45 @@ public class GuideActivity extends AppCompatActivity {
     }
 
     //２　連絡網データ操作
-    private void showGuide2(){
+    private void showGuide2() {
+        final CharSequence[] actions = {"■連絡網データ操作", "■CSVファイル読込"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setItems(actions, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        showGuide21();
+                        break;
+                    case 1:
+                        showGuide22();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showGuide21(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.guide2, (ViewGroup)findViewById(R.id.guide2));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showGuide22(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide22, (ViewGroup)findViewById(R.id.guide22));
         builder.setView(layout);
         builder.setNegativeButton("閉じる",null);
         builder.setCancelable(true);
