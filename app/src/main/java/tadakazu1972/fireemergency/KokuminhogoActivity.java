@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.UUID;
 
 /**
  * Created by tadakazu on 2016/07/17.
@@ -207,12 +208,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -226,12 +222,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_kankeikikan, (ViewGroup)findViewById(R.id.infoKankeikikan));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -273,12 +264,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -291,12 +277,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(xml, (ViewGroup)findViewById(id));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -310,12 +291,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_road, (ViewGroup)findViewById(R.id.infoRoad));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -335,20 +311,17 @@ public class KokuminhogoActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 String checked = edit1.getText().toString();
-                String base = getResources().getString(R.string.app_name2);
-                if (checked.equals(base)){
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
+                String word = sp.getString("password",uuid);
+                if (checked.equals(word)){
                     checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     showTel();
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -535,12 +508,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -561,12 +529,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
             }
         });
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -585,12 +548,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             final View layout = inflater.inflate(R.layout.info_osakabousaiapp, (ViewGroup) findViewById(R.id.infoOsakaBousai));
             builder.setView(layout);
-            builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //何もしない
-                }
-            });
+            builder.setNegativeButton("キャンセル", null);
             builder.setCancelable(true);
             builder.create();
             builder.show();

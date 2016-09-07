@@ -27,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * Created by tadakazu on 2016/07/17.
@@ -61,6 +62,8 @@ public class EarthquakeActivity extends AppCompatActivity {
         mListView = new ListView(this);
         mDBHelper = new DBHelper(this);
         db = mDBHelper.getWritableDatabase();
+        //インストール語初回起動判定->パスワード設定へ
+        checkFirstLaunch();
     }
 
     @Override
@@ -162,6 +165,46 @@ public class EarthquakeActivity extends AppCompatActivity {
         });
     }
 
+    //インストール後初回起動かチェック->パスワード設定へ
+    private void checkFirstLaunch(){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String check = sp.getString("firstLaunch","yet"); // 第２引数はkeyが存在しない時に返す初期値　ゆえに、初回だった場合はyetが返される。次回以降はdoneを代入してここを回避させる
+        if (check.equals("yet")){
+            setPassword();
+            sp.edit().putString("firstLaunch","done").apply(); //doneを代入することで以降は初回起動とは判定されなくなる
+        }
+    }
+
+    //パスワード設定
+    private void setPassword(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.setPassword);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.check, (ViewGroup)findViewById(R.id.telCheck));
+        //データ取得準備
+        final EditText edit1 = (EditText)layout.findViewById(R.id.editCheck);
+        builder.setView(layout);
+        builder.setPositiveButton("設定", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                String word = edit1.getText().toString();
+                if (!word.equals("")){
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                    sp.edit().putString("password",word).apply();
+                    word = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                    dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                } else {
+                    Toast.makeText(mActivity, "空白は受け付けません。パスワードの設定をお願いします。", Toast.LENGTH_SHORT).show();
+                    setPassword(); //再帰
+                }
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
+    }
+
     //基礎データ読み込み
     private void loadData(){
         //勤務消防署
@@ -196,12 +239,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -217,12 +255,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = mTsunamiStation+"消防署へ参集";
         }
         builder.setMessage("１号招集\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -238,12 +271,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = mTsunamiStation+"消防署へ参集";
         }
         builder.setMessage("１号招集\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -259,12 +287,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = mMainStation+"消防署へ参集";
         }
         builder.setMessage("１号招集\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -291,12 +314,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -312,12 +330,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = mTsunamiStation+"消防署へ参集";
         }
         builder.setMessage("１号招集\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -338,12 +351,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         }
         builder.setMessage("２号招集(非番・日勤)\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -364,12 +372,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         }
         builder.setMessage("２号招集(非番・日勤)\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -396,12 +399,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -417,12 +415,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = mTsunamiStation+"消防署へ参集";
         }
         builder.setMessage("１号招集\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -443,12 +436,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         }
         builder.setMessage("３号招集(非番・日勤)\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -469,12 +457,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         }
         builder.setMessage("３号招集(非番・日勤)\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -504,12 +487,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -525,12 +503,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = mTsunamiStation+"消防署へ参集";
         }
         builder.setMessage("１号招集\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -551,12 +524,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         }
         builder.setMessage("３号招集(非番・日勤)\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -578,12 +546,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = "招集なし";
         }
         builder.setMessage("第５非常警備(此花,港,大正,西淀川,住之江,西成,水上)\n\n"+s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -593,12 +556,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■警報なし");
         builder.setMessage("招集なし\n\n");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -612,12 +570,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_earthquake, (ViewGroup)findViewById(R.id.infoEarthquake));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -659,12 +612,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -677,12 +625,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(xml, (ViewGroup)findViewById(id));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -696,12 +639,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_road, (ViewGroup)findViewById(R.id.infoRoad));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -721,20 +659,17 @@ public class EarthquakeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 String checked = edit1.getText().toString();
-                String base = getResources().getString(R.string.app_name2);
-                if (checked.equals(base)){
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
+                String word = sp.getString("password",uuid);
+                if (checked.equals(word)){
                     checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     showTel();
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -921,12 +856,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -947,12 +877,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -971,12 +896,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             final View layout = inflater.inflate(R.layout.info_osakabousaiapp, (ViewGroup) findViewById(R.id.infoOsakaBousai));
             builder.setView(layout);
-            builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //何もしない
-                }
-            });
+            builder.setNegativeButton("キャンセル", null);
             builder.setCancelable(true);
             builder.create();
             builder.show();

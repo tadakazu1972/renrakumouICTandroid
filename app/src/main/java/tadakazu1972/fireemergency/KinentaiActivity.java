@@ -3,9 +3,11 @@ package tadakazu1972.fireemergency;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 /**
@@ -179,12 +182,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -201,12 +199,7 @@ public class KinentaiActivity extends AppCompatActivity {
                showCSV(which, "■最大震度７(特別区６強)", "riku7.csv");
            }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -223,12 +216,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■最大震度６強(特別区６弱)","riku6strong.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -245,12 +233,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■最大震度６弱(特別区５強、政令市５強又は６弱)", "riku6weak.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -277,12 +260,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -299,12 +277,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■最大震度７(特別区６強)","kaiiki7.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -321,12 +294,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■最大震度６強(特別区６弱)","kaiiki6strong.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -343,12 +311,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■最大震度６弱(特別区５強、政令市５強又は６弱)","kaiiki6weak.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -378,12 +341,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -416,12 +374,7 @@ public class KinentaiActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -479,12 +432,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -501,12 +449,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■大津波警報","otsunami.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -523,12 +466,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■噴火","hunka.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -545,12 +483,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 showCSV(which, "■特殊災害(NBC含む)","nbc.csv");
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -588,12 +521,7 @@ public class KinentaiActivity extends AppCompatActivity {
         }
         builder.setTitle(title+"　"+pref);
         builder.setMessage("・指揮支援隊\n\n　"+data1+"\n\n・大阪府大隊(陸上)\n\n　"+data2+"\n\n・大阪府大隊(航空)\n\n　"+data3);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -607,12 +535,7 @@ public class KinentaiActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_earthquake, (ViewGroup)findViewById(R.id.infoEarthquake));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -654,12 +577,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -672,12 +590,7 @@ public class KinentaiActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(xml, (ViewGroup)findViewById(id));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -691,12 +604,7 @@ public class KinentaiActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_road, (ViewGroup)findViewById(R.id.infoRoad));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -716,20 +624,17 @@ public class KinentaiActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 String checked = edit1.getText().toString();
-                String base = getResources().getString(R.string.app_name2);
-                if (checked.equals(base)){
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
+                String word = sp.getString("password",uuid);
+                if (checked.equals(word)){
                     checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     showTel();
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -897,12 +802,7 @@ public class KinentaiActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_river, (ViewGroup)findViewById(R.id.infoRiver));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -916,12 +816,7 @@ public class KinentaiActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.info_weather, (ViewGroup)findViewById(R.id.infoWeather));
         builder.setView(layout);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();

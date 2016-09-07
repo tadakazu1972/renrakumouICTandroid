@@ -29,6 +29,7 @@ import com.opencsv.CSVReader;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.UUID;
 
 /**
  * Created by tadakazu on 2016/07/18.
@@ -222,8 +223,10 @@ public class DataActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 String checked = edit1.getText().toString();
-                String base = getResources().getString(R.string.app_name2);
-                if (checked.equals(base)){
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
+                String word = sp.getString("password",uuid);
+                if (checked.equals(word)){
                     checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                     switch(fork) {
@@ -237,12 +240,7 @@ public class DataActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -614,12 +612,7 @@ public class DataActivity extends AppCompatActivity {
                     Toast.makeText(mActivity, "取り込んだファイル："+filename2, Toast.LENGTH_LONG).show();
                 }
             });
-            builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int which){
-                    //何もしない
-                }
-            });
+            builder.setNegativeButton("キャンセル", null);
             builder.setCancelable(true);
             builder.create();
             builder.show();
