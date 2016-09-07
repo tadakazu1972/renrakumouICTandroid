@@ -2,8 +2,10 @@ package tadakazu1972.fireemergency;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+//import android.database.sqlite.SQLiteDatabase;
+//import android.database.sqlite.SQLiteOpenHelper;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 
 /**
  * Created by tadakazu on 2016/07/31.
@@ -20,8 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table records(_id integer primary key autoincrement,name text,tel text,mail text,kubun text,syozoku text,kinmu text)");
 
         //Init
-        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku,kinmu) values('中道　忠和','09066080765','tadakazu1972@gmail.com','１号招集','与力','日勤')");
-        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku,kinmu) values('大阪　太郎','0662087507','ta-nakamichi@city.osaka.lg.jp','３号招集','大淀','２部')");
+        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku,kinmu) values('大阪　太郎','0662087507','ta-nakamichi@city.osaka.lg.jp','４号招集','北本署','日勤')");
     }
 
     @Override

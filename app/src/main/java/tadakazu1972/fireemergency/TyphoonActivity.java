@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+//import android.database.sqlite.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -62,7 +63,10 @@ public class TyphoonActivity extends AppCompatActivity {
         //連絡網データ作成
         mListView = new ListView(this);
         mDBHelper = new DBHelper(this);
-        db = mDBHelper.getWritableDatabase();
+        SQLiteDatabase.loadLibs(this);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String mKey = sp.getString("key", null);
+        db = mDBHelper.getWritableDatabase(mKey);
     }
 
     @Override

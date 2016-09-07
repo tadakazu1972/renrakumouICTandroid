@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+//import android.database.sqlite.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -58,12 +59,16 @@ public class EarthquakeActivity extends AppCompatActivity {
         initButtons();
         //基礎データ読み込み
         loadData();
+        //インストール語初回起動判定->パスワード設定へ
+        checkFirstLaunch();
         //連絡網データ作成
         mListView = new ListView(this);
         mDBHelper = new DBHelper(this);
-        db = mDBHelper.getWritableDatabase();
-        //インストール語初回起動判定->パスワード設定へ
-        checkFirstLaunch();
+        SQLiteDatabase.loadLibs(this);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String mKey = sp.getString("key", null);
+        db = mDBHelper.getWritableDatabase(mKey);
+
     }
 
     @Override
@@ -172,6 +177,8 @@ public class EarthquakeActivity extends AppCompatActivity {
         if (check.equals("yet")){
             setPassword();
             sp.edit().putString("firstLaunch","done").apply(); //doneを代入することで以降は初回起動とは判定されなくなる
+            String mKey = UUID.randomUUID().toString(); // key生成
+            sp.edit().putString("key", mKey);
         }
     }
 
