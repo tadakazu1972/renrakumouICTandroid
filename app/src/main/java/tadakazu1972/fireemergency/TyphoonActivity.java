@@ -1107,7 +1107,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //寝屋川（京橋）
     private void showTyphoon35() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位2.9m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.1mに到達)", "■避難準備情報(水位3.1m)", "■避難勧告(水位3.3m)", "■避難指示(水位3.5m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.1mに到達)", "■避難準備情報(水位3.1m)", "■避難勧告(水位3.3m)", "■避難指示(水位3.5m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1117,7 +1117,7 @@ public class TyphoonActivity extends AppCompatActivity {
                     case 0:{
                         String[] a = {"都島", "中央", "城東", "鶴見", "消防局"};
                         String gaitousyo = "都島,中央,城東,鶴見,消防局";
-                        showTyphoonRiver1("■寝屋川（京橋） 氾濫注意水位(水位2.9m)、水防警報(出動)", a, gaitousyo);
+                        showTyphoonRiver1("■寝屋川（京橋） 氾濫注意水位(水位3m)、水防警報(出動)", a, gaitousyo);
                         break;}
                     case 1:{
                         String[] a = {"都島", "東成", "生野", "旭", "城東", "鶴見", "東住吉", "平野", "消防局"};
@@ -1242,7 +1242,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //平野川分水路（今里大橋）
     private void showTyphoon38() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3.3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.4mに到達)", "■避難準備情報(水位3.4m)", "■避難勧告(水位3.8m)", "■避難指示(水位4.63m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3.3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.4mに到達)", "■避難準備情報(水位3.4m)", "■避難勧告(水位3.85m)", "■避難指示(水位4.63m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1270,7 +1270,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         String[] b = {"都島", "中央", "天王寺", "旭", "鶴見", "阿倍野", "住吉"};
                         String[] c = {"北", "福島", "此花", "西", "港", "大正", "浪速", "西淀川", "淀川", "東淀川", "住之江", "西成", "水上"};
                         String gaitousyo = "流域署２号：東成,生野,城東,東住吉,平野,消防局\n流域周辺署３号：都島,中央,天王寺,旭,鶴見,阿倍野,住吉\nその他の署４号：北,福島,此花,西,港,大正,浪速,西淀川,淀川,東淀川,住之江,西成,水上";
-                        showTyphoonRiver4("■平野川分水路（今里大橋） 避難勧告(水位3.8m)", a, b, c, gaitousyo);
+                        showTyphoonRiver4("■平野川分水路（今里大橋） 避難勧告(水位3.85m)", a, b, c, gaitousyo);
                         break;}
                     case 4:{
                         String gaitousyo = "全署";
