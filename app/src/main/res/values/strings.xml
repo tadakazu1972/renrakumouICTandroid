@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">参集アプリ</string>
+    <string name="app_name">非常招集</string>
     <string name="app_name2">namihaya</string>
     <string name="spn1Prompt">勤務消防署を選択してください</string>
     <string name="spn3Prompt">招集区分を選択してください</string>
