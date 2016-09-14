@@ -459,7 +459,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //河川水位による非常警備
     private void showTyphoon3() {
-        final CharSequence[] actions = {"■淀川（枚方）", "■大和川（柏原）", "■神崎川（三国）", "■安威川（千歳橋）", "■寝屋川（京橋）", "■第二寝屋川（昭明橋）", "■平野川（剣橋）", "■平野川分水路（今里大橋）", "■古川（桑才）", "■東除川（大堀上小橋）"};
+        final CharSequence[] actions = {"■淀川（枚方）", "■大和川（柏原）", "■神崎川（三国）", "■安威川（千歳橋）", "■寝屋川（京橋）", "■第二寝屋川（昭明橋）", "■平野川（剣橋）", "■平野川分水路（今里大橋）", "■古川（桑才）", "■東除川（大堀上小橋）","■高潮区域"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("河川を選択してください");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -495,6 +495,10 @@ public class TyphoonActivity extends AppCompatActivity {
                         break;
                     case 9:
                         showTyphoon3A();
+                        break;
+                    case 10:
+                        showTyphoon3B();
+                        break;
                 }
             }
         });
@@ -525,7 +529,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         break;}
                     case 1:{
                         String[] a = {"北", "都島", "福島", "此花", "西淀川", "淀川", "東淀川", "旭", "消防局"};
-                        String gaitousyo = "北,都島,福島,此花,西淀川,淀川,東淀川,旭,消防局";
+                        String gaitousyo = "４号：北,都島,福島,此花,西淀川,淀川,東淀川,旭,消防局";
                         showTyphoonRiver2("■淀川（枚方） 避難準備情報発令の見込み(1時間以内に水位5.4mに到達)", a, gaitousyo);
                         break;}
                     case 2:{
@@ -542,7 +546,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■淀川（枚方） 避難勧告(水位5.5m)", a, b, c, gaitousyo);
                         break;}
                     case 4:{
-                        String gaitousyo = "全署";
+                        String gaitousyo = "２号：全署";
                         showTyphoonRiver5("■淀川（枚方） 避難指示(水位8.3m)", gaitousyo);
                         break;}
                 }
@@ -583,6 +587,12 @@ public class TyphoonActivity extends AppCompatActivity {
         text2.setText(s2);
         builder.setTitle(title);
         builder.setView(layout);
+        builder.setPositiveButton("戻る", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                    showTyphoon31();
+                }
+        });
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -1345,6 +1355,16 @@ public class TyphoonActivity extends AppCompatActivity {
                 }
             }
         });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTyphoon3B(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■高潮区域");
+        builder.setMessage("第５非常警備(北、都島、福島、此花、中央、西、港、大正、浪速、西淀川、淀川、住之江、西成、水上、消防局)\n\n招集なし");
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
