@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-//import android.database.sqlite.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -17,18 +15,22 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.Button;
+
+import net.sqlcipher.database.SQLiteDatabase;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.UUID;
+
+//import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Created by tadakazu on 2016/07/17.
@@ -130,6 +132,12 @@ public class EarthquakeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 showEarthquake4();
+            }
+        });
+        mView.findViewById(R.id.btnEarthquake5).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEarthquake5();
             }
         });
         mView.findViewById(R.id.btnEarthquakeEarthquake).setOnClickListener(new OnClickListener(){
@@ -348,7 +356,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setTitle("■津波警報");
         String s;
         //２号招集なので、１号は参集なしの判定する
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mTsunamiStation.equals("消防局")) {
@@ -369,7 +377,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setTitle("■警報なし");
         String s;
         //２号招集なので、１号は参集なしの判定する
-        if (mKubun.equals("１")){
+        if (mKubun.equals("１号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -433,7 +441,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setTitle("■津波警報");
         String s;
         //３号招集なので、１号、２号は参集なしの判定する
-        if (mKubun.equals("１")||mKubun.equals("２")){
+        if (mKubun.equals("１号招集")||mKubun.equals("２号招集")){
             s = "招集なし";
         } else {
             if (mTsunamiStation.equals("消防局")) {
@@ -454,7 +462,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setTitle("■警報なし");
         String s;
         //３号招集なので、１号、２号は参集なしの判定する
-        if (mKubun.equals("１")||mKubun.equals("２")){
+        if (mKubun.equals("１号招集")||mKubun.equals("２号招集")){
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
@@ -521,7 +529,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setTitle("■津波警報");
         String s;
         //３号招集なので、１号、２号は参集なしの判定する
-        if (mKubun.equals("１")||mKubun.equals("２")){
+        if (mKubun.equals("１号招集")||mKubun.equals("２号招集")){
             s = "招集なし";
         } else {
             if (mTsunamiStation.equals("消防局")) {
@@ -563,6 +571,92 @@ public class EarthquakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■警報なし");
         builder.setMessage("招集なし\n\n");
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //東海地震に伴う非常招集
+    private void showEarthquake5(){
+        final CharSequence[] actions = {"■警戒宣言が発令されたとき（東海地震予知情報）","■東海地震注意報が発表されたとき","■東海地震に関連する調査情報（臨時）が発表されたとき"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("発令されている警報は？");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showEarthquake51();
+                        break;
+                    case 1:
+                        showEarthquake52();
+                        break;
+                    case 2:
+                        showEarthquake53();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake51(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■警戒宣言が発令されたとき（東海地震予知情報）");
+        String s;
+        //３号招集なので、１号、２号は参集なしの判定する
+        if (mKubun.equals("１号招集")||mKubun.equals("２号招集")){
+            s = "招集なし";
+        } else {
+            if (mMainStation.equals("消防局")) {
+                s = mMainStation+"へ参集";
+            } else {
+                s = mMainStation+"消防署へ参集";
+            }
+        }
+        builder.setMessage("３号招集(非番・日勤)\n\n"+s);
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake52(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■東海地震注意報が発表されたとき");
+        String s;
+        //４号招集なので、１号、２号、３号は参集なしの判定する
+        if (mKubun.equals("４号招集")) {
+            if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
+                s = mMainStation + "へ参集　所属担当者に確認すること";
+            } else {
+                s = mMainStation + "消防署へ参集";
+            }
+        } else {
+            s = "招集なし";
+        }
+        builder.setMessage("４号招集(非番・日勤)\n\n"+s);
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEarthquake53(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("■東海地震に関連する調査情報（臨時）が発表されたとき");
+        //勤務消防署がリストに該当するか判定
+        String s;
+        if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
+            s = mMainStation;
+        } else {
+            s = mMainStation + "消防署";
+        }
+        builder.setMessage("第５非常警備(全署、消防局)\n\n"+ s + "\n\n招集なし");
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
