@@ -445,9 +445,9 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mTsunamiStation.equals("消防局")) {
-                s = mTsunamiStation+"へ参集";
+                s = mTsunamiStation+"へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             } else {
-                s = mTsunamiStation+"消防署へ参集";
+                s = mTsunamiStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
         builder.setMessage("３号招集(非番・日勤)\n\n"+s);
@@ -466,9 +466,9 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             } else {
-                s = mMainStation+"消防署へ参集";
+                s = mMainStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
         builder.setMessage("３号招集(非番・日勤)\n\n"+s);
@@ -533,9 +533,9 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mTsunamiStation.equals("消防局")) {
-                s = mTsunamiStation+"へ参集";
+                s = mTsunamiStation+"へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             } else {
-                s = mTsunamiStation+"消防署へ参集";
+                s = mTsunamiStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
         builder.setMessage("３号招集(非番・日勤)\n\n"+s);
@@ -613,9 +613,9 @@ public class EarthquakeActivity extends AppCompatActivity {
             s = "招集なし";
         } else {
             if (mMainStation.equals("消防局")) {
-                s = mMainStation+"へ参集";
+                s = mMainStation+"へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             } else {
-                s = mMainStation+"消防署へ参集";
+                s = mMainStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
         builder.setMessage("３号招集(非番・日勤)\n\n"+s);
@@ -632,9 +632,9 @@ public class EarthquakeActivity extends AppCompatActivity {
         //４号招集なので、１号、２号、３号は参集なしの判定する
         if (mKubun.equals("４号招集")) {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation + "へ参集　所属担当者に確認すること";
+                s = mMainStation + "へ参集　所属担当者に確認すること\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             } else {
-                s = mMainStation + "消防署へ参集";
+                s = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         } else {
             s = "招集なし";

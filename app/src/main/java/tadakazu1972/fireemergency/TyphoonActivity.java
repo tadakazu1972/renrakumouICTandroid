@@ -204,12 +204,7 @@ public class TyphoonActivity extends AppCompatActivity {
             Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
         }
         builder.setMessage(text);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -251,12 +246,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -272,12 +262,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = mMainStation + "消防署へ参集";
         }
         builder.setMessage("１号招集\n\n" + s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -290,20 +275,15 @@ public class TyphoonActivity extends AppCompatActivity {
         String s;
         if (mKubun.equals("４号招集")) {
             if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
-                s = mMainStation + "へ参集　所属担当者に確認すること";
+                s = mMainStation + "へ参集　所属担当者に確認すること\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             } else {
-                s = mMainStation + "消防署へ参集";
+                s = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         } else {
             s = "招集なし";
         }
         builder.setMessage("４号招集(非番・日勤)\n\n" + s);
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -319,12 +299,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = mMainStation + "消防署";
         }
         builder.setMessage("第５非常警備(全署、消防局)\n\n" + s + "\n\n招集なし");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -340,12 +315,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = mMainStation + "消防署";
         }
         builder.setMessage("第５非常警備(全署、消防局)\n\n" + s + "\n\n招集なし");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -367,12 +337,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "ー";
         }
         builder.setMessage("第５非常警備(北、都島、福島、此花、中央、西淀川、淀川、東淀川、東成、生野、旭、城東、鶴見、住之江、住吉、東住吉、平野、消防局)\n\n" + s + "\n\n招集なし");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -394,12 +359,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "ー";
         }
         builder.setMessage("第５非常警備(此花、港、大正、西淀川、住之江、水上、消防局)\n\n" + s + "\n\n招集なし");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -421,12 +381,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "ー";
         }
         builder.setMessage("第５非常警備(北、都島、福島、此花、中央、西、港、大正、浪速、西淀川、淀川、住之江、西成、水上、消防局)\n\n" + s + "\n\n招集なし");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -448,12 +403,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s = "ー";
         }
         builder.setMessage("第５非常警備(北、都島、福島、此花、中央、西、港、大正、浪速、西淀川、淀川、住之江、西成、水上、消防局)\n\n" + s + "\n\n招集なし");
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -504,12 +454,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //何もしない
-            }
-        });
+        builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -654,9 +599,9 @@ public class TyphoonActivity extends AppCompatActivity {
             if (mKubun.equals("４号招集")) {
                 s1 = "４号招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
-                    s2 = mMainStation + "へ参集(所属担当者に確認すること)";
+                    s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
-                    s2 = mMainStation + "消防署へ参集";
+                    s2 = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 }
             } else {
                 s1 = "招集なし";
@@ -748,9 +693,9 @@ public class TyphoonActivity extends AppCompatActivity {
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 s1 = "３号招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
-                    s2 = mMainStation + "へ参集(所属担当者に確認すること)";
+                    s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
-                    s2 = mMainStation + "消防署へ参集";
+                    s2 = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 }
             } else {
                 s1 = "招集なし";
@@ -761,9 +706,9 @@ public class TyphoonActivity extends AppCompatActivity {
             if (mKubun.equals("４号招集")) {
                 s1 = "４号招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
-                    s2 = mMainStation + "へ参集(所属担当者に確認すること)";
+                    s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
-                    s2 = mMainStation + "消防署へ参集";
+                    s2 = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 }
             } else {
                 s1 = "招集なし";
@@ -855,9 +800,9 @@ public class TyphoonActivity extends AppCompatActivity {
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 s1 = "３号招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
-                    s2 = mMainStation + "へ参集(所属担当者に確認すること)";
+                    s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
-                    s2 = mMainStation + "消防署へ参集";
+                    s2 = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 }
             } else {
                 s1 = "招集なし";
@@ -962,9 +907,9 @@ public class TyphoonActivity extends AppCompatActivity {
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
                 s1 = "３号招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
-                    s2 = mMainStation + "へ参集(所属担当者に確認すること)";
+                    s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
-                    s2 = mMainStation + "消防署へ参集";
+                    s2 = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 }
             } else {
                 s1 = "招集なし";
@@ -975,9 +920,9 @@ public class TyphoonActivity extends AppCompatActivity {
             if (mKubun.equals("４号招集")) {
                 s1 = "４号招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
-                    s2 = mMainStation + "へ参集(所属担当者に確認すること)";
+                    s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
-                    s2 = mMainStation + "消防署へ参集";
+                    s2 = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 }
             } else {
                 s1 = "招集なし";
@@ -1082,9 +1027,9 @@ public class TyphoonActivity extends AppCompatActivity {
             if (mKubun.equals("４号招集")) {
                 s1 = "４号招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
-                    s2 = mMainStation + "へ参集(所属担当者に確認すること)";
+                    s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
-                    s2 = mMainStation + "消防署へ参集";
+                    s2 = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 }
             } else {
                 s1 = "招集なし";
