@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-//import android.database.sqlite.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -28,9 +27,14 @@ import android.widget.Toast;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVReader;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.UUID;
+
+//import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Created by tadakazu on 2016/07/18.
@@ -54,6 +58,8 @@ public class DataActivity extends AppCompatActivity {
     //showUpdateTel()データ呼び出して対応スピナー当てはめ用
     private boolean mInitSpinner = false;
     private int _syozokuPos = 0;
+    //削除選択データid格納用
+    private ArrayList<String> deleteArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -151,6 +157,8 @@ public class DataActivity extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String mKey = sp.getString("key", null);
         db = mDBHelper.getWritableDatabase(mKey);
+        //データまとめて削除用ArrayList初期化
+        deleteArray = new ArrayList<String>();
         //連絡網データ確認ボタン
         mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -165,11 +173,18 @@ public class DataActivity extends AppCompatActivity {
                 showEditTel();
             }
         });
-        //連絡網データ修正/削除ボタン
+        //連絡網データ修正ボタン
         mView.findViewById(R.id.btnTelUpdate).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 showCheck(1);
+            }
+        });
+        //連絡網データ削除ボタン
+        mView.findViewById(R.id.btnTelDelete).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showCheck(2);
             }
         });
         mView.findViewById(R.id.btnImport).setOnClickListener(new View.OnClickListener(){
@@ -238,6 +253,9 @@ public class DataActivity extends AppCompatActivity {
                             break;
                         case 1:
                             showTel2();
+                            break;
+                        case 2:
+                            showTel3();
                             break;
                     }
                 }
@@ -318,12 +336,66 @@ public class DataActivity extends AppCompatActivity {
         });
         //ダイアログ生成
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("修正/削除するデータを選択");
+        builder.setTitle("修正するデータを選択");
         ViewGroup parent = (ViewGroup)mListView.getParent();
         if ( parent!=null) {
             parent.removeView(mListView);
         }
         builder.setView(mListView);
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        mDialogShowTel2 = builder.show(); //このやり方は知らなかった
+    }
+
+    //連絡網データ表示　削除用
+    private void showTel3(){
+        //データ準備
+        String order;
+        order = "select * from records order by name desc";
+        Cursor c = mActivity.db.rawQuery(order, null);
+        String[] from = {"name","tel","syozoku","kinmu","mail"};
+        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
+        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view_delete,c,from,to,0);
+        mListView.setAdapter(mActivity.mAdapter);
+        mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                ListView listView = (ListView)parent;
+                CheckedTextView  checkedTextView = (CheckedTextView)view.findViewById(R.id.record_name);
+                checkedTextView.setChecked(true);
+                Cursor i = (Cursor)listView.getItemAtPosition(position);
+                String _id = i.getString(i.getColumnIndex("_id"));
+                deleteArray.add(_id);
+            }
+        });
+        //ダイアログ生成
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("削除するデータを選択");
+        ViewGroup parent = (ViewGroup)mListView.getParent();
+        if ( parent!=null) {
+            parent.removeView(mListView);
+        }
+        builder.setView(mListView);
+        builder.setPositiveButton("削除", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                if ( deleteArray.size() > 0 ) {
+                    for(int i=0;i< deleteArray.size(); i++) {
+                        mActivity.mDBHelper.delete(db, deleteArray.get(i));
+                        //deleteArray.remove(i);
+                    }
+                    Toast.makeText(mActivity, "データを削除しました。", Toast.LENGTH_SHORT).show();
+                    //削除結果を見せるため再度呼び出し
+                    showTel3();
+                } else {
+                    Toast.makeText(mActivity, "データが選択されていません。", Toast.LENGTH_SHORT).show();
+                    //再度呼び出し
+                    showTel3();
+                }
+            }
+        });
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -392,11 +464,11 @@ public class DataActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //連絡網データ修正・削除
+    //連絡網データ修正
     private void showUpdateTel(String _id, String _name, String _tel, String _mail, String _kubun, String _syozoku, String _kinmu){
         final String id = _id;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("データ修正/削除");
+        builder.setTitle("データ修正");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.tel_edit, (ViewGroup)findViewById(R.id.telEdit));
@@ -612,7 +684,7 @@ public class DataActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which){
                     importCSV(uri);
-                    Toast.makeText(mActivity, "取り込んだファイル："+filename2, Toast.LENGTH_LONG).show();
+                    Toast.makeText(mActivity, "取り込んだファイル："+filename2, Toast.LENGTH_SHORT).show();
                 }
             });
             builder.setNegativeButton("キャンセル", null);
@@ -651,10 +723,10 @@ public class DataActivity extends AppCompatActivity {
                 }
             } finally {
                 if (is != null) is.close();
-                Toast.makeText(this, "連絡網にデータを読み込みました。", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "連絡網にデータを読み込みました。", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "CSV読込エラー", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "CSV読込エラー", Toast.LENGTH_SHORT).show();
         }
     }
 }
