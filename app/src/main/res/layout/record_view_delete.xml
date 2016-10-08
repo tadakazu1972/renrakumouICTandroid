@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/viewDelete"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -7,14 +8,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <CheckedTextView android:id="@+id/record_name"
+        <CheckBox android:id="@+id/checkbox"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_gravity="start"
                   android:textColor="#000000"
                   android:textStyle="bold"
                   android:textSize="20sp"
-                  android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                  android:focusable="false"/>
         <TextView android:id="@+id/record_tel"
                   android:layout_alignParentRight="true"
                   android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         <TextView android:id="@+id/record_syozoku"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_gravity="start"
+                  android:layout_marginLeft="32dp"
                   android:textColor="#111111"
                   android:textStyle="bold"
                   android:textSize="16sp"/>

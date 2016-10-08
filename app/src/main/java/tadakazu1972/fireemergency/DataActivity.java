@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -50,6 +49,7 @@ public class DataActivity extends AppCompatActivity {
     protected DBHelper mDBHelper = null;
     protected SQLiteDatabase db = null;
     protected SimpleCursorAdapter mAdapter = null;
+    protected CustomCursorAdapter mAdapter2 = null;
     //連絡網データ入力用　親所属スピナー文字列保存用
     private static String mSelected;
     private static String[] mArray;
@@ -355,19 +355,25 @@ public class DataActivity extends AppCompatActivity {
         order = "select * from records order by name desc";
         Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","syozoku","kinmu","mail"};
-        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
-        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view_delete,c,from,to,0);
-        mListView.setAdapter(mActivity.mAdapter);
+        int[] to = {R.id.checkbox,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
+        mActivity.mAdapter2 = new CustomCursorAdapter(mActivity,R.layout.record_view_delete, c, from, to, 0);
+        mListView.setAdapter(mActivity.mAdapter2);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        Integer itemcount = mListView.getCount();
+        Toast.makeText(mActivity, "データ件数："+String.valueOf(itemcount), Toast.LENGTH_SHORT).show();
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 ListView listView = (ListView)parent;
-                CheckedTextView  checkedTextView = (CheckedTextView)view.findViewById(R.id.record_name);
-                checkedTextView.setChecked(true);
                 Cursor i = (Cursor)listView.getItemAtPosition(position);
                 String _id = i.getString(i.getColumnIndex("_id"));
-                deleteArray.add(_id);
+                if (mActivity.mAdapter2.clickData(position, view)){
+                    //チェックされたなら削除候補に_idを格納
+                    deleteArray.add(_id);
+                } else {
+                    //チェックがはずれたなら削除候補から_idを削除
+                    deleteArray.remove(_id);
+                }
             }
         });
         //ダイアログ生成
