@@ -355,7 +355,7 @@ public class DataActivity extends AppCompatActivity {
         order = "select * from records order by name desc";
         Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","syozoku","kinmu","mail"};
-        int[] to = {R.id.checkbox,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
+        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
         mActivity.mAdapter2 = new CustomCursorAdapter(mActivity,R.layout.record_view_delete, c, from, to, 0);
         mListView.setAdapter(mActivity.mAdapter2);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -364,16 +364,8 @@ public class DataActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                ListView listView = (ListView)parent;
-                Cursor i = (Cursor)listView.getItemAtPosition(position);
-                String _id = i.getString(i.getColumnIndex("_id"));
-                if (mActivity.mAdapter2.clickData(position, view)){
-                    //チェックされたなら削除候補に_idを格納
-                    deleteArray.add(_id);
-                } else {
-                    //チェックがはずれたなら削除候補から_idを削除
-                    deleteArray.remove(_id);
-                }
+                //タップした位置のデータをチェック処理
+                mActivity.mAdapter2.clickData(position, view);
             }
         });
         //ダイアログ生成
@@ -387,10 +379,24 @@ public class DataActivity extends AppCompatActivity {
         builder.setPositiveButton("削除", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                if ( deleteArray.size() > 0 ) {
+                //もろもろ準備
+                String order;
+                order = "select * from records order by name desc";
+                Cursor c = mActivity.db.rawQuery(order, null);
+                //第一段階　削除対象リストに格納
+                //CustomCursorAdapterのメンバ変数であるitemCheckedを見に行く
+                c.moveToFirst(); //カーソルを先頭に
+                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
+                    //チェックされていたら対応するカーソルの_idを削除対象文字列に格納
+                    if (mAdapter2.itemChecked.get(i)){
+                        deleteArray.add(c.getString(c.getColumnIndex("_id")));
+                    }
+                    c.moveToNext();
+                }
+                //第二段階　削除実行
+                if ( deleteArray.get(0) != null ) {
                     for(int i=0;i< deleteArray.size(); i++) {
                         mActivity.mDBHelper.delete(db, deleteArray.get(i));
-                        //deleteArray.remove(i);
                     }
                     Toast.makeText(mActivity, "データを削除しました。", Toast.LENGTH_SHORT).show();
                     //削除結果を見せるため再度呼び出し

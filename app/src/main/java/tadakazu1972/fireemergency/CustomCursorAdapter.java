@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class CustomCursorAdapter extends SimpleCursorAdapter {
     private Context context;
     private Cursor c;
-    private ArrayList<Boolean> itemChecked = new ArrayList<Boolean>();
+    protected ArrayList<Boolean> itemChecked = new ArrayList<Boolean>();
 
     public CustomCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags){
         super(context, layout, c, from, to, flags);
@@ -66,7 +66,7 @@ public class CustomCursorAdapter extends SimpleCursorAdapter {
         return view;
     }
 
-    public Boolean clickData(final int position, View view){
+    public void clickData(final int position, View view){
         //次の行はデバッグ用
         //Toast.makeText(context, "タップしたposition:"+String.valueOf(position), Toast.LENGTH_SHORT).show();
 
@@ -79,7 +79,5 @@ public class CustomCursorAdapter extends SimpleCursorAdapter {
         }
         cBox.setChecked(itemChecked.get(position));
         cBox.setFocusable(false); //これしないとリストの他要素がタップきかないBoolean
-
-        return itemChecked.get(position);
     }
 }

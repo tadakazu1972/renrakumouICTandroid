@@ -844,7 +844,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
         int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
-        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
+        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view2,c,from,to,0);
         mListView.setAdapter(mActivity.mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
