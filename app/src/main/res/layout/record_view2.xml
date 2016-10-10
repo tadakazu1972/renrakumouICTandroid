@@ -5,6 +5,7 @@
               android:layout_height="wrap_content"
               android:padding="8dp">
     <CheckBox
+        android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:focusable="false"/>
@@ -52,25 +53,24 @@
             <TextView android:id="@+id/record_syozoku"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginLeft="8dp"
+                      android:layout_marginLeft="6dp"
                       android:textColor="#000000"
                       android:textStyle="bold"
                       android:textAppearance="?android:attr/textAppearanceSmall"/>
             <TextView android:id="@+id/record_kinmu"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginLeft="8dp"
+                      android:layout_marginLeft="6dp"
                       android:textColor="#000000"
                       android:textStyle="bold"
                       android:textAppearance="?android:attr/textAppearanceSmall"/>
             <TextView android:id="@+id/record_mail"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginRight="6dip"
+                      android:layout_marginLeft="6dip"
                       android:textColor="#000000"
                       android:textStyle="bold"
                       android:textAppearance="?android:attr/textAppearanceSmall"
-                      android:autoLink="email"
                       android:focusable="false"/>
         </LinearLayout>
 
