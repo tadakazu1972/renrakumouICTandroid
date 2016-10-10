@@ -28,6 +28,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -45,12 +46,15 @@ public class TyphoonActivity extends AppCompatActivity {
     protected DBHelper mDBHelper = null;
     protected SQLiteDatabase db = null;
     protected SimpleCursorAdapter mAdapter = null;
+    protected CustomCursorAdapter mAdapter2 = null;
     //連絡網データ入力用　親所属スピナー文字列保存用
     private static String mSelected;
     private static String[] mArray;
     //ダイアログ制御用
     private AlertDialog mDlg;
     private Boolean gaitousyo_visible = false; //該当署の表示フラグ
+    //まとめてメール送信用
+    private ArrayList<String> mailArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,7 @@ public class TyphoonActivity extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String mKey = sp.getString("key", null);
         db = mDBHelper.getWritableDatabase(mKey);
+        mailArray = new ArrayList<String>();
     }
 
     @Override
@@ -1713,82 +1718,51 @@ public class TyphoonActivity extends AppCompatActivity {
 
     private void showTelAll(){
         //データ準備
-        String order;
-        order = "select * from records order by name desc";
-        Cursor c = mActivity.db.rawQuery(order, null);
+        mailArray.clear(); //前回の残りを消去しておく
+        final String order = "select * from records order by name desc";
+        final Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
         int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
-        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
-        mListView.setAdapter(mActivity.mAdapter);
+        mActivity.mAdapter2 = new CustomCursorAdapter(mActivity,R.layout.record_view2,c,from,to,0);
+        mListView.setAdapter(mActivity.mAdapter2);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                //残念だが以下は機能しない。電話させるautoLink="phone"を優先させる。そのため以下コメントアウトする。
-                // ListView listView = (ListView)parent;
-                //Cursor i = (Cursor)listView.getItemAtPosition(position);
-                //String _id = i.getString(i.getColumnIndex("_id"));
-                //String _name = i.getString(i.getColumnIndex("name"));
-                //String _tel = i.getString(i.getColumnIndex("tel"));
-                //String _mail = i.getString(i.getColumnIndex("mail"));
-                //String _kubun = i.getString(i.getColumnIndex("kubun"));
-                //String _syozoku = i.getString(i.getColumnIndex("syozoku"));
-                //String _kinmu = i.getString(i.getColumnIndex("kinmu"));
-                //showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
+                //タップした位置のデータをチェック処理
+                mActivity.mAdapter2.clickData(position, view);
             }
         });
         //ダイアログ生成
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("連絡網データ");
+        builder.setTitle("連絡網データ\n(メールはチェックしてから送信)");
         ViewGroup parent = (ViewGroup)mListView.getParent();
         if ( parent!=null) {
             parent.removeView(mListView);
         }
         builder.setView(mListView);
-        builder.setNegativeButton("キャンセル", null);
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showTelResult(String _syozoku, String _kinmu){
-        //データ準備
-        String order;
-        order = "select * from records where syozoku='"+ _syozoku + "' and kinmu='"+ _kinmu + "' order by name desc";
-        Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
-        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
-        mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
-        mListView.setAdapter(mActivity.mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                //なにもしない　setOnItemClickListenerをいれないと、データアイテムをタップした時にアプリが落ちるのを防ぐため。
-            }
-        });
-        //抽出結果のメールアドレスを確保
-        c.moveToFirst(); //カーソル開始位置を先頭にする
-        final String[] mailArray = new String[100]; //100人以上になるなら変更
-        for (int i=0; i<c.getCount(); i++){
-            String _mail = c.getString(3);
-            mailArray[i] = _mail;
-            c.moveToNext();
-        }
-        //ダイアログ生成
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("連絡網データ");
-        ViewGroup parent = (ViewGroup)mListView.getParent();
-        if ( parent!=null) {
-            parent.removeView(mListView);
-        }
-        builder.setView(mListView);
-        builder.setPositiveButton("メール一斉送信", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("まとめてメール送信", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
+                //第一段階　メール送信対象リストに格納
+                //CustomCursorAdapterのメンバ変数であるitemCheckedを見に行く
+                c.moveToFirst(); //カーソルを先頭に
+                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
+                    //チェックされていたら対応するカーソルのmailアドレス文字列をメール送信対象文字列に格納
+                    if (mAdapter2.itemChecked.get(i)){
+                        mailArray.add(c.getString(c.getColumnIndex("mail")));
+                    }
+                    c.moveToNext();
+                }
+                //第二段階　メールアプリのsendに渡す文字列にArrayListに格納した各アドレスを格納
+                final String[] sendMails = new String[mailArray.size()];
+                for (int i=0; i < mailArray.size(); i++){
+                    sendMails[i] = mailArray.get(i);
+                }
                 //メール立ち上げ
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_EMAIL, mailArray);
+                intent.putExtra(Intent.EXTRA_EMAIL, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
                 try {
@@ -1798,7 +1772,79 @@ public class TyphoonActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", null);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                mailArray.clear(); //きちんと後片付け
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    private void showTelResult(String _syozoku, String _kinmu){
+        //データ準備
+        mailArray.clear(); //前回の残りを消去
+        final String order = "select * from records where syozoku='"+ _syozoku + "' and kinmu='"+ _kinmu + "' order by name desc";
+        final Cursor c = mActivity.db.rawQuery(order, null);
+        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
+        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
+        mActivity.mAdapter2 = new CustomCursorAdapter(mActivity,R.layout.record_view2,c,from,to,0);
+        mListView.setAdapter(mActivity.mAdapter2);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                //タップした位置のデータをチェック処理
+                mActivity.mAdapter2.clickData(position, view);
+            }
+        });
+        //ダイアログ生成
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("連絡網データ\n (メールはチェックしてから送信)");
+        ViewGroup parent = (ViewGroup)mListView.getParent();
+        if ( parent!=null) {
+            parent.removeView(mListView);
+        }
+        builder.setView(mListView);
+        builder.setPositiveButton("まとめてメール送信", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //第一段階　メール送信対象リストに格納
+                //CustomCursorAdapterのメンバ変数であるitemCheckedを見に行く
+                c.moveToFirst(); //カーソルを先頭に
+                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
+                    //チェックされていたら対応するカーソルのmailアドレス文字列をメール送信対象文字列に格納
+                    if (mAdapter2.itemChecked.get(i)){
+                        mailArray.add(c.getString(c.getColumnIndex("mail")));
+                    }
+                    c.moveToNext();
+                }
+                //第二段階　メールアプリのsendに渡す文字列にArrayListに格納した各アドレスを格納
+                final String[] sendMails = new String[mailArray.size()];
+                for (int i=0; i < mailArray.size(); i++){
+                    sendMails[i] = mailArray.get(i);
+                }
+                //メール立ち上げ
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, sendMails);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
+                intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
+                try {
+                    startActivity(Intent.createChooser(intent, "メールアプリを選択"));
+                } catch (android.content.ActivityNotFoundException ex){
+                    Toast.makeText(mActivity, "メールアプリが見つかりません", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                mailArray.clear(); //きちんと後片付け
+            }
+        });
         builder.setCancelable(true);
         builder.create();
         builder.show();
