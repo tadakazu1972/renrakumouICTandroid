@@ -846,9 +846,12 @@ public class EarthquakeActivity extends AppCompatActivity {
         mailArray.clear(); //前回の残りを消去しておく
         final String order = "select * from records order by name desc";
         final Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
-        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
-        mActivity.mAdapter2 = new CustomCursorAdapter(mActivity,R.layout.record_view2,c,from,to,0);
+        String[] from = {"name", "tel", "mail", "kubun", "syozoku", "kinmu"};
+        int[] to = {R.id.record_name, R.id.record_tel, R.id.record_mail, R.id.record_kubun, R.id.record_syozoku, R.id.record_kinmu};
+        //初回のみ起動。そうしないと、すべて選択した後の２回目がまたnewされて意味ない
+        if (mAdapter2 == null) {
+            mActivity.mAdapter2 = new CustomCursorAdapter(mActivity, R.layout.record_view2, c, from, to, 0);
+        }
         mListView.setAdapter(mActivity.mAdapter2);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -865,7 +868,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             parent.removeView(mListView);
         }
         builder.setView(mListView);
-        builder.setPositiveButton("まとめてメール送信", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("メール送信", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
                 //第一段階　メール送信対象リストに格納
@@ -895,6 +898,17 @@ public class EarthquakeActivity extends AppCompatActivity {
                 } catch (android.content.ActivityNotFoundException ex){
                     Toast.makeText(mActivity, "メールアプリが見つかりません", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+        builder.setNeutralButton("すべて選択", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                c.moveToFirst();
+                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
+                    mActivity.mAdapter2.itemChecked.set(i, true);
+                }
+                //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
+                showTelAll();
             }
         });
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
@@ -911,11 +925,16 @@ public class EarthquakeActivity extends AppCompatActivity {
     private void showTelResult(String _syozoku, String _kinmu){
         //データ準備
         mailArray.clear(); //前回の残りを消去
-        final String order = "select * from records where syozoku='"+ _syozoku + "' and kinmu='"+ _kinmu + "' order by name desc";
+        final String syozoku = _syozoku;
+        final String kinmu = _kinmu;
+        final String order = "select * from records where syozoku='"+ syozoku + "' and kinmu='"+ kinmu + "' order by name desc";
         final Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
         int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
-        mActivity.mAdapter2 = new CustomCursorAdapter(mActivity,R.layout.record_view2,c,from,to,0);
+        //初回のみ起動。そうしないと、すべて選択した後の２回目がまたnewされて意味ない
+        if (mAdapter2 == null) {
+            mActivity.mAdapter2 = new CustomCursorAdapter(mActivity, R.layout.record_view2, c, from, to, 0);
+        }
         mListView.setAdapter(mActivity.mAdapter2);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -932,7 +951,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             parent.removeView(mListView);
         }
         builder.setView(mListView);
-        builder.setPositiveButton("まとめてメール送信", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("メール送信", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
                 //第一段階　メール送信対象リストに格納
@@ -964,10 +983,22 @@ public class EarthquakeActivity extends AppCompatActivity {
                 }
             }
         });
+        builder.setNeutralButton("すべて選択", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                c.moveToFirst();
+                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
+                    mActivity.mAdapter2.itemChecked.set(i, true);
+                }
+                //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
+                showTelResult(syozoku, kinmu);
+            }
+        });
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
                 mailArray.clear(); //きちんと後片付け
+                mAdapter2 = null;
             }
         });
         builder.setCancelable(true);
