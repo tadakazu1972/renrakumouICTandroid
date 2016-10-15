@@ -1790,6 +1790,7 @@ public class TyphoonActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 mailArray.clear(); //きちんと後片付け
+                mAdapter2 = null;
             }
         });
         builder.setCancelable(true);
