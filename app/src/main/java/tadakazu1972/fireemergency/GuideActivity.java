@@ -233,7 +233,7 @@ public class GuideActivity extends AppCompatActivity {
 
     //２　連絡網データ操作
     private void showGuide2() {
-        final CharSequence[] actions = {"■連絡網データ操作", "■CSVファイル読込"};
+        final CharSequence[] actions = {"■連絡網データ操作", "■連絡網データの作成"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setItems(actions, new DialogInterface.OnClickListener() {
             @Override
