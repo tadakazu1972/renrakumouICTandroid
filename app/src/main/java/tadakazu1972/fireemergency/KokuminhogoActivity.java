@@ -459,12 +459,16 @@ public class KokuminhogoActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNeutralButton("すべて選択", new DialogInterface.OnClickListener(){
+        builder.setNeutralButton("すべて選択/解除", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
                 c.moveToFirst();
                 for (int i=0; i < mAdapter2.itemChecked.size(); i++){
-                    mActivity.mAdapter2.itemChecked.set(i, true);
+                    if (!mAdapter2.itemChecked.get(i)) {
+                        mActivity.mAdapter2.itemChecked.set(i, true);
+                    } else {
+                        mActivity.mAdapter2.itemChecked.set(i, false);
+                    }
                 }
                 //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
                 showTelAll();
@@ -543,12 +547,16 @@ public class KokuminhogoActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNeutralButton("すべて選択", new DialogInterface.OnClickListener(){
+        builder.setNeutralButton("すべて選択/解除", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
                 c.moveToFirst();
                 for (int i=0; i < mAdapter2.itemChecked.size(); i++){
-                    mActivity.mAdapter2.itemChecked.set(i, true);
+                    if (!mAdapter2.itemChecked.get(i)) {
+                        mActivity.mAdapter2.itemChecked.set(i, true);
+                    } else {
+                        mActivity.mAdapter2.itemChecked.set(i, false);
+                    }
                 }
                 //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
                 showTelResult(syozoku, kinmu);
