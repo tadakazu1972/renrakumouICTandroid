@@ -785,7 +785,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setTitle("連絡網");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.tel_show, (ViewGroup)findViewById(R.id.telShow));
+        final View layout = inflater.inflate(R.layout.tel_show2, (ViewGroup)findViewById(R.id.telShow2));
         //全件表示ボタン設定
         final Button btnAll = (Button)layout.findViewById(R.id.btnTel);
         btnAll.setOnClickListener(new OnClickListener(){
@@ -806,7 +806,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 int i = parent.getSelectedItemPosition();
                 //Toast.makeText(mActivity, String.valueOf(i)+"番目を選択", Toast.LENGTH_SHORT).show();
                 //取得したintを配列リソース名に変換し、配列リソースIDを取得（なぜか日本語ではエラーが出るのでアルファベットと数字で対応））
-                mSelected = "firestation"+ String.valueOf(i);
+                mSelected = "firestationB"+ String.valueOf(i);
                 int resourceId = getResources().getIdentifier(mSelected, "array", getPackageName());
                 //Toast.makeText(mActivity, "resourceID="+String.valueOf(resourceId), Toast.LENGTH_SHORT).show();
                 //取得した配列リソースIDを文字列配列に格納
@@ -930,9 +930,19 @@ public class EarthquakeActivity extends AppCompatActivity {
     private void showTelResult(String _syozoku, String _kinmu){
         //データ準備
         mailArray.clear(); //前回の残りを消去
-        final String syozoku = _syozoku;
-        final String kinmu = _kinmu;
-        final String order = "select * from records where syozoku='"+ syozoku + "' and kinmu='"+ kinmu + "' order by name desc";
+        final String syozoku;
+        if (_syozoku.equals("すべて")){
+            syozoku = "is not null";
+        } else {
+            syozoku = "='" + _syozoku + "'";
+        }
+        final String kinmu;
+        if (_kinmu.equals("すべて")){
+            kinmu = "is not null";
+        } else {
+            kinmu = "='" + _kinmu + "'";
+        }
+        final String order = "select * from records where syozoku " + syozoku + " and kinmu " + kinmu + " order by name desc";
         final Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
         int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
