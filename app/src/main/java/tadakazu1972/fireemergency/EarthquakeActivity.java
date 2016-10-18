@@ -795,6 +795,7 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
         //検索条件取得準備
+        final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
         final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
         final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
         final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
@@ -830,9 +831,10 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setPositiveButton("検索", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
+                String kubun = (String)editKubun.getSelectedItem();
                 String syozoku = (String)editSyozoku2.getSelectedItem();
                 String kinmu = (String)editKinmu.getSelectedItem();
-                showTelResult(syozoku, kinmu);
+                showTelResult(kubun, syozoku, kinmu);
             }
         });
         builder.setNegativeButton("キャンセル", null);
@@ -927,9 +929,15 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showTelResult(String _syozoku, String _kinmu){
+    private void showTelResult(String _kubun, String _syozoku, String _kinmu){
         //データ準備
         mailArray.clear(); //前回の残りを消去
+        final String kubun;
+        if (_kubun.equals("すべて")){
+            kubun = "is not null";
+        } else {
+            kubun = "='" + _kubun + "'";
+        }
         final String syozoku;
         if (_syozoku.equals("すべて")){
             syozoku = "is not null";
@@ -942,7 +950,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             kinmu = "='" + _kinmu + "'";
         }
-        final String order = "select * from records where syozoku " + syozoku + " and kinmu " + kinmu + " order by name desc";
+        final String order = "select * from records where kubun " + kubun + " and syozoku " + syozoku + " and kinmu " + kinmu + " order by name desc";
         final Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
         int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
@@ -1010,7 +1018,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                     }
                 }
                 //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
-                showTelResult(syozoku, kinmu);
+                showTelResult(kubun, syozoku, kinmu);
             }
         });
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
