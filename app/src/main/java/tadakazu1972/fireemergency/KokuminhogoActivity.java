@@ -491,19 +491,24 @@ public class KokuminhogoActivity extends AppCompatActivity {
     private void showTelResult(String _kubun, String _syozoku, String _kinmu){
         //データ準備
         mailArray.clear(); //前回の残りを消去
-        final String kubun;
+        //再帰するときにfinalで使用するため別変数にして保存
+        final String kubun2 = _kubun;
+        final String syozoku2 = _syozoku;
+        final String kinmu2 = _kinmu;
+        //ここからSQL文作成
+        String kubun;
         if (_kubun.equals("すべて")){
             kubun = "is not null";
         } else {
             kubun = "='" + _kubun + "'";
         }
-        final String syozoku;
+        String syozoku;
         if (_syozoku.equals("すべて")){
             syozoku = "is not null";
         } else {
             syozoku = "='" + _syozoku + "'";
         }
-        final String kinmu;
+        String kinmu;
         if (_kinmu.equals("すべて")){
             kinmu = "is not null";
         } else {
@@ -577,7 +582,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
                     }
                 }
                 //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
-                showTelResult(kubun, syozoku, kinmu);
+                showTelResult(kubun2, syozoku2, kinmu2);
             }
         });
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
