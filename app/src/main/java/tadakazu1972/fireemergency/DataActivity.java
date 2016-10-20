@@ -351,12 +351,14 @@ public class DataActivity extends AppCompatActivity {
     //連絡網データ表示　削除用
     private void showTel3(){
         //データ準備
-        String order;
-        order = "select * from records order by name desc";
-        Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","syozoku","kinmu","mail"};
-        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
-        mActivity.mAdapter2 = new CustomCursorAdapter(mActivity,R.layout.record_view_delete, c, from, to, 0);
+        final String order = "select * from records order by name desc";
+        final Cursor c = mActivity.db.rawQuery(order, null);
+        String[] from = {"name","tel","kubun","syozoku","kinmu","mail"};
+        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_kubun, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
+        //初回のみ起動。そうしないと、すべて選択した後の２回目がまたnewされて意味ない
+        if (mAdapter2 == null) {
+            mActivity.mAdapter2 = new CustomCursorAdapter(mActivity, R.layout.record_view_delete2, c, from, to, 0);
+        }
         mListView.setAdapter(mActivity.mAdapter2);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         Integer itemcount = mListView.getCount();
@@ -379,10 +381,6 @@ public class DataActivity extends AppCompatActivity {
         builder.setPositiveButton("削除", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                //もろもろ準備
-                String order;
-                order = "select * from records order by name desc";
-                Cursor c = mActivity.db.rawQuery(order, null);
                 //第一段階　削除対象リストに格納
                 //CustomCursorAdapterのメンバ変数であるitemCheckedを見に行く
                 c.moveToFirst(); //カーソルを先頭に
@@ -400,6 +398,7 @@ public class DataActivity extends AppCompatActivity {
                     }
                     Toast.makeText(mActivity, "データを削除しました。", Toast.LENGTH_SHORT).show();
                     //削除結果を見せるため再度呼び出し
+                    mAdapter2 = null;
                     showTel3();
                 } else {
                     Toast.makeText(mActivity, "データが選択されていません。", Toast.LENGTH_SHORT).show();
@@ -408,7 +407,27 @@ public class DataActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", null);
+        builder.setNeutralButton("すべて選択/解除", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                c.moveToFirst();
+                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
+                    if (!mAdapter2.itemChecked.get(i)) {
+                        mActivity.mAdapter2.itemChecked.set(i, true);
+                    } else {
+                        mActivity.mAdapter2.itemChecked.set(i, false);
+                    }
+                }
+                //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
+                showTel3();
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                mAdapter2 = null;
+            }
+        });
         builder.setCancelable(true);
         builder.create();
         mDialogShowTel2 = builder.show(); //このやり方は知らなかった
