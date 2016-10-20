@@ -896,11 +896,13 @@ public class KinentaiActivity extends AppCompatActivity {
                 showTelResult(kubun2, syozoku2, kinmu2);
             }
         });
-        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+        builder.setNegativeButton("戻る", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
                 mailArray.clear(); //きちんと後片付け
                 mAdapter2 = null;
+                //前の画面に戻る
+                showTel();
             }
         });
         builder.setCancelable(true);
