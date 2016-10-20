@@ -344,7 +344,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
         builder.setTitle("連絡網");
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.tel_show, (ViewGroup)findViewById(R.id.telShow));
+        final View layout = inflater.inflate(R.layout.tel_show2, (ViewGroup)findViewById(R.id.telShow2));
         //全件表示ボタン設定
         final Button btnAll = (Button)layout.findViewById(R.id.btnTel);
         btnAll.setOnClickListener(new OnClickListener(){
@@ -354,6 +354,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
             }
         });
         //検索条件取得準備
+        final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
         final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
         final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
         final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
@@ -365,7 +366,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
                 int i = parent.getSelectedItemPosition();
                 //Toast.makeText(mActivity, String.valueOf(i)+"番目を選択", Toast.LENGTH_SHORT).show();
                 //取得したintを配列リソース名に変換し、配列リソースIDを取得（なぜか日本語ではエラーが出るのでアルファベットと数字で対応））
-                mSelected = "firestation"+ String.valueOf(i);
+                mSelected = "firestationB"+ String.valueOf(i);
                 int resourceId = getResources().getIdentifier(mSelected, "array", getPackageName());
                 //Toast.makeText(mActivity, "resourceID="+String.valueOf(resourceId), Toast.LENGTH_SHORT).show();
                 //取得した配列リソースIDを文字列配列に格納
@@ -389,9 +390,10 @@ public class KokuminhogoActivity extends AppCompatActivity {
         builder.setPositiveButton("検索", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
+                String kubun = (String)editKubun.getSelectedItem();
                 String syozoku = (String)editSyozoku2.getSelectedItem();
                 String kinmu = (String)editKinmu.getSelectedItem();
-                showTelResult(syozoku, kinmu);
+                showTelResult(kubun, syozoku, kinmu);
             }
         });
         builder.setNegativeButton("キャンセル", null);
@@ -486,12 +488,33 @@ public class KokuminhogoActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showTelResult(String _syozoku, String _kinmu){
+    private void showTelResult(String _kubun, String _syozoku, String _kinmu){
         //データ準備
         mailArray.clear(); //前回の残りを消去
-        final String syozoku = _syozoku;
-        final String kinmu = _kinmu;
-        final String order = "select * from records where syozoku='"+ _syozoku + "' and kinmu='"+ _kinmu + "' order by name desc";
+        //再帰するときにfinalで使用するため別変数にして保存
+        final String kubun2 = _kubun;
+        final String syozoku2 = _syozoku;
+        final String kinmu2 = _kinmu;
+        //ここからSQL文作成
+        String kubun;
+        if (_kubun.equals("すべて")){
+            kubun = "is not null";
+        } else {
+            kubun = "='" + _kubun + "'";
+        }
+        String syozoku;
+        if (_syozoku.equals("すべて")){
+            syozoku = "is not null";
+        } else {
+            syozoku = "='" + _syozoku + "'";
+        }
+        String kinmu;
+        if (_kinmu.equals("すべて")){
+            kinmu = "is not null";
+        } else {
+            kinmu = "='" + _kinmu + "'";
+        }
+        final String order = "select * from records where kubun " + kubun + " and syozoku " + syozoku + " and kinmu " + kinmu + " order by name desc";
         final Cursor c = mActivity.db.rawQuery(order, null);
         String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
         int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
@@ -559,7 +582,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
                     }
                 }
                 //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
-                showTelResult(syozoku, kinmu);
+                showTelResult(kubun2, syozoku2, kinmu2);
             }
         });
         builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
