@@ -261,7 +261,7 @@ public class TyphoonActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■特別警報");
         String s;
-        if (mMainStation.equals("消防局")) {
+        if (mMainStation.equals("消防局")||mMainStation.equals("教育訓練センター")) {
             s = mMainStation + "へ参集　所属担当者に確認すること";
         } else {
             s = mMainStation + "消防署へ参集";
@@ -279,7 +279,7 @@ public class TyphoonActivity extends AppCompatActivity {
         //４号招集なので、１号、２号、３号は参集なしの判定する
         String s;
         if (mKubun.equals("４号招集")) {
-            if (mMainStation.equals("消防局")) { //勤務消防署であることに注意!
+            if (mMainStation.equals("消防局")||mMainStation.equals("教育訓練センター")) { //勤務消防署であることに注意!
                 s = mMainStation + "へ参集　所属担当者に確認すること\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             } else {
                 s = mMainStation + "消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
@@ -298,7 +298,9 @@ public class TyphoonActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■大雨警報");
         String s;
-        if (mMainStation.equals("消防局")) {
+        if (mMainStation.equals("教育訓練センター")) {
+            s = "ー";
+        } else if (mMainStation.equals("消防局")) {
             s = mMainStation;
         } else {
             s = mMainStation + "消防署";
@@ -314,7 +316,9 @@ public class TyphoonActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■大雪警報");
         String s;
-        if (mMainStation.equals("消防局")) {
+        if (mMainStation.equals("教育訓練センター")) {
+            s = "ー";
+        } else if (mMainStation.equals("消防局")) {
             s = mMainStation;
         } else {
             s = mMainStation + "消防署";
@@ -355,7 +359,7 @@ public class TyphoonActivity extends AppCompatActivity {
         String s;
         String[] a = {"此花", "港", "大正", "西淀川", "住之江", "水上", "消防局"};
         if (Arrays.asList(a).contains(mMainStation)) {
-            if (mMainStation.equals("消防局")) {
+            if (mMainStation.equals("消防局")||mMainStation.equals("教育訓練センター")) {
                 s = mMainStation;
             } else {
                 s = mMainStation + "消防署";
@@ -1127,7 +1131,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s2 = "";
         } else {
             s1 = "２号招集(非番・日勤)";
-            if (mMainStation.equals("消防局")) {
+            if (mMainStation.equals("消防局")||mMainStation.equals("教育訓練センター")) {
                 s2 = mMainStation + "へ参集(所属担当者に確認すること)";
             } else {
                 s2 = mMainStation + "消防署へ参集";
