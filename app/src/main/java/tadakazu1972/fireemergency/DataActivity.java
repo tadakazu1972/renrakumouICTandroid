@@ -44,6 +44,10 @@ public class DataActivity extends AppCompatActivity {
     private Spinner mSpn1 = null;
     private Spinner mSpn2 = null;
     private Spinner mSpn3 = null;
+    //所属データ保存前格納用
+    private String mainStation = null;
+    private String tsunamiStation = null;
+    private String kubun = null;
     //連絡網データ操作用変数
     protected ListView mListView = null;
     protected DBHelper mDBHelper = null;
@@ -114,10 +118,7 @@ public class DataActivity extends AppCompatActivity {
         mSpn1.setOnItemSelectedListener(new OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                String item = (String)mSpn1.getSelectedItem();
-                //保存
-                SharedPreferences sp1 = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                sp1.edit().putString("mainStation",item).apply();
+                mainStation = (String)mSpn1.getSelectedItem();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){
@@ -127,10 +128,7 @@ public class DataActivity extends AppCompatActivity {
         mSpn2.setOnItemSelectedListener(new OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                String item = (String)mSpn2.getSelectedItem();
-                //保存
-                SharedPreferences sp1 = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                sp1.edit().putString("tsunamiStation",item).apply();
+                tsunamiStation = (String)mSpn2.getSelectedItem();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){
@@ -140,14 +138,23 @@ public class DataActivity extends AppCompatActivity {
         mSpn3.setOnItemSelectedListener(new OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                String item = (String)mSpn3.getSelectedItem();
-                //保存
-                SharedPreferences sp1 = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                sp1.edit().putString("kubun",item).apply();
+                kubun = (String)mSpn3.getSelectedItem();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){
                 //何もしない
+            }
+        });
+
+        mView.findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //保存
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                sp.edit().putString("mainStation",mainStation).apply();
+                sp.edit().putString("tsunamiStation",tsunamiStation).apply();
+                sp.edit().putString("kubun",kubun).apply();
+                Toast.makeText(mActivity, "基礎データを登録しました", Toast.LENGTH_SHORT).show();
             }
         });
 
