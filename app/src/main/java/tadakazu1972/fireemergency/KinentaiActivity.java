@@ -173,7 +173,7 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震央「陸」
     private void showKinentai1(){
-        final CharSequence[] actions = {"■震度７(特別区６強)","■震度６強(特別区６弱)","■震度６弱(特別区５強、政令市５強又は６弱)"};
+        final CharSequence[] actions = {"■震度７(特別区６強)","■震度６強(特別区６弱)","■震度６弱(特別区５強、政令市５強)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("最大震度は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
@@ -236,11 +236,11 @@ public class KinentaiActivity extends AppCompatActivity {
     private void showRiku6weak(){
         final CharSequence[] actions = {"北海道(札幌市)","青森県","岩手県","宮城県(仙台市)","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県(さいたま市)","千葉県(千葉市)","東京都","神奈川県(横浜市、川崎市、相模原市)","新潟県(新潟市)","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県(静岡市、浜松市)","愛知県(名古屋市)","三重県","滋賀県","京都府(京都市)","大阪府(大阪市、堺市)","兵庫県(神戸市)","奈良県","和歌山県","鳥取県","島根県","岡山県(岡山市)","広島県(広島市)","山口県","徳島県","香川県","愛媛県","高知県","福岡県(北九州市、福岡市)","佐賀県","長崎県","熊本県(熊本市)","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)   震央管轄都道府県は？");
+        builder.setTitle("■最大震度６弱(特別区５強、政令市５強)   震央管轄都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showCSV(which, "■最大震度６弱(特別区５強、政令市５強又は６弱)", "riku6weak.csv");
+                showCSV(which, "■最大震度６弱(特別区５強、政令市５強)", "riku6weak.csv");
             }
         });
         builder.setNegativeButton("キャンセル", null);
@@ -251,7 +251,7 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //震央「海域」
     private void showKinentai2(){
-        final CharSequence[] actions = {"■震度７(特別区６強)","■震度６強(特別区６弱)","■震度６弱(特別区５強、政令市５強又は６弱)"};
+        final CharSequence[] actions = {"■震度７(特別区６強)","■震度６強(特別区６弱)","■震度６弱(特別区５強、政令市５強)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("最大震度は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
@@ -314,11 +314,11 @@ public class KinentaiActivity extends AppCompatActivity {
     private void showKaiiki6weak(){
         final CharSequence[] actions = {"北海道(札幌市)","青森県","岩手県","宮城県(仙台市)","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県(さいたま市)","千葉県(千葉市)","東京都","神奈川県(横浜市、川崎市、相模原市)","新潟県(新潟市)","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県(静岡市、浜松市)","愛知県(名古屋市)","三重県","滋賀県","京都府(京都市)","大阪府(大阪市、堺市)","兵庫県(神戸市)","奈良県","和歌山県","鳥取県","島根県","岡山県(岡山市)","広島県(広島市)","山口県","徳島県","香川県","愛媛県","高知県","福岡県(北九州市、福岡市)","佐賀県","長崎県","熊本県(熊本市)","大分県","宮崎県","鹿児島県","沖縄県"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("■最大震度６弱(特別区５強、政令市５強又は６弱)   最大震度都道府県は？");
+        builder.setTitle("■最大震度６弱(特別区５強、政令市５強)   最大震度都道府県は？");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                showCSV(which, "■最大震度６弱(特別区５強、政令市５強又は６弱)","kaiiki6weak.csv");
+                showCSV(which, "■最大震度６弱(特別区５強、政令市５強)","kaiiki6weak.csv");
             }
         });
         builder.setNegativeButton("キャンセル", null);
@@ -390,8 +390,32 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //南海トラフ
+    //南海トラフ　ケース選択
     private void showNankaitraf(){
+        final CharSequence[] actions = {"ケース１(条件判定)","ケース２(同程度被害)"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("南海トラフ");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showNankaitraf1();
+                        break;
+                    case 1:
+                        showNankaitraf2();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //南海トラフ　ケース１
+    private void showNankaitraf1(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("南海トラフ　次の①②が合致した場合にアクションプランを適用する");
         //カスタムビュー設定
@@ -418,7 +442,56 @@ public class KinentaiActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("キャンセル", null);
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                showNankaitraf();
+            }
+        });
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //南海トラフ　ケース２
+    private void showNankaitraf2(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("南海トラフ　ケース２");
+        //テキストファイル読み込み
+        InputStream is = null;
+        BufferedReader br = null;
+        String text = "";
+        try {
+            try {
+                //assetsフォルダ内のテキスト読み込み
+                is = getAssets().open("nankaitraf_case2.txt");
+                br = new BufferedReader(new InputStreamReader(is));
+                //１行づつ読み込み、改行追加
+                String str;
+                while((str = br.readLine()) !=null){
+                    text += str + "\n";
+                }
+            } finally {
+                if (is != null) is.close();
+                if (br != null) br.close();
+            }
+        } catch (Exception e) {
+            //エラーメッセージ
+            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
+        }
+        builder.setMessage(text);
+        builder.setPositiveButton("対応", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                showActionPlan("南海トラフ","kinentai_nankaitraf.txt");
+            }
+        });
+        builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                showNankaitraf();
+            }
+        });
         builder.setCancelable(true);
         builder.create();
         builder.show();
@@ -426,9 +499,9 @@ public class KinentaiActivity extends AppCompatActivity {
 
     //大津波・噴火
     private void showKinentai4(){
-        final CharSequence[] actions = {"大津波","噴火"};
+        final CharSequence[] actions = {"大津波警報","噴火"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("大津波・噴火");
+        builder.setTitle("大津波警報・噴火");
         builder.setItems(actions, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
