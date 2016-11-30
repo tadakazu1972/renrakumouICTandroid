@@ -554,7 +554,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.setTitle("■津波注意報");
         //勤務消防署がリストに該当するか判定
         String s;
-        String[] a = {"此花","港","大正","西淀川","住之江","西成","水上"};
+        String[] a = {"消防局","此花","港","大正","西淀川","住之江","西成","水上"};
         if (Arrays.asList(a).contains(mMainStation)) {
             if (mMainStation.equals("消防局")||mMainStation.equals("教育訓練センター")) { //勤務消防署であることに注意!
                 s = mMainStation;
