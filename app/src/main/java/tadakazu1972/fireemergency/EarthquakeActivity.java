@@ -653,7 +653,6 @@ public class EarthquakeActivity extends AppCompatActivity {
     private void showEarthquake53(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■東海地震に関連する調査情報（臨時）が発表されたとき");
-        //勤務消防署がリストに該当するか判定
         String s;
         if (mMainStation.equals("消防局")||mMainStation.equals("教育訓練センター")) { //勤務消防署であることに注意!
             s = mMainStation;
