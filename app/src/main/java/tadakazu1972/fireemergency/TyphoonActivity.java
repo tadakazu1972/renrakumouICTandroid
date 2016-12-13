@@ -1577,6 +1577,7 @@ public class TyphoonActivity extends AppCompatActivity {
         builder.show();
     }
 
+    //高潮区域
     private void showTyphoon3B(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("■高潮区域");
