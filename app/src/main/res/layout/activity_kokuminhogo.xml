@@ -143,7 +143,7 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="留意事項"
+            android:text="留意事項等"
             android:textSize="18sp"
             android:id="@+id/btnKokuminhogoCaution"
             android:layout_weight="1"/>

@@ -169,7 +169,7 @@ public class KokuminhogoActivity extends AppCompatActivity {
         mView.findViewById(R.id.btnKokuminhogoCaution).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showCaution();
+                selectCaution();
             }
         });
         mView.findViewById(R.id.btnKokuminhogoBousaiNet).setOnClickListener(new OnClickListener(){
@@ -599,10 +599,34 @@ public class KokuminhogoActivity extends AppCompatActivity {
         builder.show();
     }
 
+    //留意事項等　ケース選択
+    private void selectCaution(){
+        final CharSequence[] actions = {"【留意事項】","【計画が対象となる事態】"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("留意事項等");
+        builder.setItems(actions, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                switch(which){
+                    case 0:
+                        showCaution();
+                        break;
+                    case 1:
+                        showKeikakuTaisyo();
+                        break;
+                }
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
     //留意事項
     public void showCaution(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("留意事項");
+        builder.setTitle("【留意事項】");
         //テキストファイル読み込み
         InputStream is = null;
         BufferedReader br = null;
@@ -611,6 +635,39 @@ public class KokuminhogoActivity extends AppCompatActivity {
             try {
                 //assetsフォルダ内のテキスト読み込み
                 is = getAssets().open("kokuminhogo_caution.txt");
+                br = new BufferedReader(new InputStreamReader(is));
+                //１行づつ読み込み、改行追加
+                String str;
+                while((str = br.readLine()) !=null){
+                    text += str + "\n";
+                }
+            } finally {
+                if (is != null) is.close();
+                if (br != null) br.close();
+            }
+        } catch (Exception e) {
+            //エラーメッセージ
+            Toast.makeText(this, "テキスト読込エラー", Toast.LENGTH_LONG).show();
+        }
+        builder.setMessage(text);
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //計画が対象となる事態
+    public void showKeikakuTaisyo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("【計画が対象となる事態】");
+        //テキストファイル読み込み
+        InputStream is = null;
+        BufferedReader br = null;
+        String text = "";
+        try {
+            try {
+                //assetsフォルダ内のテキスト読み込み
+                is = getAssets().open("kokuminhogo_keikakutaisyo.txt");
                 br = new BufferedReader(new InputStreamReader(is));
                 //１行づつ読み込み、改行追加
                 String str;
