@@ -19,10 +19,12 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase){
         //Create Table
-        sqLiteDatabase.execSQL("create table records(_id integer primary key autoincrement,name text,tel text,mail text,kubun text,syozoku text,kinmu text)");
+        sqLiteDatabase.execSQL("create table records(_id integer primary key autoincrement,name text,tel text,mail text,kubun text,syozoku0 text,syozoku text,kinmu text)");
 
         //Init
-        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku,kinmu) values('大阪　太郎','0662087507','ta-nakamichi@city.osaka.lg.jp','４号招集','北本署','日勤')");
+        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku0,syozoku,kinmu) values('大阪　太郎','0662087507','ta-nakamichi@city.osaka.lg.jp','４号招集','北','北本署','日勤')");
+        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku0,syozoku,kinmu) values('浪速　良美','0662087825','tadakazu1972@gmail.com','４号招集','消防局','警防課','日勤')");
+
     }
 
     @Override
@@ -33,23 +35,25 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insert(SQLiteDatabase db, String name, String tel, String mail, String kubun, String syozoku, String kinmu){
+    public void insert(SQLiteDatabase db, String name, String tel, String mail, String kubun, String syozoku0, String syozoku, String kinmu){
         ContentValues cv = new ContentValues();
         cv.put("name", name);
         cv.put("tel", tel);
         cv.put("mail", mail);
         cv.put("kubun", kubun);
+        cv.put("syozoku0", syozoku0);
         cv.put("syozoku", syozoku);
         cv.put("kinmu", kinmu);
         db.insert("records", null, cv);
     }
 
-    public void update(SQLiteDatabase db, String _id, String name,String tel,String mail,String kubun,String syozoku,String kinmu){
+    public void update(SQLiteDatabase db, String _id, String name, String tel, String mail, String kubun, String syozoku0, String syozoku, String kinmu){
         ContentValues cv = new ContentValues();
         cv.put("name", name);
         cv.put("tel", tel);
         cv.put("mail", mail);
         cv.put("kubun", kubun);
+        cv.put("syozoku0", syozoku0);
         cv.put("syozoku", syozoku);
         cv.put("kinmu", kinmu);
         db.update("records", cv, "_id = " +_id, null);

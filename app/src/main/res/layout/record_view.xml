@@ -28,15 +28,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView android:id="@+id/record_mail"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentRight="true"
-                  android:layout_marginRight="6dip"
-                  android:textColor="#000000"
-                  android:textStyle="bold"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:autoLink="email"/>
         <TextView android:id="@+id/record_kubun"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -45,10 +36,18 @@
                   android:textColor="#000000"
                   android:textStyle="bold"
                   android:textAppearance="?android:attr/textAppearanceSmall"/>
-        <TextView android:id="@+id/record_syozoku"
+        <TextView android:id="@+id/record_syozoku0"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_toRightOf="@+id/record_kubun"
+                  android:layout_marginLeft="8dp"
+                  android:textColor="#000000"
+                  android:textStyle="bold"
+                  android:textAppearance="?android:attr/textAppearanceSmall"/>
+        <TextView android:id="@+id/record_syozoku"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_toRightOf="@+id/record_syozoku0"
                   android:layout_marginLeft="8dp"
                   android:textColor="#000000"
                   android:textStyle="bold"
@@ -62,5 +61,18 @@
                   android:textColor="#000000"
                   android:textStyle="bold"
                   android:textAppearance="?android:attr/textAppearanceSmall"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView android:id="@+id/record_mail"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginRight="6dip"
+                  android:textColor="#000000"
+                  android:textStyle="bold"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:autoLink="email"/>
     </RelativeLayout>
 </LinearLayout>

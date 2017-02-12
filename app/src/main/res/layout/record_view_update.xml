@@ -25,10 +25,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView android:id="@+id/record_syozoku"
+        <TextView android:id="@+id/record_kubun"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="start"
+                  android:textColor="#111111"
+                  android:textStyle="bold"
+                  android:textSize="16sp"/>
+        <TextView android:id="@+id/record_syozoku0"
+                  android:layout_toRightOf="@id/record_kubun"
+                  android:layout_marginLeft="12dp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="start"
+                  android:textColor="#111111"
+                  android:textStyle="bold"
+                  android:textSize="16sp"/>
+        <TextView android:id="@+id/record_syozoku"
+                  android:layout_toRightOf="@id/record_syozoku0"
+                  android:layout_marginLeft="12dp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="end"
                   android:textColor="#111111"
                   android:textStyle="bold"
                   android:textSize="16sp"/>
@@ -41,6 +59,10 @@
                   android:textColor="#000000"
                   android:textStyle="bold"
                   android:textSize="16sp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <TextView android:id="@+id/record_mail"
                   android:layout_alignParentRight="true"
                   android:layout_width="wrap_content"

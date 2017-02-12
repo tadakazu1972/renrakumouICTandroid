@@ -277,10 +277,10 @@ public class DataActivity extends AppCompatActivity {
     private void showTel(){
         //データ準備
         String order;
-        order = "select * from records order by name desc";
+        order = "select * from records order by _id";
         Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
-        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
+        String[] from = {"name","tel","mail","kubun","syozoku0","syozoku","kinmu"};
+        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku0,R.id.record_syozoku,R.id.record_kinmu};
         mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view,c,from,to,0);
         mListView.setAdapter(mActivity.mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -317,10 +317,10 @@ public class DataActivity extends AppCompatActivity {
     private void showTel2(){
         //データ準備
         String order;
-        order = "select * from records order by name desc";
+        order = "select * from records order by _id";
         Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","syozoku","kinmu","mail"};
-        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
+        String[] from = {"name","tel","kubun","syozoku0","syozoku","kinmu","mail"};
+        int[] to = {R.id.record_name, R.id.record_tel, R.id.record_kubun, R.id.record_syozoku0, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
         mActivity.mAdapter = new SimpleCursorAdapter(mActivity,R.layout.record_view_update,c,from,to,0);
         mListView.setAdapter(mActivity.mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -333,10 +333,11 @@ public class DataActivity extends AppCompatActivity {
                 String _tel = i.getString(i.getColumnIndex("tel"));
                 String _mail = i.getString(i.getColumnIndex("mail"));
                 String _kubun = i.getString(i.getColumnIndex("kubun"));
+                String _syozoku0 = i.getString(i.getColumnIndex("syozoku0"));
                 String _syozoku = i.getString(i.getColumnIndex("syozoku"));
                 String _kinmu = i.getString(i.getColumnIndex("kinmu"));
                 //選択された行のデータを送る
-                showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku, _kinmu);
+                showUpdateTel(_id, _name, _tel, _mail, _kubun, _syozoku0, _syozoku, _kinmu);
                 //明示的に消さないとあとで空のダイアログが残る
                 mDialogShowTel2.dismiss();
             }
@@ -358,10 +359,10 @@ public class DataActivity extends AppCompatActivity {
     //連絡網データ表示　削除用
     private void showTel3(){
         //データ準備
-        final String order = "select * from records order by name desc";
+        final String order = "select * from records order by _id";
         final Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","kubun","syozoku","kinmu","mail"};
-        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_kubun, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
+        String[] from = {"name","tel","kubun","syozoku0","syozoku","kinmu","mail"};
+        int[] to = {R.id.record_name,R.id.record_tel, R.id.record_kubun, R.id.record_syozoku0, R.id.record_syozoku, R.id.record_kinmu, R.id.record_mail};
         //初回のみ起動。そうしないと、すべて選択した後の２回目がまたnewされて意味ない
         if (mAdapter2 == null) {
             mActivity.mAdapter2 = new CustomCursorAdapter(mActivity, R.layout.record_view_delete2, c, from, to, 0);
@@ -491,9 +492,10 @@ public class DataActivity extends AppCompatActivity {
                 String tel  = editTel.getText().toString();
                 String mail = editMail.getText().toString();
                 String kubun = (String)editKubun.getSelectedItem();
+                String syozoku0 = (String)editSyozoku.getSelectedItem();
                 String syozoku = (String)editSyozoku2.getSelectedItem();
                 String kinmu = (String)editKinmu.getSelectedItem();
-                mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku, kinmu);
+                mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku0, syozoku, kinmu);
             }
         });
         builder.setNegativeButton("キャンセル", null);
@@ -503,7 +505,7 @@ public class DataActivity extends AppCompatActivity {
     }
 
     //連絡網データ修正
-    private void showUpdateTel(String _id, String _name, String _tel, String _mail, String _kubun, String _syozoku, String _kinmu){
+    private void showUpdateTel(String _id, String _name, String _tel, String _mail, String _kubun, String _syozoku0, String _syozoku, String _kinmu){
         final String id = _id;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("データ修正");
@@ -671,9 +673,10 @@ public class DataActivity extends AppCompatActivity {
                 String tel  = editTel.getText().toString();
                 String mail = editMail.getText().toString();
                 String kubun = (String)editKubun.getSelectedItem();
+                String syozoku0 = (String)editSyozoku.getSelectedItem();
                 String syozoku = (String)editSyozoku2.getSelectedItem();
                 String kinmu = (String)editKinmu.getSelectedItem();
-                mActivity.mDBHelper.update(db, id, name, tel, mail, kubun, syozoku, kinmu);
+                mActivity.mDBHelper.update(db, id, name, tel, mail, kubun, syozoku0, syozoku, kinmu);
                 Toast.makeText(mActivity, "データを修正しました。", Toast.LENGTH_SHORT).show();
                 //修正結果を見せるため再度呼び出し
                 showTel2();
@@ -741,6 +744,7 @@ public class DataActivity extends AppCompatActivity {
         String tel = "";
         String mail = "";
         String kubun = "";
+        String syozoku0 = "";
         String syozoku = "";
         String kinmu = "";
 
@@ -755,9 +759,10 @@ public class DataActivity extends AppCompatActivity {
                     tel = csv[1];
                     mail = csv[2];
                     kubun = csv[3];
-                    syozoku = csv[4];
-                    kinmu = csv[5];
-                    mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku, kinmu);
+                    syozoku0 = csv[4];
+                    syozoku = csv[5];
+                    kinmu = csv[6];
+                    mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku0, syozoku, kinmu);
                 }
             } finally {
                 if (is != null) is.close();

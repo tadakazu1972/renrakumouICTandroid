@@ -831,9 +831,10 @@ public class EarthquakeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 String kubun = (String)editKubun.getSelectedItem();
+                String syozoku0 = (String)editSyozoku.getSelectedItem();
                 String syozoku = (String)editSyozoku2.getSelectedItem();
                 String kinmu = (String)editKinmu.getSelectedItem();
-                showTelResult(kubun, syozoku, kinmu);
+                showTelResult(kubun, syozoku0, syozoku, kinmu);
             }
         });
         builder.setNegativeButton("キャンセル", null);
@@ -845,10 +846,10 @@ public class EarthquakeActivity extends AppCompatActivity {
     private void showTelAll(){
         //データ準備
         mailArray.clear(); //前回の残りを消去しておく
-        final String order = "select * from records order by name desc";
+        final String order = "select * from records order by _id";
         final Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name", "tel", "mail", "kubun", "syozoku", "kinmu"};
-        int[] to = {R.id.record_name, R.id.record_tel, R.id.record_mail, R.id.record_kubun, R.id.record_syozoku, R.id.record_kinmu};
+        String[] from = {"name", "tel", "mail", "kubun", "syozoku0","syozoku", "kinmu"};
+        int[] to = {R.id.record_name, R.id.record_tel, R.id.record_mail, R.id.record_kubun, R.id.record_syozoku0, R.id.record_syozoku, R.id.record_kinmu};
         //初回のみ起動。そうしないと、すべて選択した後の２回目がまたnewされて意味ない
         if (mAdapter2 == null) {
             mActivity.mAdapter2 = new CustomCursorAdapter(mActivity, R.layout.record_view2, c, from, to, 0);
@@ -928,11 +929,12 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showTelResult(String _kubun, String _syozoku, String _kinmu){
+    private void showTelResult(String _kubun, String _syozoku0, String _syozoku, String _kinmu){
         //データ準備
         mailArray.clear(); //前回の残りを消去
         //再帰するときにfinalで使用するため別変数にして保存
         final String kubun2 = _kubun;
+        final String syozoku02 = _syozoku0;
         final String syozoku2 = _syozoku;
         final String kinmu2 = _kinmu;
         //ここからSQL文作成
@@ -941,6 +943,12 @@ public class EarthquakeActivity extends AppCompatActivity {
             kubun = "is not null";
         } else {
             kubun = "='" + _kubun + "'";
+        }
+        String syozoku0;
+        if (_syozoku0.equals("すべて")){
+            syozoku0 = "is not null";
+        } else {
+            syozoku0 = "='" + _syozoku0 + "'";
         }
         String syozoku;
         if (_syozoku.equals("すべて")){
@@ -954,10 +962,10 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             kinmu = "='" + _kinmu + "'";
         }
-        final String order = "select * from records where kubun " + kubun + " and syozoku " + syozoku + " and kinmu " + kinmu + " order by name desc";
+        final String order = "select * from records where kubun " + kubun + " and syozoku0 " + syozoku0 + " and syozoku " + syozoku + " and kinmu " + kinmu + " order by _id";
         final Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name","tel","mail","kubun","syozoku","kinmu"};
-        int[] to = {R.id.record_name,R.id.record_tel,R.id.record_mail,R.id.record_kubun,R.id.record_syozoku,R.id.record_kinmu};
+        String[] from = {"name", "tel", "mail", "kubun", "syozoku0", "syozoku", "kinmu"};
+        int[] to = {R.id.record_name, R.id.record_tel, R.id.record_mail, R.id.record_kubun, R.id.record_syozoku0, R.id.record_syozoku, R.id.record_kinmu};
         //初回のみ起動。そうしないと、すべて選択した後の２回目がまたnewされて意味ない
         if (mAdapter2 == null) {
             mActivity.mAdapter2 = new CustomCursorAdapter(mActivity, R.layout.record_view2, c, from, to, 0);
@@ -1022,7 +1030,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                     }
                 }
                 //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
-                showTelResult(kubun2, syozoku2, kinmu2);
+                showTelResult(kubun2, syozoku02, syozoku2, kinmu2);
             }
         });
         builder.setNegativeButton("戻る", new DialogInterface.OnClickListener(){
