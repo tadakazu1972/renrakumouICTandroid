@@ -53,7 +53,8 @@ public class KokuminhogoActivity extends AppCompatActivity {
     private static String[] mArray;
     //まとめてメール送信用
     private ArrayList<String> mailArray;
-
+    //連絡網初回パスワード要求フラグ
+    public boolean mPassFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstaceState){
@@ -311,32 +312,38 @@ public class KokuminhogoActivity extends AppCompatActivity {
 
     //連絡網データ表示
     private void showCheck(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.checkTitle);
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.check, (ViewGroup)findViewById(R.id.telCheck));
-        //データ取得準備
-        final EditText edit1 = (EditText)layout.findViewById(R.id.editCheck);
-        builder.setView(layout);
-        builder.setPositiveButton("入力", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                String checked = edit1.getText().toString();
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
-                String word = sp.getString("password",uuid);
-                if (checked.equals(word)){
-                    checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                    dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                    showTel();
+        if (!mPassFlag) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.checkTitle);
+            //カスタムビュー設定
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View layout = inflater.inflate(R.layout.check, (ViewGroup) findViewById(R.id.telCheck));
+            //データ取得準備
+            final EditText edit1 = (EditText) layout.findViewById(R.id.editCheck);
+            builder.setView(layout);
+            builder.setPositiveButton("入力", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String checked = edit1.getText().toString();
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                    String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
+                    String word = sp.getString("password", uuid);
+                    if (checked.equals(word)) {
+                        checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                        dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                        showTel();
+                    }
                 }
-            }
-        });
-        builder.setNegativeButton("キャンセル", null);
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
+            });
+            builder.setNegativeButton("キャンセル", null);
+            builder.setCancelable(true);
+            builder.create();
+            builder.show();
+            //mPassFlagをオン
+            mPassFlag = true;
+        } else {
+            showTel();
+        }
     }
 
     private void showTel(){

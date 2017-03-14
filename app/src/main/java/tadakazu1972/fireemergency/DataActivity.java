@@ -64,6 +64,8 @@ public class DataActivity extends AppCompatActivity {
     private int _syozokuPos = 0;
     //削除選択データid格納用
     private ArrayList<String> deleteArray;
+    //初回パスフラグ
+    public boolean mPassFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -234,44 +236,60 @@ public class DataActivity extends AppCompatActivity {
 
     //連絡網データ表示
     private void showCheck(int i){
-        //分岐用変数
-        final int fork = i;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.checkTitle);
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.check, (ViewGroup)findViewById(R.id.telCheck));
-        //データ取得準備
-        final EditText edit1 = (EditText)layout.findViewById(R.id.editCheck);
-        builder.setView(layout);
-        builder.setPositiveButton("入力", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                String checked = edit1.getText().toString();
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
-                String word = sp.getString("password",uuid);
-                if (checked.equals(word)){
-                    checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                    dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                    switch(fork) {
-                        case 0:
-                            showTel();
-                            break;
-                        case 1:
-                            showTel2();
-                            break;
-                        case 2:
-                            showTel3();
-                            break;
+        if (!mPassFlag) {
+            //分岐用変数
+            final int fork = i;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.checkTitle);
+            //カスタムビュー設定
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View layout = inflater.inflate(R.layout.check, (ViewGroup) findViewById(R.id.telCheck));
+            //データ取得準備
+            final EditText edit1 = (EditText) layout.findViewById(R.id.editCheck);
+            builder.setView(layout);
+            builder.setPositiveButton("入力", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String checked = edit1.getText().toString();
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                    String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
+                    String word = sp.getString("password", uuid);
+                    if (checked.equals(word)) {
+                        checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                        dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                        switch (fork) {
+                            case 0:
+                                showTel();
+                                break;
+                            case 1:
+                                showTel2();
+                                break;
+                            case 2:
+                                showTel3();
+                                break;
+                        }
                     }
                 }
+            });
+            builder.setNegativeButton("キャンセル", null);
+            builder.setCancelable(true);
+            builder.create();
+            builder.show();
+            //フラグオン
+            mPassFlag = true;
+        } else {
+            switch (i) {
+                case 0:
+                    showTel();
+                    break;
+                case 1:
+                    showTel2();
+                    break;
+                case 2:
+                    showTel3();
+                    break;
             }
-        });
-        builder.setNegativeButton("キャンセル", null);
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
+        }
     }
 
     private void showTel(){
