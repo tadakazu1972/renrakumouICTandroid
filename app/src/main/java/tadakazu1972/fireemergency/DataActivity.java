@@ -257,6 +257,8 @@ public class DataActivity extends AppCompatActivity {
                     if (checked.equals(word)) {
                         checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                         dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                        //mPassFlagをオン
+                        mPassFlag = true;
                         switch (fork) {
                             case 0:
                                 showTel();
@@ -275,8 +277,6 @@ public class DataActivity extends AppCompatActivity {
             builder.setCancelable(true);
             builder.create();
             builder.show();
-            //フラグオン
-            mPassFlag = true;
         } else {
             switch (i) {
                 case 0:

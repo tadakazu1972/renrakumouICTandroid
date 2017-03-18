@@ -331,6 +331,8 @@ public class KokuminhogoActivity extends AppCompatActivity {
                     if (checked.equals(word)) {
                         checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
                         dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
+                        //mPassFlagをオン
+                        mPassFlag = true;
                         showTel();
                     }
                 }
@@ -339,8 +341,6 @@ public class KokuminhogoActivity extends AppCompatActivity {
             builder.setCancelable(true);
             builder.create();
             builder.show();
-            //mPassFlagをオン
-            mPassFlag = true;
         } else {
             showTel();
         }
