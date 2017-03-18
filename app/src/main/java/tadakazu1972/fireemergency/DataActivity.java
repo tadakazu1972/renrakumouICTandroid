@@ -92,6 +92,7 @@ public class DataActivity extends AppCompatActivity {
         //勤務消防署
         SharedPreferences sp1 = PreferenceManager.getDefaultSharedPreferences(this);
         String compareValue1 = sp1.getString("mainStation","消防局"); // 第２引数はkeyが存在しない時に返す初期値
+        mainStation = sp1.getString("mainStation","消防局"); //インストール直後誤動作防止
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.firestation, R.layout.custom_spinner_item);
         mSpn1.setAdapter(adapter1);
         if (!compareValue1.equals(null)){
@@ -101,6 +102,7 @@ public class DataActivity extends AppCompatActivity {
         //大津波・津波警報時指定署
         SharedPreferences sp2 = PreferenceManager.getDefaultSharedPreferences(this);
         String compareValue2 = sp2.getString("tsunamiStation", "消防局"); // 第２引数はkeyが存在しない時に返す初期値
+        tsunamiStation = sp2.getString("tsunamiStation", "消防局"); //インストール直後誤動作防止
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.firestation, R.layout.custom_spinner_item);
         mSpn2.setAdapter(adapter2);
         if (!compareValue2.equals(null)){
@@ -110,6 +112,7 @@ public class DataActivity extends AppCompatActivity {
         //招集区分
         SharedPreferences sp3 = PreferenceManager.getDefaultSharedPreferences(this);
         String compareValue3 = sp3.getString("kubun", "１"); // 第２引数はkeyが存在しない時に返す初期値
+        kubun = sp3.getString("kubun", "１"); //インストール直後誤動作防止
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.kubun, R.layout.custom_spinner_item);
         mSpn3.setAdapter(adapter3);
         if (!compareValue3.equals(null)){

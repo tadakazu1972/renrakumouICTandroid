@@ -52,6 +52,11 @@ public class KinentaiActivity extends AppCompatActivity {
     //連絡網データ入力用　親所属スピナー文字列保存用
     private static String mSelected;
     private static String[] mArray;
+    //連絡網データ検索用
+    protected String resKubun = "すべて";
+    protected String resSyozoku0 = "すべて";
+    protected String resSyozoku = "すべて";
+    protected String resKinmu = "すべて";
     //まとめてメール送信用
     private ArrayList<String> mailArray;
     //連絡網初回パスワード要求フラグ
@@ -782,11 +787,11 @@ public class KinentaiActivity extends AppCompatActivity {
         builder.setPositiveButton("検索", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
-                String kubun = (String)editKubun.getSelectedItem();
-                String syozoku0 = (String)editSyozoku.getSelectedItem();
-                String syozoku = (String)editSyozoku2.getSelectedItem();
-                String kinmu = (String)editKinmu.getSelectedItem();
-                showTelResult(kubun, syozoku0, syozoku, kinmu);
+                resKubun = (String)editKubun.getSelectedItem();
+                resSyozoku0 = (String)editSyozoku.getSelectedItem();
+                resSyozoku = (String)editSyozoku2.getSelectedItem();
+                resKinmu = (String)editKinmu.getSelectedItem();
+                showTelResult(resKubun, resSyozoku0, resSyozoku, resKinmu);
             }
         });
         builder.setNegativeButton("キャンセル", null);
