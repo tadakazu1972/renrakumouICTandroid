@@ -8,6 +8,7 @@
         android:id="@+id/btnGuidePurpose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="参集アプリの使用目的"
         android:textSize="20sp"
         android:textColor="#ffffff"

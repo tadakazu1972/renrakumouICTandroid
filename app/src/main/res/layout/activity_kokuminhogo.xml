@@ -7,6 +7,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="基礎データ入力"
         android:textSize="20sp"
         android:textColor="#ffffff"
@@ -65,7 +66,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="１号非常招集"
+            android:text="第１非常警備(１号招集)"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnKokuminhogo1"
             android:layout_marginBottom="8dp"
@@ -73,7 +74,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="２号非常招集"
+            android:text="第２非常警備(２号招集)"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnKokuminhogo2"
             android:layout_marginBottom="10dp"
@@ -81,7 +82,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="３号非常招集"
+            android:text="第３非常警備(３号招集)"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnKokuminhogo3"
             android:layout_marginBottom="10dp"
@@ -89,7 +90,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="４号非常招集"
+            android:text="第４非常警備(４号招集)"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnKokuminhogo4"
             android:layout_marginBottom="10dp"
@@ -97,7 +98,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="５号非常招集"
+            android:text="第５非常警備(５号招集)"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/btnKokuminhogo5"
             android:layout_marginBottom="10dp"
