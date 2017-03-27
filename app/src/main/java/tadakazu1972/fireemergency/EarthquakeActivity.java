@@ -280,7 +280,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = mTsunamiStation+"消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n"+s);
+        builder.setMessage("１号非常招集\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -296,7 +296,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = mTsunamiStation+"消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n"+s);
+        builder.setMessage("１号非常招集\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -312,7 +312,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = mMainStation+"消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n"+s);
+        builder.setMessage("１号非常招集\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -355,7 +355,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = mTsunamiStation+"消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n"+s);
+        builder.setMessage("１号非常招集\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -376,7 +376,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 s = mTsunamiStation+"消防署へ参集";
             }
         }
-        builder.setMessage("２号招集(非番・日勤)\n\n"+s);
+        builder.setMessage("２号非常招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -397,7 +397,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 s = mMainStation+"消防署へ参集";
             }
         }
-        builder.setMessage("２号招集(非番・日勤)\n\n"+s);
+        builder.setMessage("２号非常招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -440,7 +440,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = mTsunamiStation+"消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n"+s);
+        builder.setMessage("１号非常招集\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -461,7 +461,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 s = mTsunamiStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
-        builder.setMessage("３号招集(非番・日勤)\n\n"+s);
+        builder.setMessage("３号非常招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -482,7 +482,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 s = mMainStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
-        builder.setMessage("３号招集(非番・日勤)\n\n"+s);
+        builder.setMessage("３号非常招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -528,7 +528,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = mTsunamiStation+"消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n"+s);
+        builder.setMessage("１号非常招集\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -549,7 +549,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 s = mTsunamiStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
-        builder.setMessage("３号招集(非番・日勤)\n\n"+s);
+        builder.setMessage("３号非常招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -629,7 +629,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 s = mMainStation+"消防署へ参集\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
             }
         }
-        builder.setMessage("３号招集(非番・日勤)\n\n"+s);
+        builder.setMessage("３号非常招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -650,7 +650,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         } else {
             s = "招集なし";
         }
-        builder.setMessage("４号招集(非番・日勤)\n\n"+s);
+        builder.setMessage("４号非常招集(非番・日勤)\n\n"+s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();

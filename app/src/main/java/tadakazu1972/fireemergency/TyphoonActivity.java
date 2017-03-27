@@ -273,7 +273,7 @@ public class TyphoonActivity extends AppCompatActivity {
         } else {
             s = mMainStation + "消防署へ参集";
         }
-        builder.setMessage("１号招集\n\n" + s);
+        builder.setMessage("１号非常招集\n\n" + s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -294,7 +294,7 @@ public class TyphoonActivity extends AppCompatActivity {
         } else {
             s = "招集なし";
         }
-        builder.setMessage("４号招集(非番・日勤)\n\n" + s);
+        builder.setMessage("４号非常招集(非番・日勤)\n\n" + s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
@@ -427,7 +427,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //河川水位による非常警備
     private void showTyphoon3() {
-        final CharSequence[] actions = {"■淀川（枚方）", "■大和川（柏原）", "■神崎川（三国）", "■安威川（千歳橋）", "■寝屋川（京橋）", "■第二寝屋川（昭明橋）", "■平野川（剣橋）", "■平野川分水路（今里大橋）", "■古川（桑才）", "■東除川（大堀上小橋）","■高潮区域"};
+        final CharSequence[] actions = {"■淀川（枚方）", "■大和川（柏原）", "■神崎川（三国）", "■安威川（千歳橋）", "■寝屋川（京橋）", "■第二寝屋川（昭明橋）", "■平野川（剣橋）", "■平野川分水路（今里大橋）", "■古川（桑才）", "■東除川（大堀上小橋）","■高潮区域（水防警報（出動））"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("河川を選択してください");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -478,7 +478,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //淀川（枚方）
     private void showTyphoon31() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位4.5m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位5.4mに到達)", "■避難準備情報(水位5.4m)", "■避難勧告(水位5.5m)", "■避難指示(水位8.3m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位4.5m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位5.4mに到達)", "■避難準備情報(水位5.4m)、避難勧告発令の見込み", "■避難勧告(水位5.5m)", "■避難指示(水位8.3m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -509,7 +509,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■淀川（枚方） 避難勧告(水位5.5m)", a, b, c, gaitousyo, 1);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■淀川（枚方） 避難指示(水位8.3m)", gaitousyo, 1);
                         break;}
                 }
@@ -527,15 +527,17 @@ public class TyphoonActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //カスタムビュー設定
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.dialog_river2, (ViewGroup) findViewById(R.id.dlgRiver2));
+        final View layout = inflater.inflate(R.layout.dialog_river, (ViewGroup) findViewById(R.id.dlgRiver));
         //テキスト放りこみ先準備
         final TextView text1 = (TextView)layout.findViewById(R.id.txtRiver1);
         final TextView text2 = (TextView)layout.findViewById(R.id.txtRiver2);
+        final TextView text3 = (TextView)layout.findViewById(R.id.txtRiver3);
         //放り込むテキストの設定
         //勤務消防署がリストに該当するか判定
         String s1;
         String s2;
-        s1 = "第５非常警備(" + gaitousyo + ")";
+        final String s3 = gaitousyo;
+        s1 = "第５非常警備";
         if (Arrays.asList(a).contains(mMainStation)) {
             if (mMainStation.equals("消防局")) {
                 s2 = mMainStation;
@@ -549,6 +551,19 @@ public class TyphoonActivity extends AppCompatActivity {
         //テキストセット
         text1.setText(s1);
         text2.setText(s2);
+        //ボタン クリックリスナー設定
+        layout.findViewById(R.id.btnGaitousyo).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!gaitousyo_visible) {
+                    text3.setText(s3);
+                    gaitousyo_visible = true;
+                } else {
+                    text3.setText("");
+                    gaitousyo_visible = false;
+                }
+            }
+        });
         builder.setTitle(title);
         builder.setView(layout);
         builder.setPositiveButton("戻る", new DialogInterface.OnClickListener(){
@@ -613,7 +628,7 @@ public class TyphoonActivity extends AppCompatActivity {
         if (Arrays.asList(a).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")) {
-                s1 = "４号招集(非番・日勤)";
+                s1 = "４号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
@@ -707,7 +722,7 @@ public class TyphoonActivity extends AppCompatActivity {
         if (Arrays.asList(a).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
-                s1 = "３号招集(非番・日勤)";
+                s1 = "３号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
@@ -720,7 +735,7 @@ public class TyphoonActivity extends AppCompatActivity {
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")) {
-                s1 = "４号招集(非番・日勤)";
+                s1 = "４号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
@@ -814,7 +829,7 @@ public class TyphoonActivity extends AppCompatActivity {
         if (Arrays.asList(a).contains(mMainStation)) {
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
-                s1 = "３号招集(非番・日勤)";
+                s1 = "３号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
@@ -911,7 +926,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s1 = "招集なし";
                 s2 = "";
             } else {
-                s1 = "２号招集(非番・日勤)";
+                s1 = "２号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
@@ -921,7 +936,7 @@ public class TyphoonActivity extends AppCompatActivity {
         } else if (Arrays.asList(b).contains(mMainStation)){
             //３号招集なので、１号、２号は参集なしの判定する
             if (mKubun.equals("３号招集") || mKubun.equals("４号招集")) {
-                s1 = "３号招集(非番・日勤)";
+                s1 = "３号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
@@ -934,7 +949,7 @@ public class TyphoonActivity extends AppCompatActivity {
         } else if (Arrays.asList(c).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")) {
-                s1 = "４号招集(非番・日勤)";
+                s1 = "４号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
@@ -1031,7 +1046,7 @@ public class TyphoonActivity extends AppCompatActivity {
                 s1 = "招集なし";
                 s2 = "";
             } else {
-                s1 = "２号招集(非番・日勤)";
+                s1 = "２号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)";
                 } else {
@@ -1041,7 +1056,7 @@ public class TyphoonActivity extends AppCompatActivity {
         } else if (Arrays.asList(b).contains(mMainStation)) {
             //４号招集なので、１号、２号、３号は参集なしの判定する
             if (mKubun.equals("４号招集")) {
-                s1 = "４号招集(非番・日勤)";
+                s1 = "４号非常招集(非番・日勤)";
                 if (mMainStation.equals("消防局")) {
                     s2 = mMainStation + "へ参集(所属担当者に確認すること)\n\n※平日の9時～17時30分は、原則、勤務中の毎日勤務者で活動体制を確保する";
                 } else {
@@ -1137,7 +1152,7 @@ public class TyphoonActivity extends AppCompatActivity {
             s1 = "招集なし";
             s2 = "";
         } else {
-            s1 = "２号招集(非番・日勤)";
+            s1 = "２号非常招集(非番・日勤)";
             if (mMainStation.equals("消防局")||mMainStation.equals("教育訓練センター")) {
                 s2 = mMainStation + "へ参集(所属担当者に確認すること)";
             } else {
@@ -1207,7 +1222,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //大和川（柏原）
     private void showTyphoon32() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3.2m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位4.7mに到達)", "■避難準備情報(水位4.7m)", "■避難勧告(水位5.3m)", "■避難指示(水位6.8m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3.2m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位4.7mに到達)", "■避難準備情報(水位4.7m)、避難勧告発令の見込み", "■避難勧告(水位5.3m)", "■避難指示(水位6.8m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1238,7 +1253,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■大和川（柏原） 避難勧告(水位5.3m)", a, b, c, gaitousyo, 2);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■大和川（柏原） 避難指示(水位6.8m)", gaitousyo, 2);
                         break;}
                 }
@@ -1252,7 +1267,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //神崎川（三国）
     private void showTyphoon33() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3.8m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位4.8mに到達)", "■避難準備情報(水位4.8m)", "■避難勧告(水位5m)", "■避難指示(水位5.8m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3.8m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位4.8mに到達)", "■避難準備情報(水位4.8m)、避難勧告発令の見込み", "■避難勧告(水位5m)", "■避難指示(水位5.8m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1281,7 +1296,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4b("■神崎川（三国） 避難勧告(水位5m)", a, b, gaitousyo, 3);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■神崎川（三国） 避難指示(水位5.8m)", gaitousyo, 3);
                         break;}
                 }
@@ -1295,7 +1310,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //安威川（千歳橋）
     private void showTyphoon34() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3.25m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.5mに到達)", "■避難準備情報(水位3.5m)", "■避難勧告(水位4.25m)", "■避難指示(水位5.1m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3.25m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.5mに到達)", "■避難準備情報(水位3.5m)、避難勧告発令の見込み", "■避難勧告(水位4.25m)", "■避難指示(水位5.1m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1326,7 +1341,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■安威川（千歳橋） 避難勧告(水位4.25m)", a, b, c, gaitousyo, 4);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■安威川（千歳橋） 避難指示(水位5.1m)", gaitousyo, 4);
                         break;}
                 }
@@ -1340,7 +1355,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //寝屋川（京橋）
     private void showTyphoon35() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.1mに到達)", "■避難準備情報(水位3.1m)", "■避難勧告(水位3.3m)", "■避難指示(水位3.5m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.1mに到達)", "■避難準備情報(水位3.1m)、避難勧告発令の見込み", "■避難勧告(水位3.3m)", "■避難指示(水位3.5m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1371,7 +1386,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■寝屋川（京橋） 避難勧告(水位3.3m)", a, b, c, gaitousyo, 5);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■寝屋川（京橋） 避難指示(水位3.5m)", gaitousyo, 5);
                         break;}
                 }
@@ -1385,7 +1400,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //第二寝屋川（昭明橋）
     private void showTyphoon36() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3.4m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位4.25mに到達)", "■避難準備情報(水位4.25m)", "■避難勧告(水位4.55m)", "■避難指示(水位4.85m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3.4m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位4.25mに到達)", "■避難準備情報(水位4.25m)、避難勧告発令の見込み", "■避難勧告(水位4.55m)", "■避難指示(水位4.85m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1393,8 +1408,8 @@ public class TyphoonActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:{
-                        String[] a = {"東成", "城東", "鶴見", "消防局"};
-                        String gaitousyo = "東成,城東,鶴見,消防局";
+                        String[] a = {"中央", "城東", "鶴見", "消防局"};
+                        String gaitousyo = "中央,城東,鶴見,消防局";
                         showTyphoonRiver1("■第二寝屋川（昭明橋） 氾濫注意水位(水位3.4m)、水防警報(出動)", a, gaitousyo, 6);
                         break;}
                     case 1:{
@@ -1416,7 +1431,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■第二寝屋川（昭明橋） 避難勧告(水位4.55m)", a, b, c, gaitousyo, 6);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■第二寝屋川（昭明橋） 避難指示(水位4.85m)", gaitousyo, 6);
                         break;}
                 }
@@ -1430,7 +1445,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //平野川（剣橋）
     private void showTyphoon37() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3.3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.9mに到達)", "■避難準備情報(水位3.9m)", "■避難勧告(水位4.15m)", "■避難指示(水位4.4m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3.3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.9mに到達)", "■避難準備情報(水位3.9m)、避難勧告発令の見込み", "■避難勧告(水位4.15m)", "■避難指示(水位4.4m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1461,7 +1476,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■平野川（剣橋） 避難勧告(水位4.15m)", a, b, c, gaitousyo, 7);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■平野川（剣橋） 避難指示(水位4.4m)", gaitousyo, 7);
                         break;}
                 }
@@ -1475,7 +1490,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //平野川分水路（今里大橋）
     private void showTyphoon38() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位3.3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.4mに到達)", "■避難準備情報(水位3.4m)", "■避難勧告(水位3.85m)", "■避難指示(水位4.63m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位3.3m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.4mに到達)", "■避難準備情報(水位3.4m)、避難勧告発令の見込み", "■避難勧告(水位3.85m)", "■避難指示(水位4.63m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1506,7 +1521,7 @@ public class TyphoonActivity extends AppCompatActivity {
                         showTyphoonRiver4("■平野川分水路（今里大橋） 避難勧告(水位3.85m)", a, b, c, gaitousyo, 8);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■平野川分水路（今里大橋） 避難指示(水位4.63m)", gaitousyo, 8);
                         break;}
                 }
@@ -1543,7 +1558,7 @@ public class TyphoonActivity extends AppCompatActivity {
 
     //東除川（大堀上小橋）
     private void showTyphoon3A() {
-        final CharSequence[] actions = {"■氾濫注意水位(水位2.9m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.2mに到達)", "■避難準備情報(水位3.2m)", "■避難勧告(水位3.9m)", "■避難指示(水位5.3m)"};
+        final CharSequence[] actions = {"■氾濫注意水位(水位2.9m)、水防警報(出動)", "■避難準備情報発令の見込み(1時間以内に水位3.2mに到達)", "■避難準備情報(水位3.2m)、避難勧告発令の見込み", "■避難勧告(水位3.9m)", "■避難指示(水位5.3m)"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("水位の状況は？");
         builder.setItems(actions, new DialogInterface.OnClickListener() {
@@ -1567,12 +1582,12 @@ public class TyphoonActivity extends AppCompatActivity {
                         break;}
                     case 3:{
                         String[] a = {"平野", "消防局"};
-                        String[] b = {"北", "都島", "福島", "此花", "中央", "西", "港", "大正", "天王寺", "浪速", "西淀川", "淀川", "東淀川", "東成", "生野", "旭", "城東", "鶴見", "住之江", "住吉", "東住吉", "西成", "水上"};
-                        String gaitousyo = "流域署２号：平野,消防局\nその他の署４号：北,都島,福島,此花,中央,西,港,大正,天王寺,浪速,西淀川,淀川,東淀川,東成,生野,旭,城東,鶴見,住之江,住吉,東住吉,西成,水上";
+                        String[] b = {"北", "都島", "福島", "此花", "中央", "西", "港", "大正", "天王寺", "浪速", "西淀川", "淀川", "東淀川", "東成", "生野", "旭", "城東", "鶴見", "阿倍野", "住之江", "住吉", "東住吉", "西成", "水上"};
+                        String gaitousyo = "流域署２号：平野,消防局\nその他の署４号：北,都島,福島,此花,中央,西,港,大正,天王寺,浪速,西淀川,淀川,東淀川,東成,生野,旭,城東,鶴見,阿倍野,住之江,住吉,東住吉,西成,水上";
                         showTyphoonRiver4b("■東除川（大堀上小橋） 避難勧告(水位3.9m)", a, b, gaitousyo, 10);
                         break;}
                     case 4:{
-                        String gaitousyo = "２号：全署";
+                        String gaitousyo = "２号：全署、消防局";
                         showTyphoonRiver5("■東除川（大堀上小橋） 避難指示(水位5.3m)", gaitousyo, 10);
                         break;}
                 }
