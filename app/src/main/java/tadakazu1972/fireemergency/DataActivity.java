@@ -556,7 +556,14 @@ public class DataActivity extends AppCompatActivity {
         int _syozokuParentPos=0;
         _syozokuPos=0;
         mInitSpinner = true;
-        if (_syozoku.equals("消防局")){ _syozokuParentPos=0; _syozokuPos=0;}
+        if (_syozoku.equals("総務課")){ _syozokuParentPos=0; _syozokuPos=0;}
+        if (_syozoku.equals("人事課")){ _syozokuParentPos=0; _syozokuPos=1;}
+        if (_syozoku.equals("施設課")){ _syozokuParentPos=0; _syozokuPos=2;}
+        if (_syozoku.equals("予防課")){ _syozokuParentPos=0; _syozokuPos=3;}
+        if (_syozoku.equals("規制課")){ _syozokuParentPos=0; _syozokuPos=4;}
+        if (_syozoku.equals("警防課")){ _syozokuParentPos=0; _syozokuPos=5;}
+        if (_syozoku.equals("司令課")){ _syozokuParentPos=0; _syozokuPos=6;}
+        if (_syozoku.equals("救急課")){ _syozokuParentPos=0; _syozokuPos=7;}
         if (_syozoku.equals("北本署")){ _syozokuParentPos=1; _syozokuPos=0;}
         if (_syozoku.equals("梅田"))  { _syozokuParentPos=1; _syozokuPos=1;}
         if (_syozoku.equals("浮田"))  { _syozokuParentPos=1; _syozokuPos=2;}
