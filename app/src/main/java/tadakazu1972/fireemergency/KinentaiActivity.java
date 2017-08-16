@@ -848,7 +848,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 //メール立ち上げ
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.setType("text/plain");
+                intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
@@ -964,7 +964,7 @@ public class KinentaiActivity extends AppCompatActivity {
                 //メール立ち上げ
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.setType("text/plain");
+                intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
