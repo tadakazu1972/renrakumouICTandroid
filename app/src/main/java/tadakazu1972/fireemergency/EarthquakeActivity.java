@@ -131,14 +131,27 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
 
-        /*//データ操作ボタン
+        //データ操作ボタン
         mView.findViewById(R.id.btnData).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, DataActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
+
+        //検索ボタン
+        mView.findViewById(R.id.btnSearch).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //スピナーをさわっていたら取得
+                resKubun = (String)editKubun.getSelectedItem();
+                resSyozoku0 = (String)editSyozoku.getSelectedItem();
+                resSyozoku = (String)editSyozoku2.getSelectedItem();
+                resKinmu = (String)editKinmu.getSelectedItem();
+                showTelResult(resKubun, resSyozoku0, resSyozoku, resKinmu);
+            }
+        });
     }
 
     private void showTel(){
