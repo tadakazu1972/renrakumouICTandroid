@@ -15,15 +15,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TyphoonActivity"
-                  android:launchMode="singleTask">
-        </activity>
-        <activity android:name=".KokuminhogoActivity"
-                  android:launchMode="singleTask">
-        </activity>
-        <activity android:name=".KinentaiActivity"
-                  android:launchMode="singleTask">
-        </activity>
         <activity android:name=".DataActivity"
                   android:launchMode="singleTask">
         </activity>

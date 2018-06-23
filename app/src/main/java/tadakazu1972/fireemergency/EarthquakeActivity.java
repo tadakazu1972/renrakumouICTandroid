@@ -100,27 +100,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mView.findViewById(R.id.btnTyphoon).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mActivity, TyphoonActivity.class);
-                startActivity(intent);
-            }
-        });
-        mView.findViewById(R.id.btnKokuminhogo).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mActivity, KokuminhogoActivity.class);
-                startActivity(intent);
-            }
-        });
-        mView.findViewById(R.id.btnKinentai).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mActivity, KinentaiActivity.class);
-                startActivity(intent);
-            }
-        });
+
         mView.findViewById(R.id.btnEarthquake1).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
