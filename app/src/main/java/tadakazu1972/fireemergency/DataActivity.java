@@ -214,27 +214,6 @@ public class DataActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mView.findViewById(R.id.btnTyphoon).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mActivity, TyphoonActivity.class);
-                startActivity(intent);
-            }
-        });
-        mView.findViewById(R.id.btnKokuminhogo).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mActivity, KokuminhogoActivity.class);
-                startActivity(intent);
-            }
-        });
-        mView.findViewById(R.id.btnKinentai).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mActivity, KinentaiActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     //連絡網データ表示
