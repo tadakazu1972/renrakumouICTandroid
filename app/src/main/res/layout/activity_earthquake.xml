@@ -3,135 +3,117 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#dd9911">
+              android:padding="20dp"
+              android:background="#efefef">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ICT戦略室災害時連絡網"
+        android:textColor="#111111"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="基礎データ入力"
+        android:text="データ全件一覧表示"
         android:textSize="20sp"
-        android:textColor="#ffffff"
+        android:textColor="#eeeeee"
         android:background="@drawable/data_button"
-        android:id="@+id/btnData"/>
+        android:id="@+id/btnTel"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■グループ検索"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="14dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="以下の条件を設定し「検索」を押してください"
+        android:textColor="#111111"
+        android:textSize="14sp"
+        android:layout_marginBottom="14dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="震災"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="1"
-            android:id="@+id/btnEarthquake"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
         <TextView
-            android:id="@+id/lblEarthquake"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="非常招集基準（震災）"
+            android:layout_weight="1"
+            android:text="・非常招集区分"
+            android:textColor="#111111"
             android:textSize="20sp"
-            android:textColor="#ffffff"
-            android:textAlignment="center"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal"/>
-        <Button
-            android:layout_width="300dp"
+            android:layout_marginBottom="20dp"/>
+        <Spinner
+            android:id="@+id/editKubun"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="震度５強以上"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnEarthquake1"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal"/>
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="震度５弱"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnEarthquake2"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal"/>
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="震度４"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnEarthquake3"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"/>
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="震度３以下"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnEarthquake4"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"/>
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="東海地震に伴う非常招集"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/btnEarthquake5"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_weight="1"
+            android:entries="@array/kubunB"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(地震)"
-            android:textSize="18sp"
-            android:id="@+id/btnEarthquakeEarthquake"
-            android:layout_weight="1"/>
-        <Button
+            android:layout_weight="1"
+            android:text="・所属"
+            android:textColor="#111111"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
+        <Spinner
+            android:id="@+id/editSyozoku"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="情報(停電)"
-            android:textSize="18sp"
-            android:id="@+id/btnEarthquakeBlackout"
-            android:layout_weight="1"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="情報(道路)"
-            android:textSize="18sp"
-            android:id="@+id/btnEarthquakeRoad"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:entries="@array/firestationB"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="連絡網"
-            android:textSize="18sp"
-            android:id="@+id/btnEarthquakeTel"
-            android:layout_weight="1"/>
-        <Button
+            android:layout_weight="1"
+            android:text=""
+            android:textColor="#111111"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
+        <Spinner
+            android:id="@+id/editSyozoku2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="留意事項"
-            android:textSize="18sp"
-            android:id="@+id/btnEarthquakeCaution"
-            android:layout_weight="1"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="防災ネット"
-            android:textSize="18sp"
-            android:id="@+id/btnEarthquakeBousaiNet"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="・勤務区分"
+            android:textColor="#111111"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
+        <Spinner
+            android:id="@+id/editKinmu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/kinmuB"/>
+    </LinearLayout>
+
 </LinearLayout>
