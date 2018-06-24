@@ -6,127 +6,55 @@
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:padding="20dp">
     <Button
-        android:id="@+id/btnGuide"
+        android:id="@+id/btnEarthquake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="アプリ説明書"
+        android:text="トップへ戻る"
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:background="@drawable/data_button"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="32dp"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="所属等を設定し、登録ボタンを押してください"
-        android:textSize="18sp"
-        android:textColor="#111111"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal"/>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:padding="20dp">
-    <TextView
-        android:id="@+id/lblData2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="■勤務消防署等"
-        android:textColor="#111111"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp"/>
-    <Spinner
-        android:id="@+id/spnData1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spn1Prompt"
-        android:entries="@array/firestation"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:id="@+id/lblData3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="■大津波・津波警報時参集指定署"
-        android:textColor="#111111"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp"/>
-    <Spinner
-        android:id="@+id/spnData2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spn1Prompt"
-        android:entries="@array/firestation"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:id="@+id/lblData4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="■非常招集区分"
-        android:textColor="#111111"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp"/>
-    <Spinner
-        android:id="@+id/spnData3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spn1Prompt"
-        android:entries="@array/kubun"/>
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="登録"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:background="@drawable/red_button"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="8dp"/>
-    </LinearLayout>
-    <TextView
+        android:layout_marginTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="連絡網データ操作"
         android:textColor="#111111"
         android:textAlignment="center"
         android:textSize="20sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
         <Button
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="一覧"
             android:textSize="20sp"
             android:layout_weight="1"
             android:id="@+id/btnTel"/>
         <Button
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="新規"
             android:textSize="20sp"
             android:layout_weight="1"
             android:id="@+id/btnTelEdit"/>
         <Button
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="修正"
             android:textSize="18sp"
             android:layout_weight="1"
             android:id="@+id/btnTelUpdate"/>
         <Button
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="削除"
             android:textSize="18sp"
             android:layout_weight="1"
             android:id="@+id/btnTelDelete"/>
-    </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -134,19 +62,17 @@
         android:textSize="20sp"
         android:layout_marginBottom="14dp"
         android:id="@+id/btnImport"/>
-    <LinearLayout
+    <Button
+        android:id="@+id/btnGuide"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="震災"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            android:id="@+id/btnEarthquake"/>
-    </LinearLayout>
+        android:layout_margin="8dp"
+        android:text="CSVファイル読み込ませ説明書"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/orange_button"/>
     <LinearLayout
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -179,9 +105,9 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="連絡網"
+            android:text="情報(天気)"
             android:textSize="18sp"
-            android:id="@+id/btnEarthquakeTel"
+            android:id="@+id/btnWeather"
             android:layout_weight="1"/>
         <Button
             android:layout_width="0dp"

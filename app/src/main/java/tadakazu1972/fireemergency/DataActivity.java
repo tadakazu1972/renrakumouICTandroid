@@ -44,13 +44,6 @@ import java.util.UUID;
 public class DataActivity extends AppCompatActivity {
     protected DataActivity mActivity = null;
     protected View mView = null;
-    private Spinner mSpn1 = null;
-    private Spinner mSpn2 = null;
-    private Spinner mSpn3 = null;
-    //所属データ保存前格納用
-    private String mainStation = null;
-    private String tsunamiStation = null;
-    private String kubun = null;
     //連絡網データ操作用変数
     protected ListView mListView = null;
     protected DBHelper mDBHelper = null;
@@ -79,141 +72,20 @@ public class DataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_data);
 
         //ボタン設定
-        mView.findViewById(R.id.btnGuide).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(mActivity, GuideActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        mSpn1 = (Spinner)findViewById(R.id.spnData1);
-        mSpn2 = (Spinner)findViewById(R.id.spnData2);
-        mSpn3 = (Spinner)findViewById(R.id.spnData3);
-
-        //保存している基礎データを呼び出してスピナーにセット
-        //勤務消防署
-        SharedPreferences sp1 = PreferenceManager.getDefaultSharedPreferences(this);
-        String compareValue1 = sp1.getString("mainStation","消防局"); // 第２引数はkeyが存在しない時に返す初期値
-        mainStation = sp1.getString("mainStation","消防局"); //インストール直後誤動作防止
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.firestation, R.layout.custom_spinner_item);
-        mSpn1.setAdapter(adapter1);
-        if (!compareValue1.equals(null)){
-            int spinnerPosition = adapter1.getPosition(compareValue1);
-            mSpn1.setSelection(spinnerPosition);
-        }
-        //大津波・津波警報時指定署
-        SharedPreferences sp2 = PreferenceManager.getDefaultSharedPreferences(this);
-        String compareValue2 = sp2.getString("tsunamiStation", "消防局"); // 第２引数はkeyが存在しない時に返す初期値
-        tsunamiStation = sp2.getString("tsunamiStation", "消防局"); //インストール直後誤動作防止
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.firestation, R.layout.custom_spinner_item);
-        mSpn2.setAdapter(adapter2);
-        if (!compareValue2.equals(null)){
-            int spinnerPosition = adapter2.getPosition(compareValue2);
-            mSpn2.setSelection(spinnerPosition);
-        }
-        //招集区分
-        SharedPreferences sp3 = PreferenceManager.getDefaultSharedPreferences(this);
-        String compareValue3 = sp3.getString("kubun", "１"); // 第２引数はkeyが存在しない時に返す初期値
-        kubun = sp3.getString("kubun", "１"); //インストール直後誤動作防止
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.kubun, R.layout.custom_spinner_item);
-        mSpn3.setAdapter(adapter3);
-        if (!compareValue3.equals(null)){
-            int spinnerPosition = adapter3.getPosition(compareValue3);
-            mSpn3.setSelection(spinnerPosition);
-        }
-        //スピナーの選択リスナー設定
-        mSpn1.setOnItemSelectedListener(new OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                mainStation = (String)mSpn1.getSelectedItem();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent){
-                //何もしない
-            }
-        });
-        mSpn2.setOnItemSelectedListener(new OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                tsunamiStation = (String)mSpn2.getSelectedItem();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent){
-                //何もしない
-            }
-        });
-        mSpn3.setOnItemSelectedListener(new OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                kubun = (String)mSpn3.getSelectedItem();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent){
-                //何もしない
-            }
-        });
-
-        mView.findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //保存
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                sp.edit().putString("mainStation",mainStation).apply();
-                sp.edit().putString("tsunamiStation",tsunamiStation).apply();
-                sp.edit().putString("kubun",kubun).apply();
-                Toast.makeText(mActivity, "基礎データを登録しました", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //連絡網データ作成
-        mListView = new ListView(this);
-        mDBHelper = new DBHelper(this);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        String mKey = sp.getString("key", null);
-        db = mDBHelper.getWritableDatabase(mKey);
-        //データまとめて削除用ArrayList初期化
-        deleteArray = new ArrayList<String>();
-        //連絡網データ確認ボタン
-        mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showCheck(0);
-            }
-        });
-        //連絡網データ入力ボタン
-        mView.findViewById(R.id.btnTelEdit).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showEditTel();
-            }
-        });
-        //連絡網データ修正ボタン
-        mView.findViewById(R.id.btnTelUpdate).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showCheck(1);
-            }
-        });
-        //連絡網データ削除ボタン
-        mView.findViewById(R.id.btnTelDelete).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showCheck(2);
-            }
-        });
-        mView.findViewById(R.id.btnImport).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showImport();
-            }
-        });
-
         //復帰用ボタン
         mView.findViewById(R.id.btnEarthquake).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, EarthquakeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //CSV読み込ませ説明書遷移
+        mView.findViewById(R.id.btnGuide).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, GuideActivity.class);
                 startActivity(intent);
             }
         });
@@ -224,6 +96,12 @@ public class DataActivity extends AppCompatActivity {
 
     //ボタン設定
     private void initButtons(){
+        mView.findViewById(R.id.btnEarthquakeEarthquake).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEarthquake();
+            }
+        });
         mView.findViewById(R.id.btnEarthquakeBlackout).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
@@ -236,10 +114,10 @@ public class DataActivity extends AppCompatActivity {
                 showRoad();
             }
         });
-        mView.findViewById(R.id.btnEarthquakeTel).setOnClickListener(new OnClickListener(){
+        mView.findViewById(R.id.btnWeather).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                showCheck();
+                showWeather();
             }
         });
         mView.findViewById(R.id.btnEarthquakeCaution).setOnClickListener(new OnClickListener(){
@@ -938,6 +816,20 @@ public class DataActivity extends AppCompatActivity {
         } else {
             showTel();
         }
+    }
+
+    //情報（気象）
+    private void showWeather() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("URLをタップしてください");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.info_weather, (ViewGroup) findViewById(R.id.infoWeather));
+        builder.setView(layout);
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
     }
 
     //留意事項
