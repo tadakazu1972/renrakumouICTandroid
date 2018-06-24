@@ -428,7 +428,8 @@ public class DataActivity extends AppCompatActivity {
         editTel.setText(_tel);
         editMail.setText(_mail);
         //非常招集区分のスピナー初期値設定
-        int _kubunPos=0;
+        //tel_editのレイアウトでエントリーを設定しており、以下、不要と思われるので複数行コメントアウト
+        /*int _kubunPos=0;
         if (_kubun.equals("１号招集")){ _kubunPos =0; }
         if (_kubun.equals("２号招集")){ _kubunPos =1; }
         if (_kubun.equals("３号招集")){ _kubunPos =2; }
@@ -542,7 +543,7 @@ public class DataActivity extends AppCompatActivity {
         if (_kinmu.equals("日勤")){ _kinmuPos =0; }
         if (_kinmu.equals("１部")){ _kinmuPos =1; }
         if (_kinmu.equals("２部")){ _kinmuPos =2; }
-        editKinmu.setSelection(_kinmuPos);
+        editKinmu.setSelection(_kinmuPos);*/
         //親所属スピナー選択時の処理
         editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override

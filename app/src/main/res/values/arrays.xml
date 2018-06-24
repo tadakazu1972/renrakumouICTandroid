@@ -1,185 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="firestation">
-        <item>消防局</item>
-        <item>北</item>
-        <item>都島</item>
-        <item>福島</item>
-        <item>此花</item>
-        <item>中央</item>
-        <item>西</item>
-        <item>港</item>
-        <item>大正</item>
-        <item>天王寺</item>
-        <item>浪速</item>
-        <item>西淀川</item>
-        <item>淀川</item>
-        <item>東淀川</item>
-        <item>東成</item>
-        <item>生野</item>
-        <item>旭</item>
-        <item>城東</item>
-        <item>鶴見</item>
-        <item>住之江</item>
-        <item>阿倍野</item>
-        <item>住吉</item>
-        <item>東住吉</item>
-        <item>平野</item>
-        <item>西成</item>
-        <item>水上</item>
-        <item>教育訓練センター</item>
+        <item>企画担当</item>
+        <item>活用推進担当</item>
+        <item>システムマネジメント担当</item>
     </string-array>
     <string-array name="firestation0">
-        <item>総務課</item>
-        <item>人事課</item>
-        <item>施設課</item>
-        <item>予防課</item>
-        <item>規制課</item>
-        <item>警防課</item>
-        <item>司令課</item>
-        <item>救急課</item>
+        <item>企画グループ</item>
+        <item>支援グループ</item>
     </string-array>
     <string-array name="firestation1">
-        <item>北本署</item>
-        <item>梅田</item>
-        <item>浮田</item>
-        <item>南森町</item>
-        <item>与力</item>
-        <item>大淀町</item>
-        <item>本庄</item>
+        <item>活用推進グループ</item>
+        <item>基盤グループ</item>
     </string-array>
     <string-array name="firestation2">
-        <item>都島本署</item>
-        <item>高倉</item>
-        <item>東野田</item>
-    </string-array>
-    <string-array name="firestation3">
-        <item>福島本署</item>
-        <item>上福島</item>
-        <item>海老江</item>
-    </string-array>
-    <string-array name="firestation4">
-        <item>此花本署</item>
-        <item>桜島</item>
-        <item>西九条</item>
-    </string-array>
-    <string-array name="firestation5">
-        <item>中央本署</item>
-        <item>東雲</item>
-        <item>道頓堀</item>
-        <item>南坂町</item>
-        <item>上町</item>
-    </string-array>
-    <string-array name="firestation6">
-        <item>西本署</item>
-        <item>江戸堀</item>
-        <item>新町</item>
-    </string-array>
-    <string-array name="firestation7">
-        <item>港本署</item>
-        <item>田中</item>
-    </string-array>
-    <string-array name="firestation8">
-        <item>大正本署</item>
-        <item>泉尾</item>
-        <item>鶴町</item>
-    </string-array>
-    <string-array name="firestation9">
-        <item>天王寺本署</item>
-        <item>元町</item>
-    </string-array>
-    <string-array name="firestation10">
-        <item>浪速本署</item>
-        <item>恵美須</item>
-        <item>立葉</item>
-        <item>浪速出張所</item>
-    </string-array>
-    <string-array name="firestation11">
-        <item>西淀川本署</item>
-        <item>佃</item>
-        <item>大和田</item>
-        <item>竹島</item>
-    </string-array>
-    <string-array name="firestation12">
-        <item>淀川本署</item>
-        <item>十三橋</item>
-        <item>加島</item>
-        <item>東三国</item>
-    </string-array>
-    <string-array name="firestation13">
-        <item>東淀川本署</item>
-        <item>豊里</item>
-        <item>小松</item>
-        <item>井高野</item>
-        <item>柴島</item>
-        <item>西淡路</item>
-    </string-array>
-    <string-array name="firestation14">
-        <item>東成本署</item>
-        <item>中本</item>
-        <item>深江</item>
-    </string-array>
-    <string-array name="firestation15">
-        <item>生野本署</item>
-        <item>勝山</item>
-        <item>中川</item>
-        <item>巽</item>
-    </string-array>
-    <string-array name="firestation16">
-        <item>旭本署</item>
-        <item>新森</item>
-        <item>赤川</item>
-    </string-array>
-    <string-array name="firestation17">
-        <item>城東本署</item>
-        <item>放出</item>
-        <item>中浜</item>
-        <item>関目</item>
-    </string-array>
-    <string-array name="firestation18">
-        <item>鶴見本署</item>
-        <item>今津</item>
-        <item>茨田</item>
-    </string-array>
-    <string-array name="firestation19">
-        <item>住之江本署</item>
-        <item>平林</item>
-        <item>加賀屋</item>
-        <item>南港</item>
-    </string-array>
-    <string-array name="firestation20">
-        <item>阿倍野本署</item>
-        <item>清明通</item>
-        <item>阪南</item>
-    </string-array>
-    <string-array name="firestation21">
-        <item>住吉本署</item>
-        <item>苅田</item>
-        <item>万代</item>
-    </string-array>
-    <string-array name="firestation22">
-        <item>東住吉本署</item>
-        <item>北田辺</item>
-        <item>杭全</item>
-        <item>矢田</item>
-    </string-array>
-    <string-array name="firestation23">
-        <item>平野本署</item>
-        <item>加美</item>
-        <item>長吉</item>
-        <item>喜連</item>
-        <item>加美正覚寺</item>
-    </string-array>
-    <string-array name="firestation24">
-        <item>西成本署</item>
-        <item>海道</item>
-        <item>津守</item>
-    </string-array>
-    <string-array name="firestation25">
-        <item>水上</item>
-    </string-array>
-    <string-array name="firestation26">
-        <item>教育訓練センター</item>
+        <item>システムマネジメント担当</item>
     </string-array>
     <string-array name="kubun">
         <item>1</item>
@@ -188,219 +23,57 @@
         <item>4</item>
     </string-array>
     <string-array name="kinmu">
-        <item>日勤</item>
-        <item>１部</item>
-        <item>２部</item>
+        <item>本庁舎</item>
+        <item>阿波座センタービル</item>
+        <item>災害本部</item>
+        <item>阿倍野防災センター</item>
+        <item>北区役所</item>
+        <item>都島区役所</item>
+        <item>福島区役所</item>
+        <item>此花区役所</item>
+        <item>中央区役所</item>
+        <item>西区役所</item>
+        <item>港区役所</item>
+        <item>大正区役所</item>
+        <item>天王寺区役所</item>
+        <item>浪速区役所</item>
+        <item>西淀川区役所</item>
+        <item>淀川区役所</item>
+        <item>東淀川区役所</item>
+        <item>東成区役所</item>
+        <item>生野区役所</item>
+        <item>旭区役所</item>
+        <item>城東区役所</item>
+        <item>鶴見区役所</item>
+        <item>住之江区役所</item>
+        <item>阿倍野区役所</item>
+        <item>住吉区役所</item>
+        <item>東住吉区役所</item>
+        <item>平野区役所</item>
+        <item>西成区役所</item>
     </string-array>
     <string-array name="firestationB">
         <item>すべて</item>
-        <item>消防局</item>
-        <item>北</item>
-        <item>都島</item>
-        <item>福島</item>
-        <item>此花</item>
-        <item>中央</item>
-        <item>西</item>
-        <item>港</item>
-        <item>大正</item>
-        <item>天王寺</item>
-        <item>浪速</item>
-        <item>西淀川</item>
-        <item>淀川</item>
-        <item>東淀川</item>
-        <item>東成</item>
-        <item>生野</item>
-        <item>旭</item>
-        <item>城東</item>
-        <item>鶴見</item>
-        <item>住之江</item>
-        <item>阿倍野</item>
-        <item>住吉</item>
-        <item>東住吉</item>
-        <item>平野</item>
-        <item>西成</item>
-        <item>水上</item>
-        <item>教育訓練センター</item>
+        <item>企画担当</item>
+        <item>活用推進担当</item>
+        <item>システムマネジメント担当</item>
     </string-array>
     <string-array name="firestationB0">
         <item>すべて</item>
     </string-array>
     <string-array name="firestationB1">
         <item>すべて</item>
-        <item>総務課</item>
-        <item>人事課</item>
-        <item>施設課</item>
-        <item>予防課</item>
-        <item>規制課</item>
-        <item>警防課</item>
-        <item>司令課</item>
-        <item>救急課</item>
+        <item>企画グループ</item>
+        <item>支援グループ</item>
     </string-array>
     <string-array name="firestationB2">
         <item>すべて</item>
-        <item>北本署</item>
-        <item>梅田</item>
-        <item>浮田</item>
-        <item>南森町</item>
-        <item>与力</item>
-        <item>大淀町</item>
-        <item>本庄</item>
+        <item>活用推進グループ</item>
+        <item>基盤グループ</item>
     </string-array>
     <string-array name="firestationB3">
         <item>すべて</item>
-        <item>都島本署</item>
-        <item>高倉</item>
-        <item>東野田</item>
-    </string-array>
-    <string-array name="firestationB4">
-        <item>すべて</item>
-        <item>福島本署</item>
-        <item>上福島</item>
-        <item>海老江</item>
-    </string-array>
-    <string-array name="firestationB5">
-        <item>すべて</item>
-        <item>此花本署</item>
-        <item>桜島</item>
-        <item>西九条</item>
-    </string-array>
-    <string-array name="firestationB6">
-        <item>すべて</item>
-        <item>中央本署</item>
-        <item>東雲</item>
-        <item>道頓堀</item>
-        <item>南坂町</item>
-        <item>上町</item>
-    </string-array>
-    <string-array name="firestationB7">
-        <item>すべて</item>
-        <item>西本署</item>
-        <item>江戸堀</item>
-        <item>新町</item>
-    </string-array>
-    <string-array name="firestationB8">
-        <item>すべて</item>
-        <item>港本署</item>
-        <item>田中</item>
-    </string-array>
-    <string-array name="firestationB9">
-        <item>すべて</item>
-        <item>大正本署</item>
-        <item>泉尾</item>
-        <item>鶴町</item>
-    </string-array>
-    <string-array name="firestationB10">
-        <item>すべて</item>
-        <item>天王寺本署</item>
-        <item>元町</item>
-    </string-array>
-    <string-array name="firestationB11">
-        <item>すべて</item>
-        <item>浪速本署</item>
-        <item>恵美須</item>
-        <item>立葉</item>
-        <item>浪速出張所</item>
-    </string-array>
-    <string-array name="firestationB12">
-        <item>すべて</item>
-        <item>西淀川本署</item>
-        <item>佃</item>
-        <item>大和田</item>
-        <item>竹島</item>
-    </string-array>
-    <string-array name="firestationB13">
-        <item>すべて</item>
-        <item>淀川本署</item>
-        <item>十三橋</item>
-        <item>加島</item>
-        <item>東三国</item>
-    </string-array>
-    <string-array name="firestationB14">
-        <item>すべて</item>
-        <item>東淀川本署</item>
-        <item>豊里</item>
-        <item>小松</item>
-        <item>井高野</item>
-        <item>柴島</item>
-        <item>西淡路</item>
-    </string-array>
-    <string-array name="firestationB15">
-        <item>すべて</item>
-        <item>東成本署</item>
-        <item>中本</item>
-        <item>深江</item>
-    </string-array>
-    <string-array name="firestationB16">
-        <item>すべて</item>
-        <item>生野本署</item>
-        <item>勝山</item>
-        <item>中川</item>
-        <item>巽</item>
-    </string-array>
-    <string-array name="firestationB17">
-        <item>すべて</item>
-        <item>旭本署</item>
-        <item>新森</item>
-        <item>赤川</item>
-    </string-array>
-    <string-array name="firestationB18">
-        <item>すべて</item>
-        <item>城東本署</item>
-        <item>放出</item>
-        <item>中浜</item>
-        <item>関目</item>
-    </string-array>
-    <string-array name="firestationB19">
-        <item>すべて</item>
-        <item>鶴見本署</item>
-        <item>今津</item>
-        <item>茨田</item>
-    </string-array>
-    <string-array name="firestationB20">
-        <item>すべて</item>
-        <item>住之江本署</item>
-        <item>平林</item>
-        <item>加賀屋</item>
-        <item>南港</item>
-    </string-array>
-    <string-array name="firestationB21">
-        <item>すべて</item>
-        <item>阿倍野本署</item>
-        <item>清明通</item>
-        <item>阪南</item>
-    </string-array>
-    <string-array name="firestationB22">
-        <item>すべて</item>
-        <item>住吉本署</item>
-        <item>苅田</item>
-        <item>万代</item>
-    </string-array>
-    <string-array name="firestationB23">
-        <item>すべて</item>
-        <item>東住吉本署</item>
-        <item>北田辺</item>
-        <item>杭全</item>
-        <item>矢田</item>
-    </string-array>
-    <string-array name="firestationB24">
-        <item>すべて</item>
-        <item>平野本署</item>
-        <item>加美</item>
-        <item>長吉</item>
-        <item>喜連</item>
-        <item>加美正覚寺</item>
-    </string-array>
-    <string-array name="firestationB25">
-        <item>すべて</item>
-        <item>西成本署</item>
-        <item>海道</item>
-        <item>津守</item>
-    </string-array>
-    <string-array name="firestationB26">
-        <item>水上</item>
-    </string-array>
-    <string-array name="firestationB27">
-        <item>教育訓練センター</item>
+        <item>システムマネジメント担当</item>
     </string-array>
     <string-array name="kubunB">
         <item>すべて</item>
@@ -411,78 +84,33 @@
     </string-array>
     <string-array name="kinmuB">
         <item>すべて</item>
-        <item>日勤</item>
-        <item>１部</item>
-        <item>２部</item>
-    </string-array>
-    <string-array name="nankaitraf1">
-        <item>山梨県中・西部</item>
-        <item>長野県南部</item>
-        <item>静岡県東部</item>
-        <item>静岡県中部</item>
-        <item>静岡県西部</item>
-        <item>駿河湾</item>
-        <item>駿河湾南方沖</item>
-        <item>新島・神津島近海</item>
-        <item>愛知県東部</item>
-        <item>愛知県西部</item>
-        <item>遠州灘</item>
-        <item>三河湾</item>
-        <item>岐阜県美濃東部</item>
-        <item>三重県北部</item>
-        <item>三重県中部</item>
-        <item>三重県南部</item>
-        <item>伊勢湾</item>
-        <item>三重県南東沖</item>
-        <item>和歌山県北部</item>
-        <item>和歌山県南部</item>
-        <item>和歌山県南方沖</item>
-        <item>紀伊水道</item>
-        <item>奈良県</item>
-        <item>淡路島付近</item>
-        <item>播磨灘</item>
-        <item>徳島県北部</item>
-        <item>徳島県南部</item>
-        <item>香川県東部</item>
-        <item>香川県西部</item>
-        <item>瀬戸内海中部</item>
-        <item>愛媛県東予</item>
-        <item>愛媛県中予</item>
-        <item>愛媛県南予</item>
-        <item>伊予灘豊後水道</item>
-        <item>高知県東部</item>
-        <item>高知県中部</item>
-        <item>高知県西部</item>
-        <item>土佐湾</item>
-        <item>四国沖</item>
-        <item>大分県南部</item>
-        <item>宮崎県北部平野部</item>
-        <item>日向灘</item>
-        <item>九州地方南東沖</item>
-        <item>その他</item>
-    </string-array>
-    <string-array name="nankaitraf21">
-        <item>山梨県</item>
-        <item>長野県</item>
-        <item>岐阜県</item>
-        <item>静岡県</item>
-        <item>愛知県</item>
-        <item>三重県</item>
-        <item>その他</item>
-    </string-array>
-    <string-array name="nankaitraf22">
-        <item>兵庫県</item>
-        <item>奈良県</item>
-        <item>和歌山県</item>
-        <item>その他</item>
-    </string-array>
-    <string-array name="nankaitraf23">
-        <item>徳島県</item>
-        <item>香川県</item>
-        <item>愛媛県</item>
-        <item>高知県</item>
-        <item>大分県</item>
-        <item>宮崎県</item>
-        <item>その他</item>
+        <item>本庁舎</item>
+        <item>阿波座センタービル</item>
+        <item>災害本部</item>
+        <item>阿倍野防災センター</item>
+        <item>北区役所</item>
+        <item>都島区役所</item>
+        <item>福島区役所</item>
+        <item>此花区役所</item>
+        <item>中央区役所</item>
+        <item>西区役所</item>
+        <item>港区役所</item>
+        <item>大正区役所</item>
+        <item>天王寺区役所</item>
+        <item>浪速区役所</item>
+        <item>西淀川区役所</item>
+        <item>淀川区役所</item>
+        <item>東淀川区役所</item>
+        <item>東成区役所</item>
+        <item>生野区役所</item>
+        <item>旭区役所</item>
+        <item>城東区役所</item>
+        <item>鶴見区役所</item>
+        <item>住之江区役所</item>
+        <item>阿倍野区役所</item>
+        <item>住吉区役所</item>
+        <item>東住吉区役所</item>
+        <item>平野区役所</item>
+        <item>西成区役所</item>
     </string-array>
 </resources>
