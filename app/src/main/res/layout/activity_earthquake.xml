@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="・非常招集区分"
+            android:text="・○号"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="20dp"/>
@@ -68,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="・所属"
+            android:text="・担当"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="20dp"/>
@@ -107,7 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="・勤務区分"
+            android:text="・参集場所"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="20dp"/>

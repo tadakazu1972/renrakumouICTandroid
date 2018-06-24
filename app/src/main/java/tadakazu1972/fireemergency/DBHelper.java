@@ -22,8 +22,8 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table records(_id integer primary key autoincrement,name text,tel text,mail text,kubun text,syozoku0 text,syozoku text,kinmu text)");
 
         //Init
-        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku0,syozoku,kinmu) values('大阪　太郎','0662087507','ta-nakamichi@city.osaka.lg.jp','４号招集','北','北本署','日勤')");
-        sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku0,syozoku,kinmu) values('浪速　良美','0662087825','tadakazu1972@gmail.com','４号招集','消防局','警防課','日勤')");
+        //sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku0,syozoku,kinmu) values('大阪　太郎','0662087507','ta-nakamichi@city.osaka.lg.jp','４号招集','北','北本署','日勤')");
+        //sqLiteDatabase.execSQL("insert into records(name,tel,mail,kubun,syozoku0,syozoku,kinmu) values('浪速　良美','0662087825','tadakazu1972@gmail.com','４号招集','消防局','警防課','日勤')");
 
     }
 

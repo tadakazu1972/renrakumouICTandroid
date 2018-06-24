@@ -182,10 +182,10 @@
         <item>教育訓練センター</item>
     </string-array>
     <string-array name="kubun">
-        <item>１号招集</item>
-        <item>２号招集</item>
-        <item>３号招集</item>
-        <item>４号招集</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
     <string-array name="kinmu">
         <item>日勤</item>
