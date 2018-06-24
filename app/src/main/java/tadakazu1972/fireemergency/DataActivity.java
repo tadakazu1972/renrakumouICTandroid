@@ -34,7 +34,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.UUID;
 
 //import android.database.sqlite.SQLiteDatabase;
 
@@ -60,8 +59,6 @@ public class DataActivity extends AppCompatActivity {
     private int _syozokuPos = 0;
     //削除選択データid格納用
     private ArrayList<String> deleteArray;
-    //初回パスフラグ
-    public boolean mPassFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -70,6 +67,13 @@ public class DataActivity extends AppCompatActivity {
         mActivity = this;
         mView = this.getWindow().getDecorView();
         setContentView(R.layout.activity_data);
+
+        //ボタンリスナー設定
+        initButtons();
+    }
+
+    //ボタン設定
+    private void initButtons(){
 
         //ボタン設定
         //復帰用ボタン
@@ -81,21 +85,59 @@ public class DataActivity extends AppCompatActivity {
             }
         });
 
+        //連絡網データ作成
+        mListView = new ListView(this);
+        mDBHelper = new DBHelper(this);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String mKey = sp.getString("key", null);
+        db = mDBHelper.getWritableDatabase(mKey);
+        //データまとめて削除用ArrayList初期化
+        deleteArray = new ArrayList<String>();
+        //連絡網データ確認ボタン
+        mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel();
+            }
+        });
+        //連絡網データ入力ボタン
+        mView.findViewById(R.id.btnTelEdit).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEditTel();
+            }
+        });
+        //連絡網データ修正ボタン
+        mView.findViewById(R.id.btnTelUpdate).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel2();
+            }
+        });
+        //連絡網データ削除ボタン
+        mView.findViewById(R.id.btnTelDelete).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showTel3();
+            }
+        });
+        //CSV読み込みボタン
+        mView.findViewById(R.id.btnImport).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showImport();
+            }
+        });
+
         //CSV読み込ませ説明書遷移
         mView.findViewById(R.id.btnGuide).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(mActivity, GuideActivity.class);
-                startActivity(intent);
+                showGuide22();
             }
         });
 
         //情報ボタン生成
-        initButtons();
-    }
-
-    //ボタン設定
-    private void initButtons(){
         mView.findViewById(R.id.btnEarthquakeEarthquake).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
@@ -135,63 +177,6 @@ public class DataActivity extends AppCompatActivity {
     }
 
     //連絡網データ表示
-    private void showCheck(int i){
-        if (!mPassFlag) {
-            //分岐用変数
-            final int fork = i;
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.checkTitle);
-            //カスタムビュー設定
-            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            final View layout = inflater.inflate(R.layout.check, (ViewGroup) findViewById(R.id.telCheck));
-            //データ取得準備
-            final EditText edit1 = (EditText) layout.findViewById(R.id.editCheck);
-            builder.setView(layout);
-            builder.setPositiveButton("入力", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String checked = edit1.getText().toString();
-                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                    String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
-                    String word = sp.getString("password", uuid);
-                    if (checked.equals(word)) {
-                        checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                        dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                        //mPassFlagをオン
-                        mPassFlag = true;
-                        switch (fork) {
-                            case 0:
-                                showTel();
-                                break;
-                            case 1:
-                                showTel2();
-                                break;
-                            case 2:
-                                showTel3();
-                                break;
-                        }
-                    }
-                }
-            });
-            builder.setNegativeButton("キャンセル", null);
-            builder.setCancelable(true);
-            builder.create();
-            builder.show();
-        } else {
-            switch (i) {
-                case 0:
-                    showTel();
-                    break;
-                case 1:
-                    showTel2();
-                    break;
-                case 2:
-                    showTel3();
-                    break;
-            }
-        }
-    }
-
     private void showTel(){
         //データ準備
         String order;
@@ -698,6 +683,19 @@ public class DataActivity extends AppCompatActivity {
         }
     }
 
+
+    private void showGuide22(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.guide22, (ViewGroup)findViewById(R.id.guide22));
+        builder.setView(layout);
+        builder.setNegativeButton("閉じる",null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
     //情報（地震）
     private void showEarthquake(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -779,43 +777,6 @@ public class DataActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.create();
         builder.show();
-    }
-
-    //連絡網データ表示
-    private void showCheck(){
-        //初回判定　２回目以降はスルー
-        if (!mPassFlag) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.checkTitle);
-            //カスタムビュー設定
-            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            final View layout = inflater.inflate(R.layout.check, (ViewGroup) findViewById(R.id.telCheck));
-            //データ取得準備
-            final EditText edit1 = (EditText) layout.findViewById(R.id.editCheck);
-            builder.setView(layout);
-            builder.setPositiveButton("入力", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String checked = edit1.getText().toString();
-                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
-                    String uuid = UUID.randomUUID().toString(); //念のためpasswordが空の時に返すダミーデータ生成。空の時にそのままエンター押して通過されるのを防止
-                    String word = sp.getString("password", uuid);
-                    if (checked.equals(word)) {
-                        checked = null; //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                        dialog.dismiss(); //これを入れて明示的に閉じないと次の画面でEditTextのインスタンスに反応してソフトキーボードが立ち上がり続ける端末あり
-                        //mPassFlagをオン
-                        mPassFlag = true;
-                        showTel();
-                    }
-                }
-            });
-            builder.setNegativeButton("キャンセル", null);
-            builder.setCancelable(true);
-            builder.create();
-            builder.show();
-        } else {
-            showTel();
-        }
     }
 
     //情報（気象）
