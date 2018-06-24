@@ -404,10 +404,10 @@
     </string-array>
     <string-array name="kubunB">
         <item>すべて</item>
-        <item>１号招集</item>
-        <item>２号招集</item>
-        <item>３号招集</item>
-        <item>４号招集</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
     <string-array name="kinmuB">
         <item>すべて</item>
