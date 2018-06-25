@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -25,12 +23,7 @@ import android.widget.Toast;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.UUID;
 
 //import android.database.sqlite.SQLiteDatabase;
 
@@ -509,11 +502,12 @@ public class EarthquakeActivity extends AppCompatActivity {
                 for (int i=0; i < mailArray.size(); i++){
                     sendMails[i] = mailArray.get(i);
                 }
-                //メール立ち上げ
+                //メール立ち上げ  注意！宛先はICT戦略室組織メール、個人アドレスはBCCで！
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, sendMails);
+                intent.putExtra(Intent.EXTRA_EMAIL, "ba0034@city.osaka.lg.jp");
+                intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
                 try {
