@@ -289,11 +289,12 @@ public class EarthquakeActivity extends AppCompatActivity {
                 for (int i=0; i < mailArray.size(); i++){
                     sendMails[i] = mailArray.get(i);
                 }
-                //メール立ち上げ
+                //メール立ち上げ  注意！宛先はICT戦略室組織メール、個人アドレスはBCCで！
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, sendMails);
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ba0034@city.osaka.lg.jp"});
+                intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
                 try {
@@ -405,11 +406,12 @@ public class EarthquakeActivity extends AppCompatActivity {
                 for (int i=0; i < mailArray.size(); i++){
                     sendMails[i] = mailArray.get(i);
                 }
-                //メール立ち上げ
+                //メール立ち上げ  注意！宛先はICT戦略室組織メール、個人アドレスはBCCで！
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, sendMails);
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ba0034@city.osaka.lg.jp"});
+                intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
                 try {
@@ -506,7 +508,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, "ba0034@city.osaka.lg.jp");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ba0034@city.osaka.lg.jp"});
                 intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
